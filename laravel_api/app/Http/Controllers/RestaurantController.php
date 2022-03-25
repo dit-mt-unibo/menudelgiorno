@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\restaurantRequest;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -13,7 +15,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Restaurant::all());
     }
 
     /**
@@ -32,9 +34,9 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(restaurantRequest $request)
     {
-        //
+
     }
 
     /**
@@ -77,8 +79,8 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Restaurant $restaurant)
     {
-        //
+        $restaurant->delete();
     }
 }
