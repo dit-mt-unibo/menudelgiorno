@@ -221,23 +221,27 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'user' => 'brunocassio78',
             'email' => Str::random(5).'@gmail.com',
+            'ruolo'=>'traduttore',
             'password' => Hash::make('default')
         ]);
 
         DB::table('users')->insert([
             'user' => 'msiciliano84',
             'email' => Str::random(5).'@gmail.com',
+            'ruolo'=>'ristauratore',
             'password' => Hash::make('default')
         ]);
 
         DB::table('users')->insert([
             'user' => 'erica_milano_72',
             'email' => Str::random(5).'@gmail.com',
+            'ruolo'=>'traduttore',
             'password' => Hash::make('default')
         ]);
 
         DB::table('users')->insert([
             'user' => 'rufino.padovano',
+            'ruolo'=>'traduttore',
             'email' => Str::random(5).'@gmail.com',
             'password' => Hash::make('default')
         ]);
@@ -245,6 +249,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'user' => 'gianfrancomarch89',
             'email' => Str::random(5).'@gmail.com',
+            'ruolo'=>'ristauratore',
             'password' => Hash::make('default')
         ]);
 
