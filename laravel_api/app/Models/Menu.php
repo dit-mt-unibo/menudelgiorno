@@ -11,4 +11,10 @@ class Menu extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name', 'text', 'restaurant_id'];
+
+    public function restaurant(){
+
+        return $this->belongsTo(Restaurant::class);
+
+    }
 }

@@ -11,4 +11,9 @@ class Restaurant extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name', 'address', 'street_number', 'postcode', 'city', 'province', 'user_id'];
+
+
+    public function menu(){
+        $this->hasOne(Menu::class);
+    }
 }

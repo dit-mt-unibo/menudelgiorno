@@ -20,6 +20,10 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    public function registry(){
+       $this->hasOne(Registry::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

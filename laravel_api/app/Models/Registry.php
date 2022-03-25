@@ -11,4 +11,8 @@ class Registry extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name', 'surname', 'email', 'user_id'];
+
+    public function user(){
+        $this->belongsTo(User::class);
+    }
 }
