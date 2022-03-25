@@ -11,4 +11,8 @@ class Language extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name'];
+
+    public function translation(){
+        $this->hasMany(Translation::class);
+    }
 }
