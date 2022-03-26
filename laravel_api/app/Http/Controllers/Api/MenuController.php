@@ -14,7 +14,7 @@ class MenuController extends Controller
     public function index()
     {
         $menu=Menu::get();
-        return response()->json(['menu trovati',$menu]);
+        return response()->json( ['Menu fetched.', MenuResource::collection($menu)]);
     }
 
     public function store(MenuRequest $request,Menu $menu)
@@ -28,7 +28,7 @@ class MenuController extends Controller
         ]);
 
 
-        return response()->json(['menu creato',new MenuResource($menu)]);
+        return response()->json(['Menu created successfully.', new MenuResource($menu)]);
     }
 
 
@@ -39,7 +39,7 @@ class MenuController extends Controller
         {
             return response()->json('menu non trovato',404);
         }
-        return response()->json(new MenuResource($menu));
+        return response()->json([new MenuResource($menu)]);
     }
 
 
@@ -49,14 +49,14 @@ class MenuController extends Controller
         $menu->text=$request->text;
         $menu->restaurant_id=$request->restaurant_id;
         $menu->save();
-        return response()->json(['menu aggiornato',new MenuResource($menu)]);
+        return response()->json(['Menu updated successfully.', new MenuResource($menu)]);
     }
 
 
     public function destroy(Menu $menu)
     {
         $menu->delete();
-        return response()->json(['menu cancellato']);
+        return response()->json(['Menu deleted successfully']);
     }
 
 }

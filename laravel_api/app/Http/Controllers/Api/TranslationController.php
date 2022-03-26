@@ -4,82 +4,61 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TranslationRequest;
+use App\Http\Resources\TranslationResource;
+use App\Models\Translation;
 
 class TranslationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $translation = Translation::latest()->get();
+        return response()->json([ 'Translations fetched.', TranslationResource::collection($translation)]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+
+    public function store(TranslationRequest $request)
     {
-        //
+        $translation=new Translation();
+        $translation=Translation::create([
+            'text' => $request->text,
+            'language_id' => $request->language_id,
+        ]);
+
+
+        return response()->json(['translation created successfully.', new TranslationResource($translation)]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $translation = Translation::find($id);
+
+        if (is_null($translation)) {
+            return response()->json('Data not found', 404);
+        }
+        return response()->json(new TranslationResource($translation));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function update(TranslationRequest $request,Translation $translation)
     {
-        //
+        $translation->text=$request->text;
+        $translation->language_id=$request->language_id;
+        $translation->save();
+
+        return response()->json(['translation updated successfully.', new TranslationResource($translation)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+
+    public function destroy(Translation $translation)
     {
-        //
+        $translation->delete();
+
+        return response()->json('Translation deleted successfully');
     }
 }
