@@ -5,33 +5,62 @@ namespace App\Http\Controllers\Api;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\restaurantRequest;
+use App\Http\Requests\RestaurantRequest;
 
 class RestaurantController extends Controller
 {
 
     public function index()
     {
-        return response()->json(Restaurant::all());
+        return response()->json(['Restaurant fetched',Restaurant::all()]);
     }
 
 
 
 
-    public function store(restaurantRequest $request)
+    public function store(RestaurantRequest $request)
     {
+        $restaurant = new Restaurant();
+
+        $restaurant = Restaurant::create([
+            'name' => $request->name,
+            'address' => $request->address,
+            'street_number' => $request->street_number,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+            'province' => $request->province,
+            'user_id' => $request->user_id
+        ]);
+
+        return response()->json(['Restaurant created successful', $restaurant]);
     }
 
 
     public function show($id)
     {
-        //
+        $restaurant = Restaurant::find($id);
+
+        if (is_null($restaurant)) {
+            return response()->json(['Restaurant not found']);
+        }
+
+        return response()->json($restaurant);
     }
 
 
-    public function update(Request $request, $id)
+    public function update(RestaurantRequest $request, Restaurant $restaurant)
     {
-        //
+        $restaurant->name = $request->name;
+        $restaurant->address = $request->address;
+        $restaurant->street_number = $request->street_number;
+        $restaurant->postcode = $request->postcode;
+        $restaurant->city = $request->city;
+        $restaurant->province = $request->province;
+        $restaurant->user_id = $request->user_id;
+
+        $restaurant->save();
+
+        return response()->json(['Restaurant updated successful', $restaurant]);
     }
 
 
@@ -39,5 +68,7 @@ class RestaurantController extends Controller
     public function destroy(Restaurant $restaurant)
     {
         $restaurant->delete();
+
+        return response()->json(['Restaurant cancelled successful']);
     }
 }
