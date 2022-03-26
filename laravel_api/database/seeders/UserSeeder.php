@@ -20,30 +20,35 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'user' => 'brunocassio78',
             'email' => Str::random(5).'@gmail.com',
+            'ruolo' => 'ristauratore',
             'password' => Hash::make('default')
         ]);
 
         DB::table('users')->insert([
             'user' => 'msiciliano84',
             'email' => Str::random(5).'@gmail.com',
+            'ruolo' => 'ristauratore',
             'password' => Hash::make('default')
         ]);
 
         DB::table('users')->insert([
             'user' => 'erica_milano_72',
             'email' => Str::random(5).'@gmail.com',
+            'ruolo' => 'traduttore',
             'password' => Hash::make('default')
         ]);
 
         DB::table('users')->insert([
             'user' => 'rufino.padovano',
             'email' => Str::random(5).'@gmail.com',
+            'ruolo' => 'traduttore',
             'password' => Hash::make('default')
         ]);
 
         DB::table('users')->insert([
             'user' => 'gianfrancomarch89',
             'email' => Str::random(5).'@gmail.com',
+            'ruolo' => 'traduttore',
             'password' => Hash::make('default')
         ]);
     }
