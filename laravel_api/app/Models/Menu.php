@@ -15,6 +15,9 @@ class Menu extends Model
     public function restaurant(){
 
         return $this->belongsTo(Restaurant::class);
-
+    }
+    public function languages()
+    {
+        $this->hasMany(Language::class);
     }
 }

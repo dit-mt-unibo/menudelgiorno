@@ -17,6 +17,7 @@ class CreateLanguageRestaurantTable extends Migration
             $table->id();
             $table->integer('restaurant_id');
             $table->integer('language_id');
+
             $table->softDeletes();
             $table->timestamps();
         });

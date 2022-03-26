@@ -22,13 +22,12 @@ use App\Http\Controllers\Api\RestaurantController;
 // Public
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/login', [AuthController::class, 'login']);
-
+Route::apiResource('registries', RegistryController::class);
+Route::apiResource('languages', LanguageController::class);
+Route::apiResource('restaurants', RestaurantController::class);
+Route::apiResource('translations', TranslationController::class);
+Route::apiResource('menus', MenuController::class);
 // Private
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::apiResource('registries', RegistryController::class);
-    Route::apiResource('languages', LanguageController::class);
-    Route::apiResource('restaurants', RestaurantController::class);
-    Route::apiResource('translations', TranslationController::class);
-    Route::apiResource('menus', MenuController::class);
     Route::post('auth/logout', [AuthController::class, 'logout']);
 });

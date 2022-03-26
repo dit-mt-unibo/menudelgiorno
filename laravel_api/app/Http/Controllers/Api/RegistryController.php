@@ -21,7 +21,6 @@ class RegistryController extends Controller
     public function store(RegistryRequest $request)
     {
         $registry=new Registry();
-       // $id=Auth::user()->id;
         $registry=Registry::create( [
             'name' => $request->name,
             'surname' => $request->surname,

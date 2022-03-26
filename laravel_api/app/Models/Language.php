@@ -15,4 +15,9 @@ class Language extends Model
     public function translation(){
         $this->hasMany(Translation::class);
     }
+
+    public function menu()
+    {
+        $this->hasMany(Menu::class);
+    }
 }
