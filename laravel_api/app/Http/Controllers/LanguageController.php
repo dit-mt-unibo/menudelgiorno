@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
@@ -13,7 +14,7 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Language::orderBy('name','ASC')->get());
     }
 
     /**
@@ -32,10 +33,7 @@ class LanguageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
@@ -66,10 +64,7 @@ class LanguageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -77,8 +72,8 @@ class LanguageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Language $language)
     {
-        //
+        $language->delete();
     }
 }
