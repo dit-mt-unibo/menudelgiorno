@@ -13,16 +13,16 @@ class RegistryController extends Controller
 
     public function index()
     {
-        $registry = Registry::latest()->get();
-        return response()->json(['Registries fetched.', $registry]);
+        $registry = Registry ::latest()->get();
+        return response()->json([ 'Registries fetched.', RegistryResource::collection($registry)]);
     }
 
 
     public function store(RegistryRequest $request)
     {
-        $registry = new Registry();
-
-        $registry = Registry::create([
+        $registry=new Registry();
+       // $id=Auth::user()->id;
+        $registry=Registry::create( [
             'name' => $request->name,
             'surname' => $request->surname,
             'email' => $request->email,
@@ -47,21 +47,19 @@ class RegistryController extends Controller
 
     public function update(RegistryRequest $request, Registry $registry)
     {
-        $registry->name = $request->name;
-        $registry->surname = $request->surname;
-        $registry->email = $request->email;
-        $registry->user_id = $request->user_id;
-
+        $registry->name=$request->name;
+        $registry->surname=$request->surname;
+        $registry->email=$request->email;
+        $registry->user_id=$request->user_id;
+        $registry->save();
 
         return response()->json(['Registry updated successfully.', new RegistryResource($registry)]);
     }
 
 
-    public function destroy(Registry  $registry)
+    public function destroy(Registry $registry)
     {
         $registry->delete();
-
-
         return response()->json('Registry deleted successfully');
     }
 }

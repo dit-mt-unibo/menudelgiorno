@@ -2,84 +2,61 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\MenuRequest;
+use App\Http\Resources\MenuResource;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class MenuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $menu=Menu::get();
+        return response()->json(['menu trovati',$menu]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(MenuRequest $request,Menu $menu)
     {
-        //
+        // $menu=new menu();
+        $menu=Menu::create([
+            'name'=>$request->name,
+            'text'=>$request->text,
+            'restaurant_id'=>$request->restaurant_id,
+
+        ]);
+
+
+        return response()->json(['menu creato',new MenuResource($menu)]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $menu=Menu::find($id);
+        if(is_null($menu))
+        {
+            return response()->json('menu non trovato',404);
+        }
+        return response()->json(new MenuResource($menu));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function update(MenuRequest $request, Menu $menu)
     {
-        //
+        $menu->name=$request->name;
+        $menu->text=$request->text;
+        $menu->restaurant_id=$request->restaurant_id;
+        $menu->save();
+        return response()->json(['menu aggiornato',new MenuResource($menu)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+        return response()->json(['menu cancellato']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

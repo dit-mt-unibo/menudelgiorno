@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\LanguageController;
 use App\Http\Controllers\Api\RegistryController;
 use App\Http\Controllers\Api\RestaurantController;
@@ -23,8 +23,9 @@ Route::post('auth/login', [AuthController::class, 'login']);
 
 // Private
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::apiResource('restaurants', RestaurantController::class);
     Route::apiResource('registries', RegistryController::class);
     Route::apiResource('languages', LanguageController::class);
+    Route::apiResource('restaurants', RestaurantController::class);
+    Route::apiResource('menus', MenuController::class);
     Route::post('auth/logout', [AuthController::class, 'logout']);
 });
