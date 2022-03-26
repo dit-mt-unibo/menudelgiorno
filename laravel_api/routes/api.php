@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RegistryController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

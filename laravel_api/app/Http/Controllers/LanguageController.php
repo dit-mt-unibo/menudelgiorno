@@ -2,78 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\languageRequest;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return response()->json(Language::orderBy('name','ASC')->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // public function store(languageRequest $request)
+    // {
+    //     $language=new Language();
+
+    //     $language=Language::create([ 'name' => $request->name]);
+
+    //     return response()->json($language);
+    // }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $language =Language::find($id);
+        if (is_null($language)) {
+            return response()->json('Data not found', 404);
+        }
+        return response()->json($language);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // public function update(LanguageRequest $request,Language $language)
+    // {
+    //     $language->name=$request->name;
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Language $language)
-    {
-        $language->delete();
-    }
+    //     return response()->json(['language updated successfully.', $language]);
+    // }
+
+
+    // public function destroy(Language $language)
+    // {
+    //     $language->delete();
+    //     return response()->json('language deleted successfully.');
+    // }
 }
