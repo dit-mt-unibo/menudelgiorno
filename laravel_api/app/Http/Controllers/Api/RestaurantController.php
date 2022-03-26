@@ -6,13 +6,14 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantRequest;
+use App\Http\Resources\RestaurantResource;
 
 class RestaurantController extends Controller
 {
 
     public function index()
     {
-        return response()->json(['Restaurant fetched',Restaurant::all()]);
+        return response()->json(['Restaurant fetched', RestaurantResource::collection(Restaurant::all())]);
     }
 
 
@@ -32,7 +33,7 @@ class RestaurantController extends Controller
             'user_id' => $request->user_id
         ]);
 
-        return response()->json(['Restaurant created successful', $restaurant]);
+        return response()->json(['Restaurant created successful', new RestaurantResource($restaurant)]);
     }
 
 
@@ -44,7 +45,7 @@ class RestaurantController extends Controller
             return response()->json(['Restaurant not found']);
         }
 
-        return response()->json($restaurant);
+        return response()->json(new RestaurantResource($restaurant));
     }
 
 
@@ -60,7 +61,7 @@ class RestaurantController extends Controller
 
         $restaurant->save();
 
-        return response()->json(['Restaurant updated successful', $restaurant]);
+        return response()->json(['Restaurant updated successful', new RestaurantResource($restaurant)]);
     }
 
 
