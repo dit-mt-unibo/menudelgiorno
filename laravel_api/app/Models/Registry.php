@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Registry extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'user_id',
+    ];
 
-    protected $fillable = ['name', 'surname', 'email', 'user_id'];
-
-    public function user(){
+    public function user()
+    {
         $this->belongsTo(User::class);
     }
 }

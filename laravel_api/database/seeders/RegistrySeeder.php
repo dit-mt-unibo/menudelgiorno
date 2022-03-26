@@ -4,48 +4,54 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 class RegistrySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         DB::table('registries')->insert([
-            'name' => 'Bruno',
-            'surname' => 'Cassio',
+            'first_name' => 'Bruno',
+            'last_name' => 'Cassio',
             'email' => 'bruno.cassio@gmail.com',
-            'user_id' => '1'
+            'user_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('registries')->insert([
-            'name' => 'Manuela',
-            'surname' => 'Siciliano',
+            'first_name' => 'Manuela',
+            'last_name' => 'Siciliano',
             'email' => 'manuela.siciliano@gmail.com',
-            'user_id' => '2'
+            'user_id' => '2',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('registries')->insert([
-            'name' => 'Erica',
-            'surname' => 'Milano',
+            'first_name' => 'Erica',
+            'last_name' => 'Milano',
             'email' => 'erica.milano@gmail.com',
-            'user_id' => '3'
+            'user_id' => '3',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('registries')->insert([
-            'name' => 'Rufino',
-            'surname' => 'Padovano',
+            'first_name' => 'Rufino',
+            'last_name' => 'Padovano',
             'email' => 'rufino.padovano@gmail.com',
-            'user_id' => '4'
+            'user_id' => '4',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('registries')->insert([
-            'name' => 'Gianfranco',
-            'surname' => 'Marchesi',
+            'first_name' => 'Gianfranco',
+            'last_name' => 'Marchesi',
             'email' => 'gianfranco.marchesi@gmail.com',
-            'user_id' => '5'
+            'user_id' => '5',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

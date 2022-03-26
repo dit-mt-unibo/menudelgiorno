@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\restaurantRequest;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\restaurantRequest;
 
 class RestaurantController extends Controller
 {
@@ -36,7 +37,6 @@ class RestaurantController extends Controller
      */
     public function store(restaurantRequest $request)
     {
-
     }
 
     /**

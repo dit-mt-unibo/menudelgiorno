@@ -5,46 +5,49 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-
         DB::table('users')->insert([
-            'user' => 'brunocassio78',
-            'email' => Str::random(5).'@gmail.com',
-            'password' => Hash::make('default')
+            'name' => 'brunocassio78',
+            'password' => Hash::make('brunocassio78'),
+            'role' => 'Ristoratore',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('users')->insert([
-            'user' => 'msiciliano84',
-            'email' => Str::random(5).'@gmail.com',
-            'password' => Hash::make('default')
+            'name' => 'msiciliano84',
+            'password' => Hash::make('msiciliano84'),
+            'role' => 'Ristoratore',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('users')->insert([
-            'user' => 'erica_milano_72',
-            'email' => Str::random(5).'@gmail.com',
-            'password' => Hash::make('default')
+            'name' => 'erica_milano_72',
+            'password' => Hash::make('erica_milano_72'),
+            'role' => 'Traduttore',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('users')->insert([
-            'user' => 'rufino.padovano',
-            'email' => Str::random(5).'@gmail.com',
-            'password' => Hash::make('default')
+            'name' => 'rufino.padovano',
+            'password' => Hash::make('rufino.padovano'),
+            'role' => 'Traduttore',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('users')->insert([
-            'user' => 'gianfrancomarch89',
-            'email' => Str::random(5).'@gmail.com',
-            'password' => Hash::make('default')
+            'name' => 'gianfrancomarch89',
+            'password' => Hash::make('gianfrancomarch89'),
+            'role' => 'Ristoratore',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

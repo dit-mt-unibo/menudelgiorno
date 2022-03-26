@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\languageRequest;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\languageRequest;
 
 class LanguageController extends Controller
 {
 
     public function index()
     {
-        return response()->json(Language::orderBy('name','ASC')->get());
+        return response()->json(Language::orderBy('name', 'ASC')->get());
     }
 
 
@@ -28,7 +29,7 @@ class LanguageController extends Controller
 
     public function show($id)
     {
-        $language =Language::find($id);
+        $language = Language::find($id);
         if (is_null($language)) {
             return response()->json('Data not found', 404);
         }

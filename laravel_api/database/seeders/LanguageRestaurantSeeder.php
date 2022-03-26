@@ -7,14 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class LanguageRestaurantSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-
         DB::table('language_restaurant')->insert([
             'restaurant_id' => '1',
             'language_id' => '1'

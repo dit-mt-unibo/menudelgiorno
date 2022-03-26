@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\RegistryController;
-use App\Http\Controllers\RestaurantController;
-use App\Http\Controllers\LanguageController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\LanguageController;
+use App\Http\Controllers\Api\RegistryController;
+use App\Http\Controllers\Api\RestaurantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Public
+Route::post('auth/register', [AuthController::class, 'register']);
+Route::post('auth/login', [AuthController::class, 'login']);
 
-Route::apiResource('restaurants', RestaurantController::class);
-Route::apiResource('registries', RegistryController::class);
-Route::apiResource('languages', LanguageController::class);
+// Private
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('restaurants', RestaurantController::class);
+    Route::apiResource('registries', RegistryController::class);
+    Route::apiResource('languages', LanguageController::class);
+    Route::post('auth/logout', [AuthController::class, 'logout']);
+});

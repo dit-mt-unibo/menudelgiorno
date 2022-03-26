@@ -7,14 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class RestaurantSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-
         DB::table('restaurants')->insert([
             'name' => 'Tratoria i Maceri',
             'address' => 'Via Roversano',

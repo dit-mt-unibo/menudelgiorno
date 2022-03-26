@@ -7,11 +7,6 @@ use Illuminate\support\Facades\DB;
 
 class LanguageSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         DB::table('languages')->insert([
