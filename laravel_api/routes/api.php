@@ -3,6 +3,7 @@
 use App\Http\Controllers\RegistryController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('restaurants', RestaurantController::class);
 Route::apiResource('registries', RegistryController::class);
 Route::apiResource('languages', LanguageController::class);
+Route::apiResource('menus', MenuController::class);
 
