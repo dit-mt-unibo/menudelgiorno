@@ -3,21 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Restaurant;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantRequest;
 use App\Http\Resources\RestaurantResource;
 
 class RestaurantController extends Controller
 {
-
     public function index()
     {
         return response()->json(['Restaurant fetched', RestaurantResource::collection(Restaurant::all())]);
     }
-
-
-
 
     public function store(RestaurantRequest $request)
     {
@@ -36,35 +32,36 @@ class RestaurantController extends Controller
         return response()->json(['Restaurant created successful', new RestaurantResource($restaurant)]);
     }
 
-
-    public function show($id)
+    public function show($userId)
     {
-        $restaurant = Restaurant::find($id);
+        $restaurant = Restaurant::where('user_id', $userId)->first();
 
-        if (is_null($restaurant)) {
-            return response()->json(['Restaurant not found']);
-        }
-
-        return response()->json(new RestaurantResource($restaurant));
+        return response()
+            ->json([
+                'message' => 'Ristorante ottenuto con successo!',
+                'restaurant' => new RestaurantResource($restaurant)
+            ])
+            ->setStatusCode(Response::HTTP_OK);
     }
-
 
     public function update(RestaurantRequest $request, Restaurant $restaurant)
     {
-        $restaurant->name = $request->name;
-        $restaurant->address = $request->address;
-        $restaurant->street_number = $request->street_number;
-        $restaurant->postcode = $request->postcode;
-        $restaurant->city = $request->city;
-        $restaurant->province = $request->province;
-        $restaurant->user_id = $request->user_id;
+        $restaurant->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'street_number' => $request->street_number,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+            'province' => $request->province,
+        ]);
 
-        $restaurant->save();
-
-        return response()->json(['Restaurant updated successful', new RestaurantResource($restaurant)]);
+        return response()
+            ->json([
+                'message' => 'Ristorante modificato con successo!',
+                'restaurant' => new RestaurantResource($restaurant)
+            ])
+            ->setStatusCode(Response::HTTP_OK);
     }
-
-
 
     public function destroy(Restaurant $restaurant)
     {

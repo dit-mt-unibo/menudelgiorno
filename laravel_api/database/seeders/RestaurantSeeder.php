@@ -16,7 +16,9 @@ class RestaurantSeeder extends Seeder
             'postcode' => '47023',
             'city' => 'Cesena',
             'province' => 'Forlì-Cesena',
-            'user_id' => '1'
+            'user_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('restaurants')->insert([
@@ -26,7 +28,9 @@ class RestaurantSeeder extends Seeder
             'postcode' => '47121',
             'city' => 'Forli',
             'province' => 'Forlì-Cesena',
-            'user_id' => '2'
+            'user_id' => '2',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('restaurants')->insert([
@@ -36,7 +40,9 @@ class RestaurantSeeder extends Seeder
             'postcode' => '47521',
             'city' => 'Cesena',
             'province' => 'Forlì-Cesena',
-            'user_id' => '3'
+            'user_id' => '3',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('restaurants')->insert([
@@ -46,7 +52,9 @@ class RestaurantSeeder extends Seeder
             'postcode' => '47522',
             'city' => 'Cesena',
             'province' => 'Forlì-Cesena',
-            'user_id' => '4'
+            'user_id' => '4',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         DB::table('restaurants')->insert([
@@ -56,7 +64,9 @@ class RestaurantSeeder extends Seeder
             'postcode' => '47020',
             'city' => 'Roncofreddo',
             'province' => 'Forlì-Cesena',
-            'user_id' => '5'
+            'user_id' => '5',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

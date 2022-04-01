@@ -21,8 +21,7 @@ class CreateRestaurantsTable extends Migration
             $table->integer('postcode');
             $table->string('city');
             $table->string('province');
-            $table->integer('user_id');
-            $table->softDeletes();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
