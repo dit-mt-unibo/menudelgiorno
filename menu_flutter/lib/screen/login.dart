@@ -1,10 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:menudelgiorno/blocs/login_bloc.dart';
 import 'package:menudelgiorno/screen/ristoratore_home.dart';
-
+import 'package:device_info_plus/device_info_plus.dart';
 import 'registrazione.dart';
 import 'traduttore.dart';
 
@@ -21,13 +20,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   LoginBloc bloc = LoginBloc();
 
-  prosesLogin() {
+  prosesLogin() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+
+    print('Running on ${androidInfo.model}');
     String user = userController.text;
     String password = passwordController.text;
-    Map params = jsonDecode(
-        '{"user": "$user","password": "$password", "device": "Google Pixel 3"}');
-
+    Map params =
+        jsonDecode('{"user": "$user","password": "$password", "device": " ${androidInfo.model}"}');
+    print(params);
     bloc.doLogin(params);
+
     bloc.stream.listen((data) {
       switch (data["user"]["role"]) {
         case "Ristoratore":
@@ -49,8 +53,11 @@ class _LoginScreenState extends State<LoginScreen> {
           }
           break;
 
-          default: { print("Qualcosa è andato storto"); } 
-          break; 
+        default:
+          {
+            print("Qualcosa è andato storto");
+          }
+          break;
       }
     });
   }
@@ -122,12 +129,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 onPressed: () {
                   prosesLogin();
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const TraduttoreScreen(),
-                  //   ),
-                  // );
                 },
               ),
             ),
