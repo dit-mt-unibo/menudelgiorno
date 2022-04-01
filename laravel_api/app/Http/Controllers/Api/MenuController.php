@@ -26,7 +26,8 @@ class MenuController extends Controller
             'restaurant_id'=>$request->restaurant_id,
 
         ]);
-
+     // quando facciamo conferma si crea un menu,quindi in questo punto possiamo chiamare le api per le traduzioni
+     //
 
         return response()->json(['Menu created successfully.', new MenuResource($menu)]);
     }

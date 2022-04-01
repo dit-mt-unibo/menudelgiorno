@@ -13,6 +13,7 @@ class CreateLanguageTranslatorTable extends Migration
      */
     public function up()
     {
+        //un utente traduttore puo essere abillitato a piu lingue.
         Schema::create('language_translator', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');//traduttore

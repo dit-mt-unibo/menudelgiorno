@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\languageRequest;
 use App\Http\Resources\LanguageResource;
+use Illuminate\Support\Facades\Http;
 
 class LanguageController extends Controller
 {
@@ -15,7 +16,9 @@ class LanguageController extends Controller
     {
         $language= Language::get();
 
-        return response()->json(['Language fetched', LanguageResource::collection($language)]);
+
+
+       return response()->json(['Language fetched', LanguageResource::collection($language)]);
     }
 
     public function show($id)
