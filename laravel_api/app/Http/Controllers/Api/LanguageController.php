@@ -14,12 +14,11 @@ class LanguageController extends Controller
 
     public function index()
     {
-       // $language= Language::get();
-        // $mmt = new ModernMT("09C68D0E-F23B-963E-032E-A9D1F16B9C3E");
-        // $languages = $mmt->list_supported_languages();
-      // $response = Http::get('https://api.modernmt.com/');
+        $language= Language::get();
 
-       //return response()->json(['Language fetched', LanguageResource::collection($response)]);
+
+
+       return response()->json(['Language fetched', LanguageResource::collection($language)]);
     }
 
     public function show($id)
