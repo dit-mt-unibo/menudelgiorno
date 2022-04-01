@@ -7,15 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\languageRequest;
 use App\Http\Resources\LanguageResource;
+use Illuminate\Support\Facades\Http;
 
 class LanguageController extends Controller
 {
 
     public function index()
     {
-        $language= Language::get();
+       // $language= Language::get();
+        // $mmt = new ModernMT("09C68D0E-F23B-963E-032E-A9D1F16B9C3E");
+        // $languages = $mmt->list_supported_languages();
+      // $response = Http::get('https://api.modernmt.com/');
 
-        return response()->json(['Language fetched', LanguageResource::collection($language)]);
+       //return response()->json(['Language fetched', LanguageResource::collection($response)]);
     }
 
     public function show($id)

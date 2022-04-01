@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLanguageTranslatorTable extends Migration
+class CreateLanguagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateLanguageTranslatorTable extends Migration
      */
     public function up()
     {
-        Schema::create('language_translator', function (Blueprint $table) {
+        Schema::create('languages', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');//traduttore
-            $table->integer('language_id');
+            $table->string('name');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ class CreateLanguageTranslatorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('language_translator');
+        Schema::dropIfExists('languages');
     }
 }
