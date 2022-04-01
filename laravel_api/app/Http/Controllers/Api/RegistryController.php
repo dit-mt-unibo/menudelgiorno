@@ -3,25 +3,23 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Registry;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistryRequest;
 use App\Http\Resources\RegistryResource;
 
 class RegistryController extends Controller
 {
-
     public function index()
     {
-        $registry = Registry ::latest()->get();
-        return response()->json([ 'Registries fetched.', RegistryResource::collection($registry)]);
+        $registry = Registry::latest()->get();
+        return response()->json(['Registries fetched.', RegistryResource::collection($registry)]);
     }
-
 
     public function store(RegistryRequest $request)
     {
-        $registry=new Registry();
-        $registry=Registry::create( [
+        $registry = new Registry();
+        $registry = Registry::create([
             'name' => $request->name,
             'surname' => $request->surname,
             'email' => $request->email,
@@ -31,30 +29,32 @@ class RegistryController extends Controller
         return response()->json(['Registry created successfully.', new RegistryResource($registry)]);
     }
 
-
-    public function show($id)
+    public function show($userId)
     {
-        $registry = Registry::find($id);
+        $registry = Registry::where('user_id', $userId)->first();
 
-        if (is_null($registry)) {
-            return response()->json('Data not found', 404);
-        }
-        return response()->json(new RegistryResource($registry));
+        return response()
+            ->json([
+                'registry' => new RegistryResource($registry)
+            ])
+            ->setStatusCode(Response::HTTP_OK);
     }
-
-
 
     public function update(RegistryRequest $request, Registry $registry)
     {
-        $registry->name=$request->name;
-        $registry->surname=$request->surname;
-        $registry->email=$request->email;
-        $registry->user_id=$request->user_id;
-        $registry->save();
+        $registry->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+        ]);
 
-        return response()->json(['Registry updated successfully.', new RegistryResource($registry)]);
+        return response()
+            ->json([
+                'message' => 'Anagrafica modificata con successo!',
+                'registry' => new RegistryResource($registry)
+            ])
+            ->setStatusCode(Response::HTTP_OK);
     }
-
 
     public function destroy(Registry $registry)
     {
