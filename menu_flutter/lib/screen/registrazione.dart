@@ -23,12 +23,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
 
   Future register() async {
     var url = "http://10.0.2.2:8000/api/auth/register";
-    var response = await http.post(Uri.parse(url),
-    headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-     body: {
+    var response = await http.post(Uri.parse(url), body: {
       "user": user.text,
       "email": email.text,
       "password": pwd.text,
