@@ -38,4 +38,7 @@ class User extends Authenticatable
     {
         $this->hasMany(Translation::class);
     }
+    public function lingue(){
+        $this->hasMany(Language::class);
+    }
 }
