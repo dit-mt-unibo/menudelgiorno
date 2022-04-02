@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'ristoratore/il_mio_ristorante.dart';
+import 'il_mio_ristorante.dart';
 
 class DatiAnagraficiWidget extends StatefulWidget {
   const DatiAnagraficiWidget({Key? key}) : super(key: key);
@@ -17,17 +17,18 @@ class User {
 }
 
 class _DatiAnagraficiWidgetState extends State<DatiAnagraficiWidget> {
-  List dataList = [];
-  Future getData() async {
-    var url = 'http://10.0.2.2:8000:/api/registries';
-    var response = await http.get(Uri.http(url, 'id'));
-    var jsonData = jsonDecode(response.body);
-  }
+  TextEditingController nome = TextEditingController();
+  TextEditingController cognome = TextEditingController();
+  TextEditingController email = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    getData();
+  Future getData() async {
+    var url = 'http://10.0.2.2:8000/api/registries/17'; //cambiare il numero in base all'id
+    var response = await http.put(Uri.parse(url), body: {
+      "first_name": nome.text,
+      "last_name": cognome.text,
+      "email": email.text
+    });
+    json.decode(response.body);
   }
 
   @override
@@ -51,6 +52,7 @@ class _DatiAnagraficiWidgetState extends State<DatiAnagraficiWidget> {
             Container(
               padding: const EdgeInsets.all(20),
               child: TextFormField(
+                controller: nome,
                 decoration: const InputDecoration(
                   labelText: 'Nome',
                 ),
@@ -59,6 +61,7 @@ class _DatiAnagraficiWidgetState extends State<DatiAnagraficiWidget> {
             Container(
               padding: const EdgeInsets.all(20),
               child: TextFormField(
+                controller: cognome,
                 decoration: const InputDecoration(
                   labelText: 'Cognome',
                 ),
@@ -67,6 +70,7 @@ class _DatiAnagraficiWidgetState extends State<DatiAnagraficiWidget> {
             Container(
               padding: const EdgeInsets.all(20),
               child: TextFormField(
+                controller: email,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                 ),
@@ -85,6 +89,7 @@ class _DatiAnagraficiWidgetState extends State<DatiAnagraficiWidget> {
                   ),
                 ),
                 onPressed: () {
+                  getData();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
