@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+
 import '../widgets/dati_anagrafici.dart';
 
 class RegistrazioneScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class RegistrazioneScreen extends StatefulWidget {
 }
 
 class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
-  late int value;
+  var value;
 
   TextEditingController user = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -27,8 +28,8 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
       "user": user.text,
       "email": email.text,
       "password": pwd.text,
-      "password_confirmation" : pwd_conf.text,
-      "role": "Ristoratore"
+      "password_confirmation": pwd_conf.text,
+      "role": value
     });
 
     var data = json.decode(response.body);
@@ -57,11 +58,11 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
   @override
   void initState() {
     super.initState();
-    value = 0;
+    value = 1;
   }
 
   //per cambiare la radio
-  setSelectedRadio(int val) {
+  setSelectedRadio(val) {
     setState(() {
       value = val;
     });
@@ -121,19 +122,25 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Radio(
-                  value: 0,
+                  value: "Ristoratore",
                   groupValue: value,
                   onChanged: (val) {
-                    // print('Sono ristoratore');
+                    setState(() {
+                      value = "Ristoratore";
+                    });
+                    print('Sono ristoratore');
                     setSelectedRadio(val as int);
                   },
                 ),
                 const Text('Ristoratore'),
                 Radio(
-                  value: 1,
+                  value: "Traduttore",
                   groupValue: value,
                   onChanged: (val) {
-                    // print('Sono traduttore');
+                    setState(() {
+                      value = "Traduttore";
+                    });
+                    print('Sono traduttore');
                     setSelectedRadio(val as int);
                   },
                 ),
