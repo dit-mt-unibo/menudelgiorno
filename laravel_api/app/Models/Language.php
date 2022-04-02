@@ -20,4 +20,7 @@ class Language extends Model
     {
         $this->hasMany(Menu::class);
     }
+    public function user(){
+        $this->hasMany(User::class);
+    }
 }
