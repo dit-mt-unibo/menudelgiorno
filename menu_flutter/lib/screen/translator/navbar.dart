@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/dati_anagrafici.dart';
-import 'login.dart';
-import 'traduttore.dart';
-import 'welcome.dart';
+import '../welcome.dart';
+import 'home.dart';
+import 'languages.dart';
+import 'registry.dart';
 
-class TraduttoreNavBar extends StatelessWidget {
-  const TraduttoreNavBar({Key? key}) : super(key: key);
-
-  final padding = const EdgeInsets.symmetric(
-    horizontal: 20,
-    vertical: 70,
-  );
+class TranslatorNavbar extends StatelessWidget {
+  const TranslatorNavbar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,29 +14,32 @@ class TraduttoreNavBar extends StatelessWidget {
       child: Material(
         color: const Color.fromARGB(255, 26, 85, 247),
         child: ListView(
-          padding: padding,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 70,
+          ),
           children: [
             const SizedBox(height: 45),
             buildMenu(
-              icon: Icons.dashboard,
+              icon: Icons.home,
               titolo: 'Home',
               onclick: () => selectedItem(context, 0),
             ),
             buildMenu(
               icon: Icons.person,
-              titolo: 'I miei dati',
+              titolo: 'I miei Dati',
               onclick: () => selectedItem(context, 1),
             ),
             buildMenu(
-              icon: Icons.logout,
-              titolo: 'Esci',
-              onclick: () => selectedItem(context, 4),
+              icon: Icons.language,
+              titolo: 'Le mie Lingue',
+              onclick: () => selectedItem(context, 2),
             ),
             const Divider(),
             buildMenu(
-              icon: Icons.close_rounded,
-              titolo: 'Chiudi',
-              onclick: () => selectedItem(context, 0),
+              icon: Icons.logout,
+              titolo: 'Logout',
+              onclick: () => selectedItem(context, 3),
             ),
           ],
         ),
@@ -77,45 +75,30 @@ selectedItem(BuildContext context, int i) {
     case 0:
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const TraduttoreScreen(),
+          builder: (context) => const TranslatorHome(),
         ),
       );
       break;
     case 1:
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const DatiAnagraficiWidget(),
+          builder: (context) => const TranslatorRegistry(),
         ),
       );
       break;
     case 2:
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) => const TranslatorLanguages(),
         ),
       );
       break;
     case 3:
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        ),
-      );
-      break;
-    case 4:
-      Navigator.of(context).push(
-        MaterialPageRoute(
           builder: (context) => const WelcomeScreen(),
         ),
       );
       break;
-    case 5:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        ),
-      );
-      break;
-    default:
   }
 }

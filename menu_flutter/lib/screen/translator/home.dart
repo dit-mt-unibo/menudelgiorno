@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'traduttore_navbar.dart';
+import 'navbar.dart';
 
-class TraduttoreScreen extends StatefulWidget {
-  const TraduttoreScreen({Key? key}) : super(key: key);
+class TranslatorHome extends StatefulWidget {
+  const TranslatorHome({Key? key}) : super(key: key);
 
   @override
-  State<TraduttoreScreen> createState() => _TraduttoreScreenState();
+  State<TranslatorHome> createState() => _TranslatorHomeState();
 }
 
-class _TraduttoreScreenState extends State<TraduttoreScreen> {
+class _TranslatorHomeState extends State<TranslatorHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +28,7 @@ class _TraduttoreScreenState extends State<TraduttoreScreen> {
           child: const Center(
             child: Text('Menu disponibili'),
           )),
-      drawer: const TraduttoreNavBar(),
+      drawer: const TranslatorNavbar(),
     );
   }
 }

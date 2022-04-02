@@ -1,11 +1,13 @@
 import 'dart:convert';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:menudelgiorno/blocs/login_bloc.dart';
-import 'package:menudelgiorno/screen/ristoratore_home.dart';
-import 'package:device_info_plus/device_info_plus.dart';
+
+import '../blocs/login_bloc.dart';
+import 'translator/home.dart';
 import 'registrazione.dart';
-import 'traduttore.dart';
+import 'ristoratore_home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -27,8 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
     print('Running on ${androidInfo.model}');
     String user = userController.text;
     String password = passwordController.text;
-    Map params =
-        jsonDecode('{"user": "$user","password": "$password", "device": " ${androidInfo.model}"}');
+    Map params = jsonDecode(
+        '{"user": "$user","password": "$password", "device": " ${androidInfo.model}"}');
     print(params);
     bloc.doLogin(params);
 
@@ -48,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.pop(context);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => TraduttoreScreen()),
+              MaterialPageRoute(builder: (context) => const TranslatorHome()),
             );
           }
           break;
