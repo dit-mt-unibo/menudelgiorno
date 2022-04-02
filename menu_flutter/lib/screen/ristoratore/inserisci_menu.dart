@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/scegli_lingua.dart';
+import '../scegli_lingua.dart';
 
 class InserisciMenuScreen extends StatefulWidget {
   const InserisciMenuScreen({Key? key}) : super(key: key);

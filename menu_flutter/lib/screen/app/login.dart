@@ -5,9 +5,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../blocs/login_bloc.dart';
-import 'translator/home.dart';
+import '../translator/home.dart';
 import 'registrazione.dart';
-import 'ristoratore_home.dart';
+import '../ristoratore/ristoratore_home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

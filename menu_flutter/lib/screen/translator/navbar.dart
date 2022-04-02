@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../welcome.dart';
+import '../app/welcome.dart';
 import 'home.dart';
 import 'languages.dart';
 import 'registry.dart';

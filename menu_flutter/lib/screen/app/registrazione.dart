@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
-import '../widgets/dati_anagrafici.dart';
+import '../dati_anagrafici.dart';
 
 class RegistrazioneScreen extends StatefulWidget {
   const RegistrazioneScreen({Key? key}) : super(key: key);

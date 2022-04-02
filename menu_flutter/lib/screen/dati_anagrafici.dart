@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-import '../screen/il_mio_ristorante.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'ristoratore/il_mio_ristorante.dart';
 
 class DatiAnagraficiWidget extends StatefulWidget {
   const DatiAnagraficiWidget({Key? key}) : super(key: key);
@@ -9,7 +11,25 @@ class DatiAnagraficiWidget extends StatefulWidget {
   State<DatiAnagraficiWidget> createState() => _DatiAnagraficiWidgetState();
 }
 
+class User {
+  final String nome, cognome, email;
+  User(this.nome, this.cognome, this.email);
+}
+
 class _DatiAnagraficiWidgetState extends State<DatiAnagraficiWidget> {
+  List dataList = [];
+  Future getData() async {
+    var url = 'http://10.0.2.2:8000:/api/registries';
+    var response = await http.get(Uri.http(url, 'id'));
+    var jsonData = jsonDecode(response.body);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,14 +69,6 @@ class _DatiAnagraficiWidgetState extends State<DatiAnagraficiWidget> {
               child: TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Email',
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(20),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Codice Fiscale',
                 ),
               ),
             ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/dati_anagrafici.dart';
+import '../dati_anagrafici.dart';
 import 'il_mio_ristorante.dart';
 import 'inserisci_menu.dart';
-import 'login.dart';
+import '../app/login.dart';
 import 'ristoratore_home.dart';
 
 class RistoranteNavBar extends StatelessWidget {

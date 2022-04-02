@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screen/ristoratore_home.dart';
+import 'ristoratore/ristoratore_home.dart';
 
 class ScegliLinguaWidget extends StatefulWidget {
   const ScegliLinguaWidget({Key? key}) : super(key: key);
