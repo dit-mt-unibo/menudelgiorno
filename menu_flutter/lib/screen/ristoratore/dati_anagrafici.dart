@@ -11,18 +11,14 @@ class DatiAnagraficiWidget extends StatefulWidget {
   State<DatiAnagraficiWidget> createState() => _DatiAnagraficiWidgetState();
 }
 
-class User {
-  final String nome, cognome, email;
-  User(this.nome, this.cognome, this.email);
-}
-
 class _DatiAnagraficiWidgetState extends State<DatiAnagraficiWidget> {
   TextEditingController nome = TextEditingController();
   TextEditingController cognome = TextEditingController();
   TextEditingController email = TextEditingController();
 
   Future getData() async {
-    var url = 'http://10.0.2.2:8000/api/registries/17'; //cambiare il numero in base all'id
+    var url =
+        'http://10.0.2.2:8000/api/registries/17'; //cambiare il numero in base all'id
     var response = await http.put(Uri.parse(url), body: {
       "first_name": nome.text,
       "last_name": cognome.text,
@@ -105,3 +101,5 @@ class _DatiAnagraficiWidgetState extends State<DatiAnagraficiWidget> {
     );
   }
 }
+
+

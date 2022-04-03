@@ -35,6 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
     bloc.doLogin(params);
 
     bloc.stream.listen((data) {
+      print(data);
       switch (data["user"]["role"]) {
         case "Ristoratore":
           {

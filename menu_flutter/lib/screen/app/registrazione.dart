@@ -1,10 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
-import '../ristoratore/dati_anagrafici.dart';
+import '../ristoratore/ristoratore_home.dart';
+import '../translator/home.dart';
 
 class RegistrazioneScreen extends StatefulWidget {
   const RegistrazioneScreen({Key? key}) : super(key: key);
@@ -16,12 +16,14 @@ class RegistrazioneScreen extends StatefulWidget {
 class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
   var value;
 
+  //controlli dei campi
   TextEditingController user = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController pwd = TextEditingController();
   TextEditingController pwd_conf = TextEditingController();
   TextEditingController role = TextEditingController();
 
+  //chiamata api di registratione utente
   Future register() async {
     var url = "http://10.0.2.2:8000/api/auth/register";
     var response = await http.post(Uri.parse(url), body: {
@@ -34,6 +36,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
 
     var data = json.decode(response.body);
     print(data);
+    //messaggio di registrazione
     if (data == "Error") {
       Fluttertoast.showToast(
           msg: "Questo utente esiste già",
@@ -53,6 +56,24 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
           textColor: Colors.white,
           fontSize: 16);
     }
+
+    //indirizzamento in base alla radio scelta
+    if (value == "Ristoratore") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const RistoratoreHome(),
+        ),
+      );
+    } else if (value == "Traduttore") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const TranslatorHome(),
+        ),
+      );
+    }
+    print(data);
   }
 
   @override
@@ -161,12 +182,6 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                 ),
                 onPressed: () {
                   register();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DatiAnagraficiWidget(),
-                    ),
-                  );
                 },
               ),
             ),
