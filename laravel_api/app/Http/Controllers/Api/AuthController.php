@@ -37,6 +37,7 @@ class AuthController extends Controller
             'user_id' => $newUser->id,
         ]);
 
+
         // Ritorno una risposta di tipo JSON vuota
         // e con Status Code (201, Created) per notificare
         // la corretta creazione dell'utente.
@@ -47,7 +48,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // Validazione dei parametri ricevuti 
+        // Validazione dei parametri ricevuti
         // dalla richiesta HTTP durante il login.
         $request->validate([
             'user' => 'required',

@@ -20,6 +20,6 @@ class Restaurant extends Model
 
     public function menu()
     {
-        $this->hasOne(Menu::class);
+        return $this->hasOne(Menu::class);
     }
 }

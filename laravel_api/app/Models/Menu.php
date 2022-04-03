@@ -18,6 +18,6 @@ class Menu extends Model
     }
     public function languages()
     {
-        $this->hasMany(Language::class);
+        return $this->hasMany(Language::class);
     }
 }

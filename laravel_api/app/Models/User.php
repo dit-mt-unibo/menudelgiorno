@@ -32,13 +32,13 @@ class User extends Authenticatable
 
     public function registry()
     {
-        $this->hasOne(Registry::class);
+        return $this->hasOne(Registry::class);
     }
     public function translation()
     {
-        $this->hasMany(Translation::class);
+        return $this->hasMany(Translation::class);
     }
     public function lingue(){
-        $this->hasMany(Language::class);
+        return $this->hasMany(Language::class);
     }
 }

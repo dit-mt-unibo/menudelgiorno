@@ -13,14 +13,14 @@ class Language extends Model
     protected $fillable = ['name'];
 
     public function translation(){
-        $this->hasMany(Translation::class);
+        return $this->hasMany(Translation::class);
     }
 
     public function menu()
     {
-        $this->hasMany(Menu::class);
+        return $this->hasMany(Menu::class);
     }
     public function user(){
-        $this->hasMany(User::class);
+        return $this->hasMany(User::class);
     }
 }
