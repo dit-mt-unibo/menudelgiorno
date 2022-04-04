@@ -20,4 +20,7 @@ class Menu extends Model
     {
         return $this->belongsToMany(Language::class);
     }
+    public function translation(){
+        return $this->hasMany(Translation::class);
+    }
 }
