@@ -22,7 +22,7 @@ class Translation extends Model
     }
     public function menu()
     {
-        return $this->belongsTo(Menu::class);//utente traduttore
+        return $this->belongsTo(Menu::class);
     }
 
 }

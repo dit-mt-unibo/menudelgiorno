@@ -13,8 +13,8 @@ class MenuController extends Controller
 
     public function index()
     {
-        $menu=Menu::get();
-        return response()->json( ['Menu fetched.', MenuResource::collection($menu)]);
+        $menu = Menu::with(['restaurant'])->get();
+        return MenuResource::collection($menu)->response();
     }
 
     public function store(MenuRequest $request,Menu $menu)

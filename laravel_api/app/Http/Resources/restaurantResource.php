@@ -8,6 +8,7 @@ class RestaurantResource extends JsonResource
 {
     public function toArray($request)
     {
+        $menu=$this->whenLoaded('menu');
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -16,6 +17,7 @@ class RestaurantResource extends JsonResource
             'postcode' => $this->postcode,
             'city' => $this->city,
             'province' => $this->province,
+            'menu'=> new MenuResource($menu),
         ];
     }
 }
