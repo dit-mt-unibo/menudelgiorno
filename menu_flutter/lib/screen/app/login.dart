@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-import '../blocs/login_bloc.dart';
+import 'package:http/http.dart' as http;
 import '../translator/home.dart';
 import 'registrazione.dart';
 import '../ristoratore/ristoratore_home.dart';
@@ -17,52 +16,48 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final userController = TextEditingController();
-  final passwordController = TextEditingController();
+  TextEditingController userController = TextEditingController();
+  TextEditingController pwdController = TextEditingController();
 
-  LoginBloc bloc = LoginBloc();
-
-  prosesLogin() async {
+  Future login() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
-    print('Running on ${androidInfo.model}');
-    String user = userController.text;
-    String password = passwordController.text;
-    Map params = jsonDecode(
-        '{"user": "$user","password": "$password", "device": " ${androidInfo.model}"}');
-    print(params);
-    bloc.doLogin(params);
-
-    bloc.stream.listen((data) {
-      print(data);
-      switch (data["user"]["role"]) {
-        case "Ristoratore":
-          {
-            Navigator.pop(context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => RistoratoreHome()),
-            );
-          }
-          break;
-        case "Traduttore":
-          {
-            Navigator.pop(context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const TranslatorHome()),
-            );
-          }
-          break;
-
-        default:
-          {
-            print("Qualcosa è andato storto");
-          }
-          break;
-      }
+    var url = "http://10.0.2.2:8000/api/auth/login";
+    var response = await http.post(Uri.parse(url), body: {
+      "user": userController.text,
+      "password": pwdController.text,
+      "device": " ${androidInfo.model}"
     });
+
+    var data = json.decode(response.body);
+
+    switch (data["user"]["role"]) {
+      case "Ristoratore":
+        {
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const RistoratoreHome()),
+          );
+        }
+        break;
+      case "Traduttore":
+        {
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TranslatorHome()),
+          );
+        }
+        break;
+
+      default:
+        {
+          print("Qualcosa è andato storto");
+        }
+        break;
+    }
   }
 
   @override
@@ -84,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               padding: const EdgeInsets.all(20),
               child: TextField(
-                controller: passwordController,
+                controller: pwdController,
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -131,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 onPressed: () {
-                  prosesLogin();
+                  login();
                 },
               ),
             ),
