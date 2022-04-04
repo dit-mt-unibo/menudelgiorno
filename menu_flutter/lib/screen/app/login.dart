@@ -4,7 +4,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../translator/home.dart';
+import '../translator/pages/home.dart';
 import 'registrazione.dart';
 import '../ristoratore/ristoratore_home.dart';
 
