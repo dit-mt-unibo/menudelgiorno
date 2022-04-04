@@ -13,8 +13,9 @@ class TranslationController extends Controller
 
     public function index()
     {
-        $translation = Translation::where('state',0)->get();
-        return response()->json([ TranslationResource::collection($translation)]);
+
+        $translation = Translation::with(['language'])->where('state',0)->get();
+        return TranslationResource::collection($translation)->response();
     }
 
 
