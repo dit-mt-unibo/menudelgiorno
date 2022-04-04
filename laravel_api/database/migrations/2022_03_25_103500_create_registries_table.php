@@ -18,6 +18,7 @@ class CreateRegistriesTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
+
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

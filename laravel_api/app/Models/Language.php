@@ -15,12 +15,11 @@ class Language extends Model
     public function translation(){
         return $this->hasMany(Translation::class);
     }
-
     public function menu()
     {
-        return $this->hasMany(Menu::class);
+        return $this->belongsToMany(Menu::class);
     }
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 }
