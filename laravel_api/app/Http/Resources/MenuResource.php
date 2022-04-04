@@ -19,8 +19,8 @@ class MenuResource extends JsonResource
             'name' => $this->name,
             'text' => $this->text,
             'restaurant_id'=>$this->restaurant_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            // 'created_at' => $this->created_at,
+            // 'updated_at' => $this->updated_at,
         ];
     }
 }
