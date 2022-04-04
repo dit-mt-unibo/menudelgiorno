@@ -18,6 +18,7 @@ class TranslationResource extends JsonResource
             'id' => $this->id,
             'text' => $this->text,
             'language_id' => $this->language_id,
+            'language' => $this->language->name,
 
 
             // 'menu_id'=>$this->menu_id,
