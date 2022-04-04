@@ -12,8 +12,10 @@ class Translation extends Model
 
     protected $fillable = ['language_id', 'text','menu_id','user_id','state'];
 
+
+
     public function language(){
-        return $this->hasOne(Language::class);
+        return $this->belongsTo(Language::class);
     }
     public function user()
     {
