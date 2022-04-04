@@ -14,7 +14,7 @@ class TranslationController extends Controller
     public function index()
     {
         $translation = Translation::where('state',0)->get();
-        return response()->json(['Translations fetched.', TranslationResource::collection($translation)]);
+        return response()->json([ TranslationResource::collection($translation)]);
     }
 
 
