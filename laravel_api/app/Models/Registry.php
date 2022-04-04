@@ -13,7 +13,8 @@ class Registry extends Model
         'first_name',
         'last_name',
         'email',
-        'user_id'
+        'user_id',
+        'language_id'
     ];
 
     public function user()

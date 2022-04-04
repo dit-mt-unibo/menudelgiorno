@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->truncate();
         DB::table('registries')->truncate();
         DB::table('languages')->truncate();
-        DB::table('language_translator')->truncate();
+        DB::table('language_user')->truncate();
         DB::table('restaurants')->truncate();
         DB::table('language_restaurant')->truncate();
         DB::table('menus')->truncate();
@@ -43,14 +43,14 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RegistrySeeder::class,
             LanguageSeeder::class,
-            LanguageTranslationSeeder::class,
+            LanguageUserSeeder::class,
             RestaurantSeeder::class,
             LanguageRestaurantSeeder::class,
             MenuSeeder::class,
             TranslationSeeder::class,
         ]);
 
-        // Ripristina i controlli di chiave esterna 
+        // Ripristina i controlli di chiave esterna
         // al termine dell'esecuzione dei Seeders su
         // questa connessione TCP.
 

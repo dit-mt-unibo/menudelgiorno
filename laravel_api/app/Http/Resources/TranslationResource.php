@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class TranslationResource extends JsonResource
 {
@@ -17,13 +18,15 @@ class TranslationResource extends JsonResource
         return [
             'id' => $this->id,
             'text' => $this->text,
-            'language_id' => $this->language_id,
-            'language_name' => $this->language->name,
 
+            'language' => new LanguageResource($this->whenLoaded('language')),
 
-            // 'menu_id'=>$this->menu_id,
+            'elapsed_time' => $this->created_at->diffForHumans(),
+
+            'menu_id'=>$this->menu_id,
             // 'user_id'=>$this->user_id,
-            // 'created_at' => $this->created_at,
+            //'language_id' => $this->language_id,
+           // 'language_name' => $this->language->name,//oggetto lingue
             // 'updated_at' => $this->updated_at,
         ];
     }
