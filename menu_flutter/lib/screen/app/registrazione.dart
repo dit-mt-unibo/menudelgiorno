@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 import '../ristoratore/ristoratore_home.dart';
-import '../translator/home.dart';
+import '../translator/pages/home.dart';
 
 class RegistrazioneScreen extends StatefulWidget {
   const RegistrazioneScreen({Key? key}) : super(key: key);

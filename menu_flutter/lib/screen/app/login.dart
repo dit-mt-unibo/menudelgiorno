@@ -5,7 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../blocs/login_bloc.dart';
-import '../translator/home.dart';
+import '../translator/pages/home.dart';
 import 'registrazione.dart';
 import '../ristoratore/ristoratore_home.dart';
 
