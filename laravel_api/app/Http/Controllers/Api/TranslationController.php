@@ -13,8 +13,8 @@ class TranslationController extends Controller
 
     public function index()
     {
-        $translation = Translation::latest()->get();
-        return response()->json([ 'Translations fetched.', TranslationResource::collection($translation)]);
+        $translation = Translation::where('state',0)->get();
+        return response()->json(['Translations fetched.', TranslationResource::collection($translation)]);
     }
 
 

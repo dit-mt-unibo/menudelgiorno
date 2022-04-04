@@ -40,5 +40,6 @@ class MenuSeeder extends Seeder
             'text' => 'Cras quis ex vel purus consequat placerat.Nulla pulvinar velit porta, vulputate lacus quis, hendrerit risus.Nulla vel lacus in urna egestas sagittis ac vel erat.',
             'restaurant_id' => '5'
         ]);
+
     }
 }

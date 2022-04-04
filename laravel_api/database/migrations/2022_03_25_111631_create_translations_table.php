@@ -13,9 +13,14 @@ class CreateTranslationsTable extends Migration
      */
     public function up()
     {
+        //una traduzione usa una lingua(language_id),fa riferiment ad un menu(menu_id)
+        //e ha un utente traduttore incaricato(translator_id)
         Schema::create('translations', function (Blueprint $table) {
             $table->id();
             $table->integer('language_id');
+            $table->integer('menu_id');
+            $table->integer('user_id')->nullable();//id utente traduttore
+            $table->integer('state')->default(0);
             $table->text('text');
             $table->softDeletes();
             $table->timestamps();
