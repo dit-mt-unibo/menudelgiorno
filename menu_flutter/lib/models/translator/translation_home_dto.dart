@@ -1,17 +1,15 @@
-import '../language.dart';
+import '../app/language.dart';
 
 class TranslationHomeDto {
   TranslationHomeDto({
-    required this.id,
-    required this.text,
-    required this.language,
-    required this.createdAt,
-    required this.updatedAt,
+    required this.translationId,
+    required this.translatedText,
+    required this.translationLanguage,
+    required this.elapsedTime,
   });
 
-  int id;
-  String text;
-  Language language;
-  DateTime createdAt;
-  DateTime updatedAt;
+  int translationId;
+  String translatedText;
+  Language translationLanguage;
+  String elapsedTime;
 }
