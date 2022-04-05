@@ -1,12 +1,73 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/app/user.dart';
 import '../../app/welcome.dart';
 import 'home.dart';
 import 'languages.dart';
 import 'registry.dart';
 
 class TranslatorNavbar extends StatelessWidget {
-  const TranslatorNavbar({Key? key}) : super(key: key);
+  const TranslatorNavbar({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
+
+  final User user;
+
+  Widget buildMenu({
+    required IconData icon,
+    required String titolo,
+    VoidCallback? onclick,
+  }) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: Colors.white,
+      ),
+      title: Text(
+        titolo,
+        style: const TextStyle(
+          color: Color.fromARGB(255, 247, 246, 244),
+          fontFamily: 'Sanchez',
+          fontSize: 15,
+        ),
+      ),
+      onTap: onclick,
+    );
+  }
+
+  selectedItem(BuildContext context, int i) {
+    switch (i) {
+      case 0:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => TranslatorHome(user: user),
+          ),
+        );
+        break;
+      case 1:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const TranslatorRegistry(),
+          ),
+        );
+        break;
+      case 2:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const TranslatorLanguages(),
+          ),
+        );
+        break;
+      case 3:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const WelcomeScreen(),
+          ),
+        );
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,60 +106,5 @@ class TranslatorNavbar extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-Widget buildMenu({
-  required IconData icon,
-  required String titolo,
-  VoidCallback? onclick,
-}) {
-  return ListTile(
-    leading: Icon(
-      icon,
-      color: Colors.white,
-    ),
-    title: Text(
-      titolo,
-      style: const TextStyle(
-        color: Color.fromARGB(255, 247, 246, 244),
-        fontFamily: 'Sanchez',
-        fontSize: 15,
-      ),
-    ),
-    onTap: onclick,
-  );
-}
-
-selectedItem(BuildContext context, int i) {
-  switch (i) {
-    case 0:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const TranslatorHome(),
-        ),
-      );
-      break;
-    case 1:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const TranslatorRegistry(),
-        ),
-      );
-      break;
-    case 2:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const TranslatorLanguages(),
-        ),
-      );
-      break;
-    case 3:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const WelcomeScreen(),
-        ),
-      );
-      break;
   }
 }

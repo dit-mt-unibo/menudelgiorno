@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
-
 class TranslatorLanguages extends StatefulWidget {
   const TranslatorLanguages({Key? key}) : super(key: key);
 
@@ -111,14 +109,7 @@ class _TranslatorLanguagesState extends State<TranslatorLanguages> {
                     fontSize: 19,
                   ),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const TranslatorHome(),
-                    ),
-                  );
-                },
+                onPressed: () {},
               ),
             ),
           ],

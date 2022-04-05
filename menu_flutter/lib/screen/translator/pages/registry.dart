@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
-
 class TranslatorRegistry extends StatelessWidget {
   const TranslatorRegistry({Key? key}) : super(key: key);
 
@@ -53,14 +51,7 @@ class TranslatorRegistry extends StatelessWidget {
                     fontSize: 19,
                   ),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const TranslatorHome(),
-                    ),
-                  );
-                },
+                onPressed: () {},
               ),
             ),
           ],

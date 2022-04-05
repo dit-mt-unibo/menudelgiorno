@@ -1,14 +1,20 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
 
+import '../../../models/app/user.dart';
 import '../../../models/translator/translation_home_dto.dart';
 import '../widgets/translation_card_list.dart';
 import 'navbar.dart';
 
 class TranslatorHome extends StatefulWidget {
-  const TranslatorHome({Key? key}) : super(key: key);
+  const TranslatorHome({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
+
+  final User user;
 
   @override
   State<TranslatorHome> createState() => _TranslatorHomeState();
@@ -82,7 +88,9 @@ class _TranslatorHomeState extends State<TranslatorHome> {
           ),
         ],
       ),
-      drawer: const TranslatorNavbar(),
+      drawer: TranslatorNavbar(
+        user: widget.user,
+      ),
     );
   }
 }
