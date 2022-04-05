@@ -12,7 +12,7 @@ class User {
   static User fromJson(dynamic obj) {
     return User(
       id: obj['id'],
-      name: obj['name'],
+      name: obj['user'],
       role: obj['role'],
     );
   }

@@ -1,10 +1,10 @@
 import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:http/http.dart' as http;
 
-import '../ristoratore/ristoratore_home.dart';
-import '../translator/pages/home.dart';
+import 'welcome.dart';
 
 class RegistrazioneScreen extends StatefulWidget {
   const RegistrazioneScreen({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
     //messaggio di registrazione
     if (data == "Error") {
       Fluttertoast.showToast(
-          msg: "Questo utente esiste già",
+          msg: 'Utente già registrato!',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -48,7 +48,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
           fontSize: 16);
     } else {
       Fluttertoast.showToast(
-          msg: "Registrazione effetuta!",
+          msg: 'Registrazione avvenuta con successo!',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -57,22 +57,13 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
           fontSize: 16);
     }
 
-    //indirizzamento in base alla radio scelta
-    if (value == "Ristoratore") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const RistoratoreHome(),
-        ),
-      );
-    } else if (value == "Traduttore") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const TranslatorHome(),
-        ),
-      );
-    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const WelcomeScreen(),
+      ),
+    );
+
     print(data);
   }
 
@@ -105,7 +96,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
               padding: const EdgeInsets.all(20),
               child: TextField(
                 controller: user,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Username',
                 ),
               ),
@@ -114,7 +105,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
               padding: const EdgeInsets.all(20),
               child: TextField(
                 controller: email,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                 ),
               ),
@@ -124,7 +115,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
               child: TextField(
                 controller: pwd,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
                 ),
               ),
@@ -134,7 +125,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
               child: TextField(
                 controller: pwd_conf,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Conferma Password',
                 ),
               ),

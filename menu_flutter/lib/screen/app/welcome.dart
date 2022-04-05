@@ -22,7 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         padding: const EdgeInsets.all(20.0),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/home-background.jpg"),
+            image: AssetImage('images/home-background.jpg'),
             fit: BoxFit.cover,
           ),
         ),

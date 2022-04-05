@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+
+import '../../models/app/user.dart';
+import '../ristoratore/ristoratore_home.dart';
 import '../translator/pages/home.dart';
 import 'registrazione.dart';
-import '../ristoratore/ristoratore_home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -19,32 +21,30 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController userController = TextEditingController();
   TextEditingController pwdController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    login();
-  }
+  Future _doLogin() async {
+    final deviceInfo = DeviceInfoPlugin();
+    final androidInfo = await deviceInfo.androidInfo;
+    final url = Uri.http('10.0.2.2:8000', '/api/auth/login');
 
-  Future login() async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    final payload = {
+      'user': userController.text,
+      'password': pwdController.text,
+      'device': " ${androidInfo.model}",
+    };
 
-    var url = "http://10.0.2.2:8000/api/auth/login";
-    var response = await http.post(Uri.parse(url), body: {
-      "user": userController.text,
-      "password": pwdController.text,
-      "device": " ${androidInfo.model}"
-    });
+    final response = await http.post(url, body: payload);
+    final rawUser = json.decode(response.body);
+    final user = User.fromJson(rawUser['user']);
 
-    var data = json.decode(response.body);
-
-    switch (data["user"]["role"]) {
+    switch (user.role) {
       case "Ristoratore":
         {
           Navigator.pop(context);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const RistoratoreHome()),
+            MaterialPageRoute(
+              builder: (context) => const RistoratoreHome(),
+            ),
           );
         }
         break;
@@ -53,11 +53,12 @@ class _LoginScreenState extends State<LoginScreen> {
           Navigator.pop(context);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const TranslatorHome()),
+            MaterialPageRoute(
+              builder: (context) => TranslatorHome(user: user),
+            ),
           );
         }
         break;
-
       default:
         {
           print("Qualcosa è andato storto");
@@ -74,20 +75,20 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20.0),
               child: TextField(
                 controller: userController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Username',
                 ),
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20.0),
               child: TextField(
                 controller: pwdController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
                 ),
               ),
@@ -120,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ]),
             ),
             Container(
-              padding: const EdgeInsets.all(90),
+              padding: const EdgeInsets.all(90.0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(150, 40),
@@ -132,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 onPressed: () {
-                  login();
+                  _doLogin();
                 },
               ),
             ),
