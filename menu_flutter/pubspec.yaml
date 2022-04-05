@@ -37,8 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   fluttertoast: ^8.0.9
   http: ^0.13.4
-  bloc_pattern: ^3.0.0
-  rxdart: ^0.27.3
   device_info_plus: ^3.2.2
 
 dev_dependencies:
