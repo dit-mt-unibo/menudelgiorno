@@ -3,9 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../models/app/language.dart';
 import '../../../models/translator/translation_home_dto.dart';
-import '../widgets/translation_list.dart';
+import '../widgets/translation_card_list.dart';
 import 'navbar.dart';
 
 class TranslatorHome extends StatefulWidget {
@@ -17,6 +16,7 @@ class TranslatorHome extends StatefulWidget {
 
 class _TranslatorHomeState extends State<TranslatorHome> {
   Future<List<TranslationHomeDto>> _getAllTranslations() async {
+    // Richiesta HTTP
     final url = Uri.http('10.0.2.2:8000', '/api/translations');
     final response = await http.get(url);
 
@@ -26,23 +26,12 @@ class _TranslatorHomeState extends State<TranslatorHome> {
     }
 
     // Se la richiesta è andata a buon fine
-    // Mappo i dati ricevuti nei modelli
-
     final jsonResponse = jsonDecode(response.body);
 
+    // Mappo i dati ricevuti nei modelli
     List<TranslationHomeDto> translations = jsonResponse
         .map<TranslationHomeDto>(
-          (rawTranslation) => TranslationHomeDto(
-            translationId: rawTranslation['id'],
-            translatedText: rawTranslation['text'],
-            translationLanguage: Language(
-              id: rawTranslation['language']['id'],
-              name: rawTranslation['language']['name'],
-              code: rawTranslation['language']['code'],
-            ),
-            elapsedTime: rawTranslation['elapsed_time'],
-          ),
-        )
+            (rawTranslation) => TranslationHomeDto.fromJson(rawTranslation))
         .toList();
 
     return translations;
@@ -83,7 +72,7 @@ class _TranslatorHomeState extends State<TranslatorHome> {
               // Quando ha completato la Future
               if (snapshot.hasData) {
                 final translations = snapshot.data as List<TranslationHomeDto>;
-                return TranslationList(translations: translations);
+                return TranslationCardList(translations: translations);
               }
               // Mentre attende il completamento della Future
               return const Center(

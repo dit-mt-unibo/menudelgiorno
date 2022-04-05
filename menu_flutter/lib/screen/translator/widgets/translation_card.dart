@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/translator/translation_home_dto.dart';
+import 'translation_card_elapsed_time.dart';
+import 'translation_card_language.dart';
+import 'translation_card_text.dart';
+import 'translation_card_title.dart';
 
-class Translation extends StatelessWidget {
-  final TranslationHomeDto translation;
-
-  const Translation({
+class TranslationCard extends StatelessWidget {
+  const TranslationCard({
     Key? key,
     required this.translation,
   }) : super(key: key);
+
+  final TranslationHomeDto translation;
 
   @override
   Widget build(BuildContext context) {
@@ -17,37 +21,30 @@ class Translation extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            Text(
-              translation.translatedText,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              style: const TextStyle(
-                fontSize: 16.0,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: TranslationCardTitle(
+                title: translation.restaurantName,
               ),
+            ),
+            TranslationCardText(
+              text: translation.translatedText,
             ),
             const Divider(
               height: 30.0,
               thickness: 1,
-              color: Color.fromARGB(150, 26, 85, 247),
+              color: Color.fromARGB(255, 26, 85, 247),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    translation.translationLanguage.code.toUpperCase(),
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      fontStyle: FontStyle.italic,
-                    ),
+                  TranslationCardLanguage(
+                    language: translation.translationLanguageCode,
                   ),
-                  Text(
-                    translation.elapsedTime.toUpperCase(),
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      fontStyle: FontStyle.italic,
-                    ),
+                  TranslationCardElapsedTime(
+                    elapsedTime: translation.elapsedTime,
                   ),
                 ],
               ),
@@ -55,7 +52,7 @@ class Translation extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               child: const Text(
-                'Visualizza',
+                'Traduci',
                 style: TextStyle(
                   fontSize: 16.0,
                 ),

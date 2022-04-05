@@ -8,4 +8,12 @@ class Language {
   int id;
   String name;
   String code;
+
+  static Language fromJson(dynamic obj) {
+    return Language(
+      id: obj['id'],
+      name: obj['name'],
+      code: obj['code'],
+    );
+  }
 }

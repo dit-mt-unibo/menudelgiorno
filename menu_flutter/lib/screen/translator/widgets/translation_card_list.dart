@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/translator/translation_home_dto.dart';
-import 'translation.dart';
+import 'translation_card.dart';
 
-class TranslationList extends StatelessWidget {
-  final List<TranslationHomeDto> translations;
-
-  const TranslationList({
+class TranslationCardList extends StatelessWidget {
+  const TranslationCardList({
     Key? key,
     required this.translations,
   }) : super(key: key);
+
+  final List<TranslationHomeDto> translations;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class TranslationList extends StatelessWidget {
       child: ListView.builder(
         itemCount: translations.length,
         itemBuilder: (context, index) {
-          return Translation(
+          return TranslationCard(
             translation: translations[index],
           );
         },

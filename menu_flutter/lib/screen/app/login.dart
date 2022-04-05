@@ -20,10 +20,11 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController pwdController = TextEditingController();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     login();
   }
+
   Future login() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
@@ -32,12 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
     var response = await http.post(Uri.parse(url), body: {
       "user": userController.text,
       "password": pwdController.text,
-      "device":" ${androidInfo.model}"
-      });
+      "device": " ${androidInfo.model}"
+    });
 
     var data = json.decode(response.body);
-    
-       switch (data["user"]["role"]) {
+
+    switch (data["user"]["role"]) {
       case "Ristoratore":
         {
           Navigator.pop(context);
@@ -141,15 +142,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
- class User {
-      int id;
-      String name;
-      String role;
-
-      User({
-        required this.id,
-         required this.name,
-        required this.role
-      });
-    }
