@@ -14,11 +14,10 @@ class MenuFacade{
         $this->client=new ModernMtClient();
     }
 
-    public function create($name,$language_idArray,$text,$restaurant_id){
+    public function create($language_idArray,$text,$restaurant_id){
          // $menu=new menu();
         // creazione di un nuovo menu e salvataggio in db
         $menu=Menu::create([
-            'name'=>$name,
             'text'=>$text,
             'restaurant_id'=>$restaurant_id,
 

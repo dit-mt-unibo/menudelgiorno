@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateLanguageUserTable extends Migration
 {
@@ -16,7 +16,7 @@ class CreateLanguageUserTable extends Migration
         //qui lo user è l'utente traduttore
         Schema::create('language_user', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');//traduttore
+            $table->integer('user_id'); // Traduttore
             $table->integer('language_id');
             $table->softDeletes();
             $table->timestamps();

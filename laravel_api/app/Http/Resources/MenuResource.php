@@ -17,7 +17,6 @@ class MenuResource extends JsonResource
         $translation=$this->whenLoaded('translation');
         return [
             'id' => $this->id,
-            'name' => $this->name,
             'text' => $this->text,
             'restaurant_id'=>$this->restaurant_id,
             'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),

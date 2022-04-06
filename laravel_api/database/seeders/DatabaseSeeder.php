@@ -10,16 +10,9 @@ use Database\Seeders\LanguageSeeder;
 use Database\Seeders\RegistrySeeder;
 use Database\Seeders\RestaurantSeeder;
 use Database\Seeders\TranslationSeeder;
-use Database\Seeders\LanguageRestaurantSeeder;
-use Database\Seeders\LanguageTranslationSeeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         // Disabilita il controllo delle chiavi esterne prima
@@ -35,7 +28,6 @@ class DatabaseSeeder extends Seeder
         DB::table('languages')->truncate();
         DB::table('language_user')->truncate();
         DB::table('restaurants')->truncate();
-        DB::table('language_restaurant')->truncate();
         DB::table('menus')->truncate();
         DB::table('translations')->truncate();
 
@@ -45,7 +37,6 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             LanguageUserSeeder::class,
             RestaurantSeeder::class,
-            LanguageRestaurantSeeder::class,
             MenuSeeder::class,
             TranslationSeeder::class,
         ]);

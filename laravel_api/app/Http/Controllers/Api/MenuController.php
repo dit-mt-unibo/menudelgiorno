@@ -31,12 +31,11 @@ class MenuController extends Controller
         //recuperer la langue
          $language_idArray=$request->input('language_idArray');
          $text=$request->input('text');
-         $name=$request->input('name');
          $restaurant_id=$request->input('restaurant_id');
 
 
 
-        $menu=$this->facade->create($name,$language_idArray,$text,$restaurant_id);
+        $menu=$this->facade->create($language_idArray,$text,$restaurant_id);
         return response()->json($menu);
     }
 
@@ -54,7 +53,6 @@ class MenuController extends Controller
 
     public function update(MenuRequest $request, Menu $menu)
     {
-        $menu->name=$request->input('name');
         $menu->text=$request->input('text');
         $menu->restaurant_id=$request->input('restaurant_id');
         $menu->save();

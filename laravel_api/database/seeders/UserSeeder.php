@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('brunocassio78'),
             'role' => 'Ristoratore',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('users')->insert([
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('msiciliano84'),
             'role' => 'Ristoratore',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('users')->insert([
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('erica_milano_72'),
             'role' => 'Traduttore',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('users')->insert([
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('rufino.padovano'),
             'role' => 'Traduttore',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('users')->insert([
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('gianfrancomarch89'),
             'role' => 'Ristoratore',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }
