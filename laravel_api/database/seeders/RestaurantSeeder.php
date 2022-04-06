@@ -10,7 +10,7 @@ class RestaurantSeeder extends Seeder
     public function run()
     {
         DB::table('restaurants')->insert([
-            'name' => 'Tratoria i Maceri',
+            'name' => 'Trattoria I Maceri',
             'address' => 'Via Roversano',
             'street_number' => '579',
             'postcode' => '47023',
@@ -18,7 +18,7 @@ class RestaurantSeeder extends Seeder
             'province' => 'Forlì-Cesena',
             'user_id' => '1',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('restaurants')->insert([
@@ -30,7 +30,7 @@ class RestaurantSeeder extends Seeder
             'province' => 'Forlì-Cesena',
             'user_id' => '2',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('restaurants')->insert([
@@ -42,7 +42,7 @@ class RestaurantSeeder extends Seeder
             'province' => 'Forlì-Cesena',
             'user_id' => '3',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('restaurants')->insert([
@@ -54,7 +54,7 @@ class RestaurantSeeder extends Seeder
             'province' => 'Forlì-Cesena',
             'user_id' => '4',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('restaurants')->insert([
@@ -66,7 +66,7 @@ class RestaurantSeeder extends Seeder
             'province' => 'Forlì-Cesena',
             'user_id' => '5',
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

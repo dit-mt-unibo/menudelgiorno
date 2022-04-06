@@ -24,7 +24,7 @@ class TranslationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'language_idArray'=>'required',
         ];
     }
 }

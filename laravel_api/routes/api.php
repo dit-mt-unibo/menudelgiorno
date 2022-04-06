@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\TranslationController;
 use App\Http\Controllers\Api\RegistryController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\LanguageUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,10 @@ Route::post('auth/login', [AuthController::class, 'login']);
 Route::post('auth/logout', [AuthController::class, 'logout']);
 
 Route::apiresource('user', UserController::class);
+//lingue
+Route::post('user/languages/create',[LanguageUserController::class,'createLanguage']);
+// Route::put('user/languages/{userId}',[LanguageUserController::class,'updateLanguage']);
+Route::post('user/languages',[LanguageUserController::class,'lista'])->name('lista');
 
 Route::apiResource('registries', RegistryController::class);
 Route::apiResource('languages', LanguageController::class);

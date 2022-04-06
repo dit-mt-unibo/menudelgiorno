@@ -11,27 +11,37 @@ class LanguageUserSeeder extends Seeder
     {
         DB::table('language_user')->insert([
             'user_id' => '3',
-            'language_id' => '2'
+            'language_id' => '2',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('language_user')->insert([
             'user_id' => '3',
-            'language_id' => '6'
+            'language_id' => '6',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('language_user')->insert([
             'user_id' => '4',
-            'language_id' => '2'
+            'language_id' => '2',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('language_user')->insert([
             'user_id' => '4',
-            'language_id' => '3'
+            'language_id' => '3',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('language_user')->insert([
             'user_id' => '4',
-            'language_id' => '7'
+            'language_id' => '7',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateTranslationsTable extends Migration
 {
@@ -19,7 +19,7 @@ class CreateTranslationsTable extends Migration
             $table->id();
             $table->integer('language_id');
             $table->integer('menu_id');
-            $table->integer('user_id')->nullable();//id utente traduttore
+            $table->integer('user_id')->nullable(); // Id utente traduttore
             $table->integer('state')->default(0);
             $table->text('text');
             $table->softDeletes();

@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'scegli_lingua.dart';
 
 class InserisciMenuScreen extends StatefulWidget {
@@ -10,6 +12,21 @@ class InserisciMenuScreen extends StatefulWidget {
 }
 
 class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
+  TextEditingController menuText = TextEditingController();
+  Future sendMenu() async {
+    var url = "http://10.0.2.2:8000/api/menus";
+
+    final msg = jsonEncode(
+      {"text":menuText.text, 
+      "restaurant_id":2,
+      "language_idArray": [3, 5, 7]}
+      );
+    var response = await http.post(Uri.parse(url), headers: {
+       "Content-type": "application/json"}, body: msg);
+    var data = json.decode(response.body);
+    print(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +55,9 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                   width: 3,
                 ),
               ),
-              child: Column(children: const [
+              child: Column(children: [
                 TextField(
+                  controller: menuText,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   decoration: InputDecoration(
@@ -62,6 +80,7 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                   ),
                 ),
                 onPressed: () {
+                  sendMenu();
                   Navigator.push(
                     context,
                     MaterialPageRoute(

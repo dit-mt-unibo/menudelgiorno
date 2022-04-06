@@ -11,39 +11,51 @@ class LanguageSeeder extends Seeder
     {
         DB::table('languages')->insert([
             'name' => 'Italiano',
-            'code'=>'it'
+            'code' => 'it',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('languages')->insert([
             'name' => 'Inglese',
-            'code'=>'en'
+            'code' => 'en',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('languages')->insert([
             'name' => 'Francese',
-            'code'=>'fr'
+            'code' => 'fr',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('languages')->insert([
             'name' => 'Tedesco',
-            'code'=>'de'
-
+            'code' => 'de',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('languages')->insert([
             'name' => 'Spagnolo',
-            'code'=>'es'
+            'code' => 'es',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('languages')->insert([
             'name' => 'Portoghese',
-            'code'=>'pt'
-
+            'code' => 'pt',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('languages')->insert([
             'name' => 'Cinese',
-            'code'=>'zh'
+            'code' => 'zh',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

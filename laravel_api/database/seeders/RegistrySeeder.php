@@ -14,9 +14,8 @@ class RegistrySeeder extends Seeder
             'last_name' => 'Cassio',
             'email' => 'bruno.cassio@gmail.com',
             'user_id' => '1',
-
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('registries')->insert([
@@ -24,9 +23,8 @@ class RegistrySeeder extends Seeder
             'last_name' => 'Siciliano',
             'email' => 'manuela.siciliano@gmail.com',
             'user_id' => '2',
-
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('registries')->insert([
@@ -34,9 +32,8 @@ class RegistrySeeder extends Seeder
             'last_name' => 'Milano',
             'email' => 'erica.milano@gmail.com',
             'user_id' => '3',
-
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('registries')->insert([
@@ -44,9 +41,8 @@ class RegistrySeeder extends Seeder
             'last_name' => 'Padovano',
             'email' => 'rufino.padovano@gmail.com',
             'user_id' => '4',
-
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('registries')->insert([
@@ -54,9 +50,8 @@ class RegistrySeeder extends Seeder
             'last_name' => 'Marchesi',
             'email' => 'gianfranco.marchesi@gmail.com',
             'user_id' => '5',
-
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }
