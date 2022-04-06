@@ -20,13 +20,9 @@ class MenuFacade{
         $menu=Menu::create([
             'text'=>$text,
             'restaurant_id'=>$restaurant_id,
-
-
         ]);
 
         //traduction del menu
-
-
         foreach ($language_idArray as  $value) {
 
             $language=Language::find($value);

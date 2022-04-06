@@ -26,15 +26,15 @@ class AuthController extends Controller
 
         // Creazione del nuovo utente.
         $newUser = User::create([
-            'name' => $request->input('user'),
-            'password' => Hash::make($request->input('password')),
-            'role' => $request->input('role'),
+            'name' => $request->user,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         // Creazione dei Dati Anagrafici iniziali del nuovo utente.
         $newRegistry = Registry::create([
-            'email' => $request->input('email'),
-            'user_id' => $newUser->input('id'),
+            'email' => $request->email,
+            'user_id' => $newUser->id,
         ]);
 
 
@@ -57,10 +57,10 @@ class AuthController extends Controller
         ]);
 
         // Ricerca dell'utente in base all'attributo 'name'.
-        $user = User::where('name', $request->input('user'))->first();
+        $user = User::where('name', $request->user)->first();
 
         // Verifica delle password tramite hash.
-        if (!$user || !Hash::check($request->input('password'), $user->input('password'))) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'message' => ['The provided credentials are incorrect.'],
             ]);

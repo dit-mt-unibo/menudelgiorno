@@ -28,8 +28,8 @@ class MenuController extends Controller
 
     public function store(MenuRequest $request,Menu $menu)
     {
-        //recuperer la langue
-         $language_idArray=$request->input('language_idArray');
+
+         $language_idArray=$request->input('language_idArray');//input la lingue
          $text=$request->input('text');
          $restaurant_id=$request->input('restaurant_id');
 
