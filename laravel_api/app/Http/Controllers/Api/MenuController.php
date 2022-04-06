@@ -7,9 +7,18 @@ use App\Http\Resources\MenuResource;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\languageRequest;
+use App\Models\Translation;
+use App\Facade\MenuFacade;
 
 class MenuController extends Controller
 {
+    public $facade;
+
+    function __construct()
+    {
+        $this->facade=new MenuFacade();
+    }
 
     public function index()
     {
@@ -19,17 +28,16 @@ class MenuController extends Controller
 
     public function store(MenuRequest $request,Menu $menu)
     {
-        // $menu=new menu();
-        $menu=Menu::create([
-            'name'=>$request->name,
-            'text'=>$request->text,
-            'restaurant_id'=>$request->restaurant_id,
+        //recuperer la langue
+         $language_idArray=$request->input('language_idArray');
+         $text=$request->input('text');
+         $name=$request->input('name');
+         $restaurant_id=$request->input('restaurant_id');
 
-        ]);
-     // quando facciamo conferma si crea un menu,quindi in questo punto possiamo chiamare le api per le traduzioni
-     //
 
-        return response()->json(['Menu created successfully.', new MenuResource($menu)]);
+
+        $menu=$this->facade->create($name,$language_idArray,$text,$restaurant_id);
+        return response()->json($menu);
     }
 
 
@@ -46,9 +54,9 @@ class MenuController extends Controller
 
     public function update(MenuRequest $request, Menu $menu)
     {
-        $menu->name=$request->name;
-        $menu->text=$request->text;
-        $menu->restaurant_id=$request->restaurant_id;
+        $menu->name=$request->input('name');
+        $menu->text=$request->input('text');
+        $menu->restaurant_id=$request->input('restaurant_id');
         $menu->save();
         return response()->json(['Menu updated successfully.', new MenuResource($menu)]);
     }
