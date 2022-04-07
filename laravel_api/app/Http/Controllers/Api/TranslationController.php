@@ -30,7 +30,7 @@ class TranslationController extends Controller
         ]);
 
 
-        return response()->json(['translation created successfully.', new TranslationResource($translation)]);
+        return response()->json([new TranslationResource($translation)]);
     }
 
 
@@ -56,7 +56,7 @@ class TranslationController extends Controller
         ]);
 
 
-        return response()->json(['translation updated successfully.', new TranslationResource($translation)]);
+        return response()->json(new TranslationResource($translation));
     }
 
 
