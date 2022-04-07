@@ -46,9 +46,12 @@ class TranslationController extends Controller
 
     public function update(TranslationRequest $request,Translation $translation)
     {
-        $translation->text=$request->text;
-        $translation->language_id=$request->language_id;
-        $translation->save();
+
+        $translation->update([
+            'text' => $request->input('text'),
+            'state'=>1,
+        ]);
+
 
         return response()->json(['translation updated successfully.', new TranslationResource($translation)]);
     }
