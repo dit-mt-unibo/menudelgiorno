@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TranslationRequest;
 use App\Http\Resources\TranslationResource;
 use App\Models\Translation;
+use Illuminate\Support\Facades\Auth;
 
 class TranslationController extends Controller
 {
@@ -46,9 +47,11 @@ class TranslationController extends Controller
 
     public function update(TranslationRequest $request,Translation $translation)
     {
+        $id=Auth::user()->id;
 
         $translation->update([
             'text' => $request->input('text'),
+            'user_id'=>$id,
             'state'=>1,
         ]);
 
