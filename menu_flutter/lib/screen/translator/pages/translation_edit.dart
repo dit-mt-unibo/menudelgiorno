@@ -13,43 +13,29 @@ class TranslatorTranslationEdit extends StatelessWidget {
 
   TranslatorTranslationEdit({
     Key? key,
-    required this.translation,
-    required this.user,
+    required this.currentTranslation,
+    required this.loggedUser,
   }) : super(key: key) {
-    _translationController.text = translation.translatedText;
+    _translationController.text = currentTranslation.translatedText;
   }
 
-  final TranslationEditDto translation;
-  final User user;
+  final TranslationEditDto currentTranslation;
+  final User loggedUser;
 
-  Future<bool> _updateTranslation() async {
-    final userId = user.id;
-    final translationId = translation.translationId;
-    final editedText = _translationController.text;
+  Future<bool> _updateTranslation(TranslationEditDto enteredTranslation) async {
+    final url = Uri.http('10.0.2.2:8000',
+        '/api/translations/${enteredTranslation.translationId}');
 
-    final url = Uri.http(
-      '10.0.2.2:8000',
-      '/api/translations/$translationId',
-    );
+    final headers = {'Content-Type': 'application/json'};
 
-    final payload = {
-      'user_id': userId,
-      'text': editedText,
-    };
+    final payload = jsonEncode({
+      'text': enteredTranslation.translatedText,
+      'user_id': enteredTranslation.userId,
+    });
 
-    final encodedPayload = jsonEncode(payload);
+    final response = await http.put(url, headers: headers, body: payload);
 
-    final response = await http.put(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: encodedPayload,
-    );
-
-    if (response.statusCode != 200) {
-      return false;
-    }
-
-    return true;
+    return response.statusCode == 200 ? true : false;
   }
 
   @override
@@ -93,7 +79,13 @@ class TranslatorTranslationEdit extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  final isUpdateSuccessful = await _updateTranslation();
+                  final enteredTranslation = TranslationEditDto(
+                    translationId: currentTranslation.translationId,
+                    translatedText: _translationController.text,
+                    userId: loggedUser.id,
+                  );
+                  final isUpdateSuccessful =
+                      await _updateTranslation(enteredTranslation);
                   if (isUpdateSuccessful) {
                     Fluttertoast.showToast(
                       msg: 'Correzione salvata con successo!',
@@ -106,7 +98,8 @@ class TranslatorTranslationEdit extends StatelessWidget {
                     );
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => TranslatorHome(user: user),
+                        builder: (context) =>
+                            TranslatorHome(loggedUser: loggedUser),
                       ),
                     );
                   } else {

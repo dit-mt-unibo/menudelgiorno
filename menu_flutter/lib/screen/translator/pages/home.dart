@@ -11,14 +11,15 @@ import '../widgets/translation_card_list.dart';
 class TranslatorHome extends StatelessWidget {
   const TranslatorHome({
     Key? key,
-    required this.user,
+    required this.loggedUser,
   }) : super(key: key);
 
-  final User user;
+  final User loggedUser;
 
   Future<List<TranslationHomeDto>> _getAllTranslations() async {
     final url = Uri.http('10.0.2.2:8000', '/api/translations');
     final response = await http.get(url);
+
     List<TranslationHomeDto> translations = [];
 
     if (response.statusCode != 200) {
@@ -64,7 +65,7 @@ class TranslatorHome extends StatelessWidget {
                 final translations = snapshot.data as List<TranslationHomeDto>;
                 return TranslationCardList(
                   translations: translations,
-                  user: user,
+                  loggedUser: loggedUser,
                 );
               }
               return const Center(
@@ -75,7 +76,7 @@ class TranslatorHome extends StatelessWidget {
         ],
       ),
       drawer: TranslatorNavbar(
-        user: user,
+        loggedUser: loggedUser,
       ),
     );
   }

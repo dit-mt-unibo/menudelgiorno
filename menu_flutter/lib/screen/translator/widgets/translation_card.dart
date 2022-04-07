@@ -12,12 +12,12 @@ import 'translation_card_title.dart';
 class TranslationCard extends StatelessWidget {
   const TranslationCard({
     Key? key,
-    required this.translation,
-    required this.user,
+    required this.currentTranslation,
+    required this.loggedUser,
   }) : super(key: key);
 
-  final TranslationHomeDto translation;
-  final User user;
+  final TranslationHomeDto currentTranslation;
+  final User loggedUser;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,11 @@ class TranslationCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: TranslationCardTitle(
-                title: translation.restaurantName,
+                title: currentTranslation.restaurantName,
               ),
             ),
             TranslationCardText(
-              text: translation.translatedText,
+              text: currentTranslation.translatedText,
             ),
             const Divider(
               height: 30.0,
@@ -46,10 +46,10 @@ class TranslationCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TranslationCardLanguage(
-                    language: translation.translationLanguageCode,
+                    language: currentTranslation.translationLanguageCode,
                   ),
                   TranslationCardElapsedTime(
-                    elapsedTime: translation.elapsedTime,
+                    elapsedTime: currentTranslation.elapsedTime,
                   ),
                 ],
               ),
@@ -60,10 +60,12 @@ class TranslationCard extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => TranslatorTranslationEdit(
-                      translation: TranslationEditDto.fromTranslationHomeDto(
-                        translation,
+                      currentTranslation: TranslationEditDto(
+                        translationId: currentTranslation.translationId,
+                        translatedText: currentTranslation.translatedText,
+                        userId: loggedUser.id,
                       ),
-                      user: user,
+                      loggedUser: loggedUser,
                     ),
                   ),
                 );

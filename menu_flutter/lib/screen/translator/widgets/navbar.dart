@@ -9,10 +9,10 @@ import '../pages/registry.dart';
 class TranslatorNavbar extends StatelessWidget {
   const TranslatorNavbar({
     Key? key,
-    required this.user,
+    required this.loggedUser,
   }) : super(key: key);
 
-  final User user;
+  final User loggedUser;
 
   Widget buildMenu({
     required IconData icon,
@@ -41,14 +41,14 @@ class TranslatorNavbar extends StatelessWidget {
       case 0:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => TranslatorHome(user: user),
+            builder: (context) => TranslatorHome(loggedUser: loggedUser),
           ),
         );
         break;
       case 1:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => TranslatorRegistry(user: user),
+            builder: (context) => TranslatorRegistry(loggedUser: loggedUser),
           ),
         );
         break;

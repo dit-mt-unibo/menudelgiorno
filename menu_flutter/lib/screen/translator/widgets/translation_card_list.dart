@@ -8,11 +8,11 @@ class TranslationCardList extends StatelessWidget {
   const TranslationCardList({
     Key? key,
     required this.translations,
-    required this.user,
+    required this.loggedUser,
   }) : super(key: key);
 
   final List<TranslationHomeDto> translations;
-  final User user;
+  final User loggedUser;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,8 @@ class TranslationCardList extends StatelessWidget {
               itemCount: translations.length,
               itemBuilder: (context, index) {
                 return TranslationCard(
-                  translation: translations[index],
-                  user: user,
+                  currentTranslation: translations[index],
+                  loggedUser: loggedUser,
                 );
               },
             ),
