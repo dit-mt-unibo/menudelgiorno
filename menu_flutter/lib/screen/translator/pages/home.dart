@@ -8,7 +8,7 @@ import '../../../models/translator/translation_home_dto.dart';
 import '../widgets/translation_card_list.dart';
 import 'navbar.dart';
 
-class TranslatorHome extends StatefulWidget {
+class TranslatorHome extends StatelessWidget {
   const TranslatorHome({
     Key? key,
     required this.user,
@@ -16,37 +16,23 @@ class TranslatorHome extends StatefulWidget {
 
   final User user;
 
-  @override
-  State<TranslatorHome> createState() => _TranslatorHomeState();
-}
-
-class _TranslatorHomeState extends State<TranslatorHome> {
   Future<List<TranslationHomeDto>> _getAllTranslations() async {
-    // Richiesta HTTP
     final url = Uri.http('10.0.2.2:8000', '/api/translations');
     final response = await http.get(url);
+    List<TranslationHomeDto> translations = [];
 
-    // Se la richiesta non è andata a buon fine
     if (response.statusCode != 200) {
-      return [];
+      return translations;
     }
 
-    // Se la richiesta è andata a buon fine
     final jsonResponse = jsonDecode(response.body);
 
-    // Mappo i dati ricevuti nei modelli
-    List<TranslationHomeDto> translations = jsonResponse
+    translations = jsonResponse
         .map<TranslationHomeDto>(
             (rawTranslation) => TranslationHomeDto.fromJson(rawTranslation))
         .toList();
 
     return translations;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getAllTranslations();
   }
 
   @override
@@ -75,12 +61,10 @@ class _TranslatorHomeState extends State<TranslatorHome> {
           FutureBuilder(
             future: _getAllTranslations(),
             builder: (context, snapshot) {
-              // Quando ha completato la Future
               if (snapshot.hasData) {
                 final translations = snapshot.data as List<TranslationHomeDto>;
                 return TranslationCardList(translations: translations);
               }
-              // Mentre attende il completamento della Future
               return const Center(
                 child: CircularProgressIndicator(),
               );
@@ -89,7 +73,7 @@ class _TranslatorHomeState extends State<TranslatorHome> {
         ],
       ),
       drawer: TranslatorNavbar(
-        user: widget.user,
+        user: user,
       ),
     );
   }
