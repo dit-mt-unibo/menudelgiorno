@@ -26,12 +26,15 @@ class MenuController extends Controller
         return MenuResource::collection($menu)->response();
     }
 
+
+    // Nouvo menu da tradurre inserito da un ristauratore
+
     public function store(MenuRequest $request,Menu $menu)
     {
 
          $language_idArray=$request->input('language_idArray');//input la lingue
-         $text=$request->input('text');
-         $restaurant_id=$request->input('restaurant_id');
+         $text=$request->input('text');//input testo da tradurre
+         $restaurant_id=$request->input('restaurant_id');//input restaurant
 
 
 
@@ -39,6 +42,8 @@ class MenuController extends Controller
         return response()->json($menu);
     }
 
+
+    // visualizzazione di un menu
 
     public function show($id)
     {
@@ -51,6 +56,8 @@ class MenuController extends Controller
     }
 
 
+
+
     public function update(MenuRequest $request, Menu $menu)
     {
         $menu->text=$request->input('text');
@@ -58,6 +65,8 @@ class MenuController extends Controller
         $menu->save();
         return response()->json(['Menu updated successfully.', new MenuResource($menu)]);
     }
+
+
 
 
     public function destroy(Menu $menu)
