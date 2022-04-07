@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/translator/translation_home_dto.dart';
+import '../../../../models/translator/translation_home_dto.dart';
+import '../../../models/translator/translation_edit_dto.dart';
+import '../pages/translation_edit.dart';
 import 'translation_card_elapsed_time.dart';
 import 'translation_card_language.dart';
 import 'translation_card_text.dart';
@@ -50,9 +52,20 @@ class TranslationCard extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TranslatorTranslationEdit(
+                      translation: TranslationEditDto.fromTranslationHomeDto(
+                        translation,
+                      ),
+                    ),
+                  ),
+                );
+              },
               child: const Text(
-                'Traduci',
+                'Visualizza',
                 style: TextStyle(
                   fontSize: 16.0,
                 ),
