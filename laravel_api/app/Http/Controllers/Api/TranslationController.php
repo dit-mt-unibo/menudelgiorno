@@ -47,11 +47,11 @@ class TranslationController extends Controller
 
     public function update(TranslationRequest $request,Translation $translation)
     {
-        $id=Auth::user()->id;
+
 
         $translation->update([
             'text' => $request->input('text'),
-            'user_id'=>$id,
+            'user_id'=>$request->input('user_id'),
             'state'=>1,
         ]);
 
