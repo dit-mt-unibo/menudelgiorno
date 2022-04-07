@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../models/app/user.dart';
 import '../../../models/translator/translation_home_dto.dart';
 import '../widgets/translation_card_list.dart';
-import 'navbar.dart';
+import '../widgets/navbar.dart';
 
 class TranslatorHome extends StatelessWidget {
   const TranslatorHome({
@@ -41,7 +41,6 @@ class TranslatorHome extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
         backgroundColor: const Color.fromARGB(255, 26, 85, 247),
-        elevation: 1,
       ),
       body: Stack(
         children: [

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../models/app/user.dart';
 import '../../app/welcome.dart';
-import 'home.dart';
-import 'languages.dart';
-import 'registry.dart';
+import '../pages/home.dart';
+import '../pages/languages.dart';
+import '../pages/registry.dart';
 
 class TranslatorNavbar extends StatelessWidget {
   const TranslatorNavbar({
