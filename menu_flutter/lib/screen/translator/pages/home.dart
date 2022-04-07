@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../../../models/app/user.dart';
 import '../../../models/translator/translation_home_dto.dart';
-import '../widgets/translation_card_list.dart';
 import '../widgets/navbar.dart';
+import '../widgets/translation_card_list.dart';
 
 class TranslatorHome extends StatelessWidget {
   const TranslatorHome({
@@ -62,7 +62,10 @@ class TranslatorHome extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final translations = snapshot.data as List<TranslationHomeDto>;
-                return TranslationCardList(translations: translations);
+                return TranslationCardList(
+                  translations: translations,
+                  user: user,
+                );
               }
               return const Center(
                 child: CircularProgressIndicator(),

@@ -48,7 +48,7 @@ class TranslatorNavbar extends StatelessWidget {
       case 1:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const TranslatorRegistry(),
+            builder: (context) => TranslatorRegistry(user: user),
           ),
         );
         break;
@@ -88,7 +88,7 @@ class TranslatorNavbar extends StatelessWidget {
             ),
             buildMenu(
               icon: Icons.person,
-              titolo: 'I miei Dati',
+              titolo: 'Il mio Profilo',
               onclick: () => selectedItem(context, 1),
             ),
             buildMenu(

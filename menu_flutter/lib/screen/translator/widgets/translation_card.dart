@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/translator/translation_home_dto.dart';
+import '../../../models/app/user.dart';
 import '../../../models/translator/translation_edit_dto.dart';
+import '../../../models/translator/translation_home_dto.dart';
 import '../pages/translation_edit.dart';
 import 'translation_card_elapsed_time.dart';
 import 'translation_card_language.dart';
@@ -12,9 +13,11 @@ class TranslationCard extends StatelessWidget {
   const TranslationCard({
     Key? key,
     required this.translation,
+    required this.user,
   }) : super(key: key);
 
   final TranslationHomeDto translation;
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +63,7 @@ class TranslationCard extends StatelessWidget {
                       translation: TranslationEditDto.fromTranslationHomeDto(
                         translation,
                       ),
+                      user: user,
                     ),
                   ),
                 );
