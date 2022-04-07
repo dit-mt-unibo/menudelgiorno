@@ -18,25 +18,30 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController userController = TextEditingController();
-  TextEditingController pwdController = TextEditingController();
+  final _userController = TextEditingController();
+  final _pwdController = TextEditingController();
 
   Future _doLogin() async {
-    final deviceInfo = DeviceInfoPlugin();
-    final androidInfo = await deviceInfo.androidInfo;
     final url = Uri.http('10.0.2.2:8000', '/api/auth/login');
 
-    final payload = {
-      'user': userController.text,
-      'password': pwdController.text,
+    final deviceInfo = DeviceInfoPlugin();
+    final androidInfo = await deviceInfo.androidInfo;
+
+    final headers = {'Content-Type': 'application/json'};
+
+    final payload = jsonEncode({
+      'user': _userController.text,
+      'password': _pwdController.text,
       'device': " ${androidInfo.model}",
-    };
+    });
 
-    final response = await http.post(url, body: payload);
-    final rawUser = json.decode(response.body);
-    final user = User.fromJson(rawUser['user']);
+    final response = await http.post(url, headers: headers, body: payload);
 
-    switch (user.role) {
+    final data = json.decode(response.body);
+
+    final loggedUser = User.fromJson(data['user']);
+
+    switch (loggedUser.role) {
       case "Ristoratore":
         {
           Navigator.pop(context);
@@ -54,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => TranslatorHome(user: user),
+              builder: (context) => TranslatorHome(loggedUser: loggedUser),
             ),
           );
         }
@@ -77,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               padding: const EdgeInsets.all(20.0),
               child: TextField(
-                controller: userController,
+                controller: _userController,
                 decoration: const InputDecoration(
                   labelText: 'Username',
                 ),
@@ -86,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               padding: const EdgeInsets.all(20.0),
               child: TextField(
-                controller: pwdController,
+                controller: _pwdController,
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'Password',

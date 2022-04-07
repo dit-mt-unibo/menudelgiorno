@@ -5,37 +5,30 @@ import 'package:flutter/material.dart';
 
 import '../../../models/app/user.dart';
 import '../../../models/translator/translation_home_dto.dart';
+import '../widgets/navbar.dart';
 import '../widgets/translation_card_list.dart';
-import 'navbar.dart';
 
-class TranslatorHome extends StatefulWidget {
+class TranslatorHome extends StatelessWidget {
   const TranslatorHome({
     Key? key,
-    required this.user,
+    required this.loggedUser,
   }) : super(key: key);
 
-  final User user;
+  final User loggedUser;
 
-  @override
-  State<TranslatorHome> createState() => _TranslatorHomeState();
-}
-
-class _TranslatorHomeState extends State<TranslatorHome> {
   Future<List<TranslationHomeDto>> _getAllTranslations() async {
-    // Richiesta HTTP
     final url = Uri.http('10.0.2.2:8000', '/api/translations');
     final response = await http.get(url);
 
-    // Se la richiesta non è andata a buon fine
+    List<TranslationHomeDto> translations = [];
+
     if (response.statusCode != 200) {
-      return [];
+      return translations;
     }
 
-    // Se la richiesta è andata a buon fine
     final jsonResponse = jsonDecode(response.body);
 
-    // Mappo i dati ricevuti nei modelli
-    List<TranslationHomeDto> translations = jsonResponse
+    translations = jsonResponse
         .map<TranslationHomeDto>(
             (rawTranslation) => TranslationHomeDto.fromJson(rawTranslation))
         .toList();
@@ -44,18 +37,11 @@ class _TranslatorHomeState extends State<TranslatorHome> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _getAllTranslations();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
         backgroundColor: const Color.fromARGB(255, 26, 85, 247),
-        elevation: 1,
       ),
       body: Stack(
         children: [
@@ -75,12 +61,13 @@ class _TranslatorHomeState extends State<TranslatorHome> {
           FutureBuilder(
             future: _getAllTranslations(),
             builder: (context, snapshot) {
-              // Quando ha completato la Future
               if (snapshot.hasData) {
                 final translations = snapshot.data as List<TranslationHomeDto>;
-                return TranslationCardList(translations: translations);
+                return TranslationCardList(
+                  translations: translations,
+                  loggedUser: loggedUser,
+                );
               }
-              // Mentre attende il completamento della Future
               return const Center(
                 child: CircularProgressIndicator(),
               );
@@ -89,7 +76,7 @@ class _TranslatorHomeState extends State<TranslatorHome> {
         ],
       ),
       drawer: TranslatorNavbar(
-        user: widget.user,
+        loggedUser: loggedUser,
       ),
     );
   }

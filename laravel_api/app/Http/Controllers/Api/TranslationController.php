@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TranslationRequest;
 use App\Http\Resources\TranslationResource;
 use App\Models\Translation;
+use Illuminate\Support\Facades\Auth;
 
 class TranslationController extends Controller
 {
@@ -29,7 +30,7 @@ class TranslationController extends Controller
         ]);
 
 
-        return response()->json(['translation created successfully.', new TranslationResource($translation)]);
+        return response()->json([new TranslationResource($translation)]);
     }
 
 
@@ -46,11 +47,16 @@ class TranslationController extends Controller
 
     public function update(TranslationRequest $request,Translation $translation)
     {
-        $translation->text=$request->text;
-        $translation->language_id=$request->language_id;
-        $translation->save();
 
-        return response()->json(['translation updated successfully.', new TranslationResource($translation)]);
+
+        $translation->update([
+            'text' => $request->input('text'),
+            'user_id'=>$request->input('user_id'),
+            'state'=>1,
+        ]);
+
+
+        return response()->json(new TranslationResource($translation));
     }
 
 

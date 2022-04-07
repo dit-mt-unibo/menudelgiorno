@@ -26,12 +26,10 @@ class ModernMtClient{
         ]);
 
 
-         $responseJsonString=$response->body();
-        $str1= str_replace("data","main",$responseJsonString);
-        //  $str2=str_replace("status","data",$str1);
-        // $str3= str_replace("main","status",$str2);
-         $responseObjet=json_decode($str1,false);
+         $responseJsonString=$response->body();//qui la risposta è in formato string
+        $str1= str_replace("data","main",$responseJsonString);// la parola data not found ho cambiato in main
+         $responseObjet=json_decode($str1,false);// qui si converte il formato string della risposta in oggetto
 
-        return $responseObjet->main->translation;
+        return $responseObjet->main->translation;// return la frase tradotta
     }
 }
