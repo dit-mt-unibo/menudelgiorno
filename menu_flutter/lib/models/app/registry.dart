@@ -14,9 +14,9 @@ class Registry {
   static Registry fromJson(dynamic obj) {
     return Registry(
       id: obj['registry']['id'],
-      firstName: obj['registry']['first_name'],
-      lastName: obj['registry']['last_name'],
-      email: obj['registry']['email'],
+      firstName: obj['registry']['first_name'] ?? '',
+      lastName: obj['registry']['last_name'] ?? '',
+      email: obj['registry']['email'] ?? '',
     );
   }
 }
