@@ -15,7 +15,7 @@ class TranslationController extends Controller
     public function index()
     {
 
-        $translation = Translation::with(['language','menu.restaurant'])->where('state',0)->get();
+        $translation = Translation::with(['language','menu.restaurant'])->where('state',0)->orderByDesc('created_at')->get();
         return TranslationResource::collection($translation)->response();
     }
 
