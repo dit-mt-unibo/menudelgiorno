@@ -17,7 +17,7 @@ class LanguageController extends Controller
         $language= Language::get();
 
 
-       return response()->json(['Language fetched', LanguageResource::collection($language)]);
+       return response()->json( LanguageResource::collection($language));
     }
 
     public function show($id)

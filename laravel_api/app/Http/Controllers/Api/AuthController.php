@@ -7,6 +7,7 @@ use App\Models\Registry;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -34,6 +35,10 @@ class AuthController extends Controller
         // Creazione dei Dati Anagrafici iniziali del nuovo utente.
         $newRegistry = Registry::create([
             'email' => $request->email,
+            'user_id' => $newUser->id,
+        ]);
+
+        $newRestaurant = Restaurant::create([
             'user_id' => $newUser->id,
         ]);
 
