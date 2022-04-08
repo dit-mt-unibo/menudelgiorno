@@ -15,8 +15,8 @@ class CreateRegistriesTable extends Migration
     {
         Schema::create('registries', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
+            $table->string('first_name')->nullable(true);
+            $table->string('last_name')->nullable(true);
             $table->string('email')->unique();
             $table->integer('user_id');
             $table->timestamps();
