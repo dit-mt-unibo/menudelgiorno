@@ -80,7 +80,7 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                   ),
                 ),
                 onPressed: () {
-                  sendMenu();
+                  
                   Navigator.push(
                     context,
                     MaterialPageRoute(
