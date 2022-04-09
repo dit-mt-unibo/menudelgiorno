@@ -14,38 +14,45 @@ use Illuminate\Support\Facades\Auth;
 class LanguageUserController extends Controller
 {
     public function index(User $user){
-       // $languageUser= LanguageUser::orderby('user_id','ASC')->get();
-       $languagesconfig=$user->languages_config()->get();
+       $languages= Language::get();
 
-        return response()->json($languagesconfig);
-
+       $settings=[];
+       foreach ($languages as $language) {
+           $found=false;
+           $language->selected=0;
+          foreach ($user->languages()->get()  as $target) {
+              if ($language->id==$target->id) {
+                  $language->selected=1;
+                array_push($settings,$language);
+              }
+          }
+       }
+        return response()->json($languages);
     }
 
-
+     //
     public function store(Request $request,User $user){
         $configs=$request->input('configs');
         //supression
-        foreach ($user->languages_config()->get() as $languagesconfig ) {
-            $found=false;
-           foreach($configs as $config){
+        foreach ($configs as $config) {
+            if ($config['selected']==0) {
+                $user->languages_config()->where('language_id',$config['language_id'])
+                                         ->delete();
+            }
+            elseif($config['selected']==1){
+              $countconfig=$user->languages_config()->where('language_id',$config['language_id'])
+                                         ->count();
+               if($countconfig==0){
+                   LanguageUser::create([
 
-               if (isset($config['id']) && $languagesconfig->id==$config['id']) {
-                   $found=true;
+                    "user_id"=>$user->id,
+                    "language_id"=>$config['language_id']
+
+                   ]);
                }
-           }
-           if ($found==false) {
-              $languagesconfig->delete();
-           }
+            }
         }
-        // ajout
-        foreach ($configs as $config ) {
-           if (!isset($config['id'])) {
-              LanguageUser::create([
-                  "user_id"=>$user->id,
-                  "language_id"=>$config['language_id']
-              ]);
-           }
-        }
+
 
     }
     public function show(){

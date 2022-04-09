@@ -11,6 +11,7 @@ class Language extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name','code'];
+    protected $appends=['selected'];
 
     public function translation(){
         return $this->hasMany(Translation::class);
@@ -25,4 +26,16 @@ class Language extends Model
     public function user_config(){
         return $this->hasMany(LanguageUser::class);
     }
+
+
+    public function getSelectedAttribute($value){
+        return $this->attributes['selected'];
+    }
+
+    public function setSelectedAttribute($value){
+        return $this->attributes['selected']=$value;
+    }
+
+
+
 }
