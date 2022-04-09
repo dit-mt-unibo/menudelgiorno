@@ -19,7 +19,10 @@ class Language extends Model
     {
         return $this->belongsToMany(Menu::class);
     }
-    public function user(){
-        return $this->belongsToMany(User::class);
+    public function users(){
+        return $this->belongsToMany(User::class,'language_user');
+    }
+    public function user_config(){
+        return $this->hasMany(LanguageUser::class);
     }
 }

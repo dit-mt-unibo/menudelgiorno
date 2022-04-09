@@ -7,17 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\languageRequest;
 use App\Http\Resources\LanguageResource;
+use App\Models\LanguageUser;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 class LanguageController extends Controller
 {
 
-    public function index()
+    public function index(User $user)
     {
-        $language= Language::get();
 
+        $languages=$user->languages()->get();
 
-       return response()->json( LanguageResource::collection($language));
+       return response()->json($languages);
     }
 
     public function show($id)
@@ -30,28 +32,28 @@ class LanguageController extends Controller
     }
 
 
-    // public function store(languageRequest $request)
-    // {
-    //     $language=new Language();
+    public function store(languageRequest $request)
+    {
+        $language=new Language();
 
-    //     $language=Language::create([ 'name' => $request->name]);
+        $language=Language::create([ 'name' => $request->name]);
 
-    //     return response()->json($language);
-    // }
-
-
-    // public function update(LanguageRequest $request,Language $language)
-    // {
-    //     $language->name=$request->name;
+        return response()->json($language);
+    }
 
 
-    //     return response()->json(['language updated successfully.', $language]);
-    // }
+    public function update(LanguageRequest $request,Language $language)
+    {
+        $language->name=$request->name;
 
 
-    // public function destroy(Language $language)
-    // {
-    //     $language->delete();
-    //     return response()->json('language deleted successfully.');
-    // }
+        return response()->json(['language updated successfully.', $language]);
+    }
+
+
+    public function destroy(Language $language)
+    {
+        $language->delete();
+        return response()->json('language deleted successfully.');
+    }
 }

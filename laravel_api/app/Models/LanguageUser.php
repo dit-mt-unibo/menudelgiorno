@@ -11,4 +11,11 @@ class LanguageUser extends Model
 
     protected $table='language_user';
     protected $fillable=['user_id','language_id'];
+
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
+    public function languages(){
+        return $this->belongsTo(Language::class);
+    }
 }
