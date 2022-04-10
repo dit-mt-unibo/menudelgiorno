@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/app/user.dart';
-import '../../../models/translator/translation_home_dto.dart';
+import '../../../../models/app/user.dart';
+import '../../../../models/translator/translation_home_dto.dart';
 import 'translation_card.dart';
 
 class TranslationCardList extends StatelessWidget {

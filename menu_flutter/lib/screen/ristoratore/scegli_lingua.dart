@@ -6,15 +6,13 @@ import 'ristoratore_home.dart';
 import '../../models/app/language.dart';
 
 class ScegliLinguaWidget extends StatefulWidget {
-  const ScegliLinguaWidget({Key? key}): super(key: key);
-
+  const ScegliLinguaWidget({Key? key}) : super(key: key);
 
   @override
   State<ScegliLinguaWidget> createState() => _ScegliLinguaWidgetState();
 }
 
 class _ScegliLinguaWidgetState extends State<ScegliLinguaWidget> {
-  
   Future<Language> _getLanguage() async {
     final url = Uri.http('10.0.2.2:8000', '/api/languages/');
     final response = await http.get(url);
