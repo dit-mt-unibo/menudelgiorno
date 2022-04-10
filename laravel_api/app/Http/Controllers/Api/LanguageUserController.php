@@ -18,16 +18,16 @@ class LanguageUserController extends Controller
 
        $settings=[];
        foreach ($languages as $language) {
-           $found=false;
-           $language->selected=0;
+           $selected=0;
+
           foreach ($user->languages()->get()  as $target) {
               if ($language->id==$target->id) {
-                  $language->selected=1;
-                array_push($settings,$language);
+                $selected=1;
+                array_push($settings,array("language_id"=>$language->id,"selected"=>$selected));
               }
           }
        }
-        return response()->json($languages);
+        return response()->json($settings);
     }
 
      //

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Facade\TranslationFacade;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TranslationRequest;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TranslationController extends Controller
 {
+
 
     public function index()
     {
@@ -36,12 +38,7 @@ class TranslationController extends Controller
 
     public function show($id)
     {
-        $translation = Translation::find($id);
-
-        if (is_null($translation)) {
-            return response()->json('Data not found', 404);
-        }
-        return response()->json(new TranslationResource($translation));
+       //
     }
 
 

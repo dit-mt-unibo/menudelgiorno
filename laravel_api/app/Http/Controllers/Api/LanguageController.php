@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Http;
 class LanguageController extends Controller
 {
 
-    public function index(User $user)
+    public function index()
     {
 
-        $languages=$user->languages()->get();
+        $languages=Language::get();
 
        return response()->json($languages);
     }
