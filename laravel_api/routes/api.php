@@ -28,9 +28,9 @@ Route::post('auth/logout', [AuthController::class, 'logout']);
 
 Route::apiresource('user', UserController::class);
 //lingue
-Route::post('user/languages/create',[LanguageUserController::class,'createLanguage']);
-// Route::put('user/languages/{userId}',[LanguageUserController::class,'updateLanguage']);
-Route::post('user/languages',[LanguageUserController::class,'lista'])->name('lista');
+Route::post('user/languages/create', [LanguageUserController::class, 'createLanguage']);
+Route::put('user/languages/{userId}', [LanguageUserController::class, 'updateLanguage']);
+Route::post('user/languages', [LanguageUserController::class, 'lista'])->name('lista');
 
 Route::apiResource('registries', RegistryController::class);
 Route::apiResource('languages', LanguageController::class);

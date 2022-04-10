@@ -15,19 +15,19 @@ class LanguageUserController extends Controller
 
     public function lista(){
 
-        $languageUser= LanguageUser::orderby('user_id','ASC')->get();
+        $languageUser = LanguageUser::orderby('user_id','ASC')->get();
 
-       return response()->json([LanguageUserResource ::collection($languageUser)]);
+       return response()->json([LanguageUserResource::collection($languageUser)]);
     }
 
 
-    public function createLanguage(Request $request,LanguageUser $languageUser){
+    public function createLanguage(Request $request, LanguageUser $languageUser){
 
-        $language_idArray=$request->input('language_idArray');
+        $language_idArray = $request->input('language_idArray');
        // $id=Auth::user()->id;
         foreach ($language_idArray as $value) {
 
-            $languageUser=LanguageUser::create([
+            $languageUser = LanguageUser::create([
                 'user_id'=>$request->input('user_id'),
                 'language_id'=>$value,
             ]);
@@ -35,15 +35,56 @@ class LanguageUserController extends Controller
         return response()->json($languageUser);
     }
 
-//     public function UpdateLanguage(Request $request,$userId){
+    // public function UpdateLanguage(Request $request, $userId){
 
-//         $languageUser=LanguageUser::where('user_id',$userId);
-//        // $id=Auth::user()->id;
-//         foreach ($languageUser as $k) {
-//             $k->language_id= $request->input('language_id');
-//             $k->save();
-//         }
-//         return response()->json($languageUser);
-//     }
+    //     $languageUser=LanguageUser::where('user_id',$userId);
+    //    // $id=Auth::user()->id;
+    //     foreach ($languageUser as $k) {
+    //         $k->language_id= $request->input('language_id');
+    //         $k->save();
+    //     }
+    //     return response()->json($languageUser);
+    // }
+
+    // public function updateLanguage(Request $request, $userId){
+
+    //     $languageUser = LanguageUser::query()->where('user_id', $userId);
+    //     // $id = $request->input('id');
+    //     // $languageUser = Language::find($id);
+    //     foreach ($languageUser as $key => $id) {
+    //         $key->language_id = $request->input('language_id');
+    //         $key->save();
+    //     }
+    //     return response()->json($languageUser);
+    // }
+
+    // public function updateLanguage(Request $request, $userId){
+
+    //     $languageUsers = $request->input('languageUsers');
+
+    //     foreach ($languageUsers as $value) {
+    //         $languageUser = LanguageUser::find($value['id']);
+    //         $languageUser->language_id = $value['language_id'];
+    //         $languageUser->save();
+    //     }
+    //     return response()->json($languageUsers);
+    // }
+
+    // public function updateLanguage(Request $request, $id){
+
+    //     $collection = collect($request->get('language_id'));
+
+    //     $languageUser = $collection->pluck('userId');
+
+    //     LanguageUser::whereIn('id', $languageUser)->update([
+    //         'language_id' => $id
+    //     ]);
+    //     return response()->json($languageUser);
+    // }
+
+    public function updateLanguage(){
+
+        $languageUser->languages()->whereIn('language_id', $language_idArray)->delete();
+    }
 
  }
