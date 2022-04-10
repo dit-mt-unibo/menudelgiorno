@@ -64,24 +64,24 @@ class LanguageUserController extends Controller
     }
 
 
-    public function update(Request $request, User $user){
+    // public function update(Request $request, User $user){
 
-        $languagesArray = $request->input('languagesArray');
+    //     $languagesArray = $request->input('languagesArray');
 
-        foreach ($languagesArray as $language) {
-            if ($language['selected'] == 0) {
-                $user->languages_config()->where('language_id', $language['language_id'])->delete();
-            }
-            elseif ($language['selected'] == 1) {
-                $counterLanguageUser = $user->languages_config()->where('language_id', $language['language_id'])->count();
-                if ($counterLanguageUser == 0) {
-                    LanguageUser::create([
-                        'language_id' => $language['language_id'],
-                        'user_id' => $user->id
-                    ]);
-                }
-            }
-        }
-    }
+    //     foreach ($languagesArray as $language) {
+    //         if ($language['selected'] == 0) {
+    //             $user->languages_config()->where('language_id', $language['language_id'])->delete();
+    //         }
+    //         elseif ($language['selected'] == 1) {
+    //             $counterLanguageUser = $user->languages_config()->where('language_id', $language['language_id'])->count();
+    //             if ($counterLanguageUser == 0) {
+    //                 LanguageUser::create([
+    //                     'language_id' => $language['language_id'],
+    //                     'user_id' => $user->id
+    //                 ]);
+    //             }
+    //         }
+    //     }
+    // }
 
  }
