@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../models/app/user.dart';
 import '../../../models/translator/translation_home_dto.dart';
 import '../widgets/navbar.dart';
-import '../widgets/translation_card_list.dart';
+import '../widgets/translation/translation_card_list.dart';
 
 class TranslatorHome extends StatelessWidget {
   const TranslatorHome({

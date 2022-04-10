@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../models/app/user.dart';
 import '../../app/welcome.dart';
 import '../pages/home.dart';
-import '../pages/languages.dart';
-import '../pages/registry.dart';
+import '../pages/languages_edit.dart';
+import '../pages/registry_edit.dart';
 
 class TranslatorNavbar extends StatelessWidget {
   const TranslatorNavbar({
@@ -48,14 +48,16 @@ class TranslatorNavbar extends StatelessWidget {
       case 1:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => TranslatorRegistry(loggedUser: loggedUser),
+            builder: (context) =>
+                TranslatorRegistryEdit(loggedUser: loggedUser),
           ),
         );
         break;
       case 2:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const TranslatorLanguages(),
+            builder: (context) =>
+                TranslatorLanguagesEdit(loggedUser: loggedUser),
           ),
         );
         break;
