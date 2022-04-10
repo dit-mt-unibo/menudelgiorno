@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../../../models/app/user.dart';
 import '../../app/welcome.dart';
-import 'home.dart';
-import 'languages.dart';
-import 'registry.dart';
+import '../pages/home.dart';
+import '../pages/languages.dart';
+import '../pages/registry.dart';
 
 class TranslatorNavbar extends StatelessWidget {
   const TranslatorNavbar({
     Key? key,
-    required this.user,
+    required this.loggedUser,
   }) : super(key: key);
 
-  final User user;
+  final User loggedUser;
 
   Widget buildMenu({
     required IconData icon,
@@ -41,14 +41,14 @@ class TranslatorNavbar extends StatelessWidget {
       case 0:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => TranslatorHome(user: user),
+            builder: (context) => TranslatorHome(loggedUser: loggedUser),
           ),
         );
         break;
       case 1:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const TranslatorRegistry(),
+            builder: (context) => TranslatorRegistry(loggedUser: loggedUser),
           ),
         );
         break;
@@ -88,7 +88,7 @@ class TranslatorNavbar extends StatelessWidget {
             ),
             buildMenu(
               icon: Icons.person,
-              titolo: 'I miei Dati',
+              titolo: 'Il mio Profilo',
               onclick: () => selectedItem(context, 1),
             ),
             buildMenu(

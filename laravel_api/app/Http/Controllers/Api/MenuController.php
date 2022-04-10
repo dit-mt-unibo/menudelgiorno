@@ -54,9 +54,11 @@ class MenuController extends Controller
         }
         return response()->json([new MenuResource($menu)]);
     }
-
-
-
+    public function menuo($id)
+    {
+        $menu=Menu::find($id);
+        return view('menus.francese',compact('menu'));
+    }
 
     public function update(MenuRequest $request, Menu $menu)
     {

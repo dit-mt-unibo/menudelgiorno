@@ -13,7 +13,7 @@ class RegistryController extends Controller
     public function index()
     {
         $registry = Registry::latest()->get();
-        return response()->json(['Registries fetched.', RegistryResource::collection($registry)]);
+        return response()->json(RegistryResource::collection($registry));
     }
 
     public function store(RegistryRequest $request)
@@ -26,7 +26,7 @@ class RegistryController extends Controller
             'user_id' => $request->user_id,
         ]);
 
-        return response()->json(['Registry created successfully.', new RegistryResource($registry)]);
+        return response()->json( new RegistryResource($registry));
     }
 
     public function show($userId)

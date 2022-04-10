@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Facade\TranslationFacade;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TranslationRequest;
 use App\Http\Resources\TranslationResource;
 use App\Models\Translation;
+use Illuminate\Support\Facades\Auth;
 
 class TranslationController extends Controller
 {
 
+
     public function index()
     {
 
-        $translation = Translation::with(['language','menu.restaurant'])->where('state',0)->get();
+        $translation = Translation::with(['language','menu.restaurant'])->where('state',0)->orderByDesc('created_at')->get();
         return TranslationResource::collection($translation)->response();
     }
 
@@ -29,28 +32,24 @@ class TranslationController extends Controller
         ]);
 
 
-        return response()->json(['translation created successfully.', new TranslationResource($translation)]);
+        return response()->json([new TranslationResource($translation)]);
     }
 
 
     public function show($id)
     {
-        $translation = Translation::find($id);
-
-        if (is_null($translation)) {
-            return response()->json('Data not found', 404);
-        }
-        return response()->json(new TranslationResource($translation));
+       //
     }
 
 
     public function update(TranslationRequest $request,Translation $translation)
     {
-        $translation->text=$request->text;
-        $translation->language_id=$request->language_id;
-        $translation->save();
-
-        return response()->json(['translation updated successfully.', new TranslationResource($translation)]);
+        $translation->update([
+            'text' => $request->input('text'),
+            'user_id'=>$request->input('user_id'),
+            'state'=>1,
+        ]);
+        return response()->json(new TranslationResource($translation));
     }
 
 

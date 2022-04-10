@@ -5,20 +5,21 @@ import 'package:flutter/material.dart';
 
 import '../../../models/app/user.dart';
 import '../../../models/translator/translation_home_dto.dart';
+import '../widgets/navbar.dart';
 import '../widgets/translation_card_list.dart';
-import 'navbar.dart';
 
 class TranslatorHome extends StatelessWidget {
   const TranslatorHome({
     Key? key,
-    required this.user,
+    required this.loggedUser,
   }) : super(key: key);
 
-  final User user;
+  final User loggedUser;
 
   Future<List<TranslationHomeDto>> _getAllTranslations() async {
     final url = Uri.http('10.0.2.2:8000', '/api/translations');
     final response = await http.get(url);
+
     List<TranslationHomeDto> translations = [];
 
     if (response.statusCode != 200) {
@@ -41,7 +42,6 @@ class TranslatorHome extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
         backgroundColor: const Color.fromARGB(255, 26, 85, 247),
-        elevation: 1,
       ),
       body: Stack(
         children: [
@@ -63,7 +63,10 @@ class TranslatorHome extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final translations = snapshot.data as List<TranslationHomeDto>;
-                return TranslationCardList(translations: translations);
+                return TranslationCardList(
+                  translations: translations,
+                  loggedUser: loggedUser,
+                );
               }
               return const Center(
                 child: CircularProgressIndicator(),
@@ -73,7 +76,7 @@ class TranslatorHome extends StatelessWidget {
         ],
       ),
       drawer: TranslatorNavbar(
-        user: user,
+        loggedUser: loggedUser,
       ),
     );
   }

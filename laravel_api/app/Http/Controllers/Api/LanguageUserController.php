@@ -6,34 +6,68 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\LanguageUserResource;
 use App\Models\Language;
 use App\Models\LanguageUser;
+use App\Models\User;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LanguageUserController extends Controller
 {
+    public function index(User $user){
+       $languages= Language::get();
 
-    public function lista(){
+       $settings=[];
+       foreach ($languages as $language) {
+           $selected=0;
 
-        $languageUser = LanguageUser::orderby('user_id','ASC')->get();
-
-       return response()->json([LanguageUserResource::collection($languageUser)]);
+          foreach ($user->languages()->get()  as $target) {
+              if ($language->id==$target->id) {
+                $selected=1;
+                array_push($settings,array("language_id"=>$language->id,"selected"=>$selected));
+              }
+          }
+       }
+        return response()->json($settings);
     }
 
+     //
+    public function store(Request $request,User $user){
+        $configs=$request->input('configs');
+        //supression
+        foreach ($configs as $config) {
+            if ($config['selected']==0) {
+                $user->languages_config()->where('language_id',$config['language_id'])
+                                         ->delete();
+            }
+            elseif($config['selected']==1){
+              $countconfig=$user->languages_config()->where('language_id',$config['language_id'])
+                                         ->count();
+               if($countconfig==0){
+                   LanguageUser::create([
 
-    public function createLanguage(Request $request, LanguageUser $languageUser){
+                    "user_id"=>$user->id,
+                    "language_id"=>$config['language_id']
 
-        $language_idArray = $request->input('language_idArray');
-       // $id=Auth::user()->id;
-        foreach ($language_idArray as $value) {
-
-            $languageUser = LanguageUser::create([
-                'user_id'=>$request->input('user_id'),
-                'language_id'=>$value,
-            ]);
+                   ]);
+               }
+            }
         }
-        return response()->json($languageUser);
+
     }
+    public function show(){
+
+    }
+    public function update(Request $request,User $user){
+
+
+
+    }
+    public function delete(User $user){
+
+        $user->languages_config()->delete();
+    }
+
+
 
     // public function UpdateLanguage(Request $request, $userId){
 

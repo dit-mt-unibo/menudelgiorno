@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/app/user.dart';
+import '../../../models/translator/translation_edit_dto.dart';
 import '../../../models/translator/translation_home_dto.dart';
+import '../pages/translation_edit.dart';
 import 'translation_card_elapsed_time.dart';
 import 'translation_card_language.dart';
 import 'translation_card_text.dart';
@@ -9,10 +12,12 @@ import 'translation_card_title.dart';
 class TranslationCard extends StatelessWidget {
   const TranslationCard({
     Key? key,
-    required this.translation,
+    required this.currentTranslation,
+    required this.loggedUser,
   }) : super(key: key);
 
-  final TranslationHomeDto translation;
+  final TranslationHomeDto currentTranslation;
+  final User loggedUser;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +29,11 @@ class TranslationCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: TranslationCardTitle(
-                title: translation.restaurantName,
+                title: currentTranslation.restaurantName,
               ),
             ),
             TranslationCardText(
-              text: translation.translatedText,
+              text: currentTranslation.translatedText,
             ),
             const Divider(
               height: 30.0,
@@ -41,18 +46,32 @@ class TranslationCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TranslationCardLanguage(
-                    language: translation.translationLanguageCode,
+                    language: currentTranslation.translationLanguageCode,
                   ),
                   TranslationCardElapsedTime(
-                    elapsedTime: translation.elapsedTime,
+                    elapsedTime: currentTranslation.elapsedTime,
                   ),
                 ],
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TranslatorTranslationEdit(
+                      currentTranslation: TranslationEditDto(
+                        translationId: currentTranslation.translationId,
+                        translatedText: currentTranslation.translatedText,
+                        userId: loggedUser.id,
+                      ),
+                      loggedUser: loggedUser,
+                    ),
+                  ),
+                );
+              },
               child: const Text(
-                'Traduci',
+                'Visualizza',
                 style: TextStyle(
                   fontSize: 16.0,
                 ),

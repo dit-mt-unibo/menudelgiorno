@@ -21,10 +21,11 @@ class TranslationResource extends JsonResource
             'language' => new LanguageResource($this->whenLoaded('language')),
             'menu' => new MenuResource($this->whenLoaded('menu')),
             'elapsed_time' => $this->created_at->diffForHumans(),
+            'user_id'=>$this->user_id,
+            'numero_modifiche'=>$this->numero_modifiche
 
+            //'menu_id'=>$this->menu_id,
 
-            // 'menu_id'=>$this->menu_id,
-            // 'user_id'=>$this->user_id,
             //'language_id' => $this->language_id,
            // 'language_name' => $this->language->name,//oggetto lingue
             // 'updated_at' => $this->updated_at,

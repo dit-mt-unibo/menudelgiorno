@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/app/user.dart';
 import '../../../models/translator/translation_home_dto.dart';
 import 'translation_card.dart';
 
@@ -7,9 +8,11 @@ class TranslationCardList extends StatelessWidget {
   const TranslationCardList({
     Key? key,
     required this.translations,
+    required this.loggedUser,
   }) : super(key: key);
 
   final List<TranslationHomeDto> translations;
+  final User loggedUser;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class TranslationCardList extends StatelessWidget {
           ? const SizedBox(
               width: double.infinity,
               child: Text(
-                'Nessuna traduzione caricata!',
+                'Nessuna traduzione disponibile!',
                 style: TextStyle(
                   fontSize: 20.0,
                 ),
@@ -30,7 +33,8 @@ class TranslationCardList extends StatelessWidget {
               itemCount: translations.length,
               itemBuilder: (context, index) {
                 return TranslationCard(
-                  translation: translations[index],
+                  currentTranslation: translations[index],
+                  loggedUser: loggedUser,
                 );
               },
             ),
