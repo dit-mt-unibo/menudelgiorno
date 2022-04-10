@@ -74,7 +74,7 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
               ]),
             ),
             Container(
-              padding: const EdgeInsets.only(top: 150),
+              padding: const EdgeInsets.only(top: 90),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(150, 40),
