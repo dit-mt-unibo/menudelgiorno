@@ -5,14 +5,37 @@ import 'il_mio_ristorante.dart';
 import 'inserisci_menu.dart';
 import '../app/login.dart';
 import 'ristoratore_home.dart';
+import '../../models/app/user.dart';
 
 class RistoranteNavBar extends StatelessWidget {
-  const RistoranteNavBar({Key? key}) : super(key: key);
+  const RistoranteNavBar({Key? key, required this.loggedUser})
+      : super(key: key);
 
+  final User loggedUser;
   final padding = const EdgeInsets.symmetric(
     horizontal: 20,
     vertical: 45,
   );
+
+   Widget buildMenu({
+  required IconData icon,
+  required String titolo,
+  VoidCallback? onclick,
+}) {
+  return ListTile(
+    leading: Icon(
+      icon,
+      color: Colors.white,
+    ),
+    title: Text(
+      titolo,
+      style: const TextStyle(
+        color: Color.fromARGB(255, 247, 246, 244),
+      ),
+    ),
+    onTap: onclick,
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -53,72 +76,54 @@ class RistoranteNavBar extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget buildMenu({
-  required IconData icon,
-  required String titolo,
-  VoidCallback? onclick,
-}) {
-  return ListTile(
-    leading: Icon(
-      icon,
-      color: Colors.white,
-    ),
-    title: Text(
-      titolo,
-      style: const TextStyle(
-        color: Color.fromARGB(255, 247, 246, 244),
-      ),
-    ),
-    onTap: onclick,
-  );
-}
-
-selectedItem(BuildContext context, int i) {
-  switch (i) {
-    case 0:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const RistoratoreHome(),
-        ),
-      );
-      break;
-    case 1:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const DatiAnagraficiWidget(),
-        ),
-      );
-      break;
-    case 2:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const IlMioRistoranteScreen(),
-        ),
-      );
-      break;
-    case 3:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const InserisciMenuScreen(),
-        ),
-      );
-      break;
-    case 4:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        ),
-      );
-      break;
-    case 5:
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        ),
-      );
-      break;
-    default:
+ 
+  selectedItem(BuildContext context, int i) {
+    switch (i) {
+      case 0:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) =>  RistoratoreHome(loggedUser: loggedUser),
+          ),
+        );
+        break;
+      case 1:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => DatiAnagraficiWidget(loggedUser: loggedUser),
+          ),
+        );
+        break;
+      case 2:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => IlMioRistoranteScreen(loggedUser: loggedUser),
+          ),
+        );
+        break;
+      case 3:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => InserisciMenuScreen(loggedUser: loggedUser),
+          ),
+        );
+        break;
+      case 4:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) =>  LoginScreen(),
+          ),
+        );
+        break;
+      case 5:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) =>  LoginScreen(),
+          ),
+        );
+        break;
+      default:
+    }
   }
 }
+
+

@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'ristoratore_home.dart';
 import '../../models/app/language.dart';
+import '../../models/app/user.dart';
 
 class ScegliLinguaWidget extends StatefulWidget {
-  const ScegliLinguaWidget({Key? key}): super(key: key);
+  const ScegliLinguaWidget({Key? key, required this.value, required this.loggedUser}) : super(key: key);
 
+  final String value; 
+  final User loggedUser;
 
   @override
   State<ScegliLinguaWidget> createState() => _ScegliLinguaWidgetState();
 }
 
 class _ScegliLinguaWidgetState extends State<ScegliLinguaWidget> {
-  
   Future<Language> _getLanguage() async {
     final url = Uri.http('10.0.2.2:8000', '/api/languages/');
     final response = await http.get(url);
@@ -31,6 +33,9 @@ class _ScegliLinguaWidgetState extends State<ScegliLinguaWidget> {
   bool spagnolo = false;
   bool portoghese = false;
   bool cinese = false;
+
+// prende il testo inserito nel menu
+  late String value;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +78,7 @@ class _ScegliLinguaWidgetState extends State<ScegliLinguaWidget> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const RistoratoreHome(),
+                        builder: (context) => RistoratoreHome(loggedUser: widget.loggedUser),
                       ),
                     );
                   },

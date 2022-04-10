@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'scegli_lingua.dart';
+import '../../models/app/user.dart';
 
 class InserisciMenuScreen extends StatefulWidget {
-  const InserisciMenuScreen({Key? key}) : super(key: key);
-
+  const InserisciMenuScreen({Key? key, required this.loggedUser})
+      : super(key: key);
+  final User loggedUser;
   @override
   State<InserisciMenuScreen> createState() => _InserisciMenuScreenState();
 }
@@ -16,17 +18,18 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
   Future sendMenu() async {
     var url = "http://10.0.2.2:8000/api/menus";
 
-    final msg = jsonEncode(
-      {"text":menuText.text, 
-      "restaurant_id":2,
-      "language_idArray": [3, 5, 7]}
-      );
-    var response = await http.post(Uri.parse(url), headers: {
-       "Content-type": "application/json"}, body: msg);
+    final msg = jsonEncode({
+      "text": menuText.text,
+      "restaurant_id": 2,
+      "language_idArray": [3, 5, 7]
+    });
+    var response = await http.post(Uri.parse(url),
+        headers: {"Content-type": "application/json"}, body: msg);
     var data = json.decode(response.body);
     print(data);
   }
 
+  late String value;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +62,9 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                 TextField(
                   controller: menuText,
                   keyboardType: TextInputType.multiline,
+                  onChanged: (text) {
+                    value = text;
+                  },
                   maxLines: null,
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -80,11 +86,10 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                   ),
                 ),
                 onPressed: () {
-                  
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ScegliLinguaWidget(),
+                      builder: (context) => ScegliLinguaWidget(value: value, loggedUser: widget.loggedUser),
                     ),
                   );
                 },
