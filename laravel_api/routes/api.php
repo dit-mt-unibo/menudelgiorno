@@ -44,7 +44,7 @@ Route::apiResource('menus', MenuController::class);
 
 //qrcode
 Route::get('/generate-qrcode/{id}', [QrCodeController::class, 'index']);
-Route::get('rest/{id}', [MenuController::class, 'menuo']);
+
 // Private
 Route::group(['middleware' => 'auth:sanctum'], function () {
     // Qui le routes da proteggere con Token

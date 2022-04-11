@@ -9,19 +9,9 @@
 <body>
 
 <hr>
-    @foreach ($translation->language_id as $lan)
-      @if ($lan==2)
+
+
       <h1>mon menu {{ $lan}}</h1>
-      <div style="text-align: center">{!!  QrCode::size(150)->generate($translation->text)!!}</div>
-      @elseif($lan==7){
-        <h1>mon menu {{ $lan }}</h1>
-        <div style="text-align: center">{!!  QrCode::size(150)->generate($translation->text)!!}</div>
-      }
-      @elseif($lan==4){
-        <h1>mon menu {{ $lan}}</h1>
-        <div style="text-align: center">{!!  QrCode::size(150)->generate($translation->text)!!}</div>
-      }
-      @endif
-    @endforeach
+      <div style="text-align: center">{!!  QrCode::size(150)->generate("http://127.0.0.1:8000/api/generate-qrcode/1")!!}</div>
 
 </body>

@@ -12,9 +12,7 @@ class QrCodeController extends Controller
     public function index($id)
     {
 
-        //$data = Menu::findOrFail($id);
-        $translation=Translation::with('language')->where('menu_id',$id)->get();
-
-      return view('qrcode',compact('translation'));
+        $data = Menu::findOrFail($id);
+      return view('qrcode',compact('data'));
     }
 }
