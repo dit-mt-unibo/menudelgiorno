@@ -1,17 +1,17 @@
 import 'dart:convert';
 
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../models/app/user.dart';
-import '../../../models/translator/translation_edit_dto.dart';
+import '../../../models/translator/translation/edited_translation.dart';
 import 'home.dart';
 
-class TranslatorTranslationEdit extends StatelessWidget {
+class TranslatorEditTranslation extends StatelessWidget {
   final _translationController = TextEditingController();
 
-  TranslatorTranslationEdit({
+  TranslatorEditTranslation({
     Key? key,
     required this.currentTranslation,
     required this.loggedUser,
@@ -19,22 +19,20 @@ class TranslatorTranslationEdit extends StatelessWidget {
     _translationController.text = currentTranslation.translatedText;
   }
 
-  final TranslationEditDto currentTranslation;
+  final EditedTranslation currentTranslation;
   final User loggedUser;
 
-  Future<bool> _updateTranslation(TranslationEditDto enteredTranslation) async {
-    final url = Uri.http('10.0.2.2:8000',
-        '/api/translations/${enteredTranslation.translationId}');
-
+  Future<bool> _updateTranslation(EditedTranslation enteredTranslation) async {
+    final url = Uri.http(
+      '10.0.2.2:8000',
+      '/api/translations/${enteredTranslation.translationId}',
+    );
     final headers = {'Content-Type': 'application/json'};
-
     final payload = jsonEncode({
       'text': enteredTranslation.translatedText,
       'user_id': enteredTranslation.userId,
     });
-
     final response = await http.put(url, headers: headers, body: payload);
-
     return response.statusCode == 200 ? true : false;
   }
 
@@ -79,7 +77,7 @@ class TranslatorTranslationEdit extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  final enteredTranslation = TranslationEditDto(
+                  final enteredTranslation = EditedTranslation(
                     translationId: currentTranslation.translationId,
                     translatedText: _translationController.text,
                     userId: loggedUser.id,

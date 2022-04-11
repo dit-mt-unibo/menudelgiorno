@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import '../../../models/app/registry.dart';
 import '../../../models/app/user.dart';
 
-class TranslatorRegistryEdit extends StatelessWidget {
+class TranslatorEditRegistry extends StatelessWidget {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
 
-  TranslatorRegistryEdit({
+  TranslatorEditRegistry({
     Key? key,
     required this.loggedUser,
   }) : super(key: key);
@@ -29,17 +29,13 @@ class TranslatorRegistryEdit extends StatelessWidget {
 
   Future<bool> _updateRegistry(Registry registry) async {
     final url = Uri.http('10.0.2.2:8000', '/api/registries/${registry.id}');
-
     final headers = {'Content-Type': 'application/json'};
-
     final payload = jsonEncode({
       'first_name': registry.firstName,
       'last_name': registry.lastName,
       'email': registry.email,
     });
-
     final response = await http.put(url, headers: headers, body: payload);
-
     return response.statusCode == 200 ? true : false;
   }
 
@@ -143,7 +139,6 @@ class TranslatorRegistryEdit extends StatelessWidget {
               ),
             );
           }
-
           return const Center(
             child: CircularProgressIndicator(),
           );

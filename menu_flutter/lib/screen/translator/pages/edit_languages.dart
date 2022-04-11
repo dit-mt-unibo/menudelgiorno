@@ -9,8 +9,8 @@ import '../../../models/translator/language/language_list.dart';
 import '../../../models/translator/language/matched_language_list.dart';
 import '../widgets/language/language_checkbox_list.dart';
 
-class TranslatorLanguagesEdit extends StatelessWidget {
-  const TranslatorLanguagesEdit({
+class TranslatorEditLanguages extends StatelessWidget {
+  const TranslatorEditLanguages({
     Key? key,
     required this.loggedUser,
   }) : super(key: key);
