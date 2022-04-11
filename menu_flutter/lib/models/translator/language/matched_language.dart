@@ -1,7 +1,7 @@
 import '../../app/language.dart';
 
-class MatchedLanguageDto {
-  MatchedLanguageDto({
+class MatchedLanguage {
+  MatchedLanguage({
     required this.language,
     required this.isChecked,
   });

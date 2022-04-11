@@ -1,16 +1,24 @@
+import 'dart:convert';
+
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../../../models/app/language.dart';
-import '../../../../models/translator/language/matched_language_dto.dart';
+import '../../../../models/app/user.dart';
+import '../../../../models/translator/language/matched_language_list.dart';
+import '../../../../models/translator/language/updated_language_list.dart';
 import 'language_checkbox.dart';
 
 class TranslatorLanguageCheckboxList extends StatefulWidget {
   const TranslatorLanguageCheckboxList({
     Key? key,
-    required this.matchedLanguages,
+    required this.loggedUser,
+    required this.matchedLanguageList,
   }) : super(key: key);
 
-  final List<MatchedLanguageDto> matchedLanguages;
+  final User loggedUser;
+  final MatchedLanguageList matchedLanguageList;
 
   @override
   State<TranslatorLanguageCheckboxList> createState() =>
@@ -19,13 +27,38 @@ class TranslatorLanguageCheckboxList extends StatefulWidget {
 
 class _TranslatorLanguageCheckboxListState
     extends State<TranslatorLanguageCheckboxList> {
-  void setCheckboxState(Language checkedLanguage, bool checked) {
+  void updateCheckboxState(Language checkedLanguage, bool checked) {
     setState(() {
-      widget.matchedLanguages
+      widget.matchedLanguageList.matchedLanguages
           .singleWhere(
               (matchedLanguage) => matchedLanguage.language == checkedLanguage)
           .isChecked = checked;
     });
+  }
+
+  Future<bool> _updateLanguages(
+    User user,
+    MatchedLanguageList matchedLanguageList,
+  ) async {
+    final url = Uri.http('10.0.2.2:8000', '/api/users/${user.id}/languages');
+
+    final headers = {'Content-Type': 'application/json'};
+
+    final languageListUpdate =
+        UpdatedLanguageList.fromMatchedLanguages(matchedLanguageList);
+
+    final payload = jsonEncode({
+      'configs': languageListUpdate.updatedLanguages
+          .map((updateLanguage) => {
+                'language_id': updateLanguage.languageId,
+                'selected': updateLanguage.selected,
+              })
+          .toList()
+    });
+
+    final response = await http.post(url, headers: headers, body: payload);
+
+    return response.statusCode == 200 ? true : false;
   }
 
   @override
@@ -37,12 +70,14 @@ class _TranslatorLanguageCheckboxListState
           SizedBox(
             height: 450,
             child: ListView.builder(
-              itemCount: widget.matchedLanguages.length,
+              itemCount: widget.matchedLanguageList.matchedLanguages.length,
               itemBuilder: (context, index) {
                 return TranslatorLanguageCheckbox(
-                  language: widget.matchedLanguages[index].language,
-                  isChecked: widget.matchedLanguages[index].isChecked,
-                  onChanged: setCheckboxState,
+                  language: widget
+                      .matchedLanguageList.matchedLanguages[index].language,
+                  isChecked: widget
+                      .matchedLanguageList.matchedLanguages[index].isChecked,
+                  onChanged: updateCheckboxState,
                 );
               },
             ),
@@ -62,8 +97,32 @@ class _TranslatorLanguageCheckboxListState
                 ),
               ),
             ),
-            onPressed: () {
-              print('on pressed');
+            onPressed: () async {
+              final isUpdateSuccessful = await _updateLanguages(
+                widget.loggedUser,
+                widget.matchedLanguageList,
+              );
+              if (isUpdateSuccessful) {
+                Fluttertoast.showToast(
+                  msg: 'Lingue salvate con successo!',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM_RIGHT,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                  fontSize: 16,
+                );
+              } else {
+                Fluttertoast.showToast(
+                  msg: 'Errore durante il salvataggio!',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM_RIGHT,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16,
+                );
+              }
             },
           ),
         ],

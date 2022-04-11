@@ -18,15 +18,26 @@ class TranslatorLanguageCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return CheckboxListTile(
       activeColor: Colors.green,
-      title: Text(
-        language.name,
-        style: const TextStyle(
-          fontSize: 18.0,
+      title: Padding(
+        padding: const EdgeInsets.only(
+          top: 10.0,
+          right: 20.0,
+          bottom: 10.0,
+          left: 20.0,
+        ),
+        child: Text(
+          language.name,
+          style: const TextStyle(
+            fontSize: 18.0,
+          ),
         ),
       ),
       value: isChecked,
       onChanged: (newValue) {
-        onChanged(language, newValue as bool);
+        onChanged(
+          language,
+          newValue as bool,
+        );
       },
     );
   }
