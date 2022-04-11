@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../models/app/user.dart';
-import '../../../../models/translator/translation_home_dto.dart';
+import '../../../../models/translator/translation/home_translation.dart';
 import 'translation_card.dart';
 
 class TranslationCardList extends StatelessWidget {
@@ -11,7 +11,7 @@ class TranslationCardList extends StatelessWidget {
     required this.loggedUser,
   }) : super(key: key);
 
-  final List<TranslationHomeDto> translations;
+  final List<HomeTranslation> translations;
   final User loggedUser;
 
   @override

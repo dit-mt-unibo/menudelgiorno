@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../../models/app/user.dart';
-import '../../../models/translator/translation_home_dto.dart';
+import '../../../models/translator/translation/home_translation.dart';
 import '../widgets/navbar.dart';
 import '../widgets/translation/translation_card_list.dart';
 
@@ -16,21 +16,19 @@ class TranslatorHome extends StatelessWidget {
 
   final User loggedUser;
 
-  Future<List<TranslationHomeDto>> _getAllTranslations() async {
+  Future<List<HomeTranslation>> _getAllTranslations() async {
     final url = Uri.http('10.0.2.2:8000', '/api/translations');
     final response = await http.get(url);
 
-    List<TranslationHomeDto> translations = [];
-
     if (response.statusCode != 200) {
-      return translations;
+      return [];
     }
 
     final jsonResponse = jsonDecode(response.body);
 
-    translations = jsonResponse
-        .map<TranslationHomeDto>(
-            (rawTranslation) => TranslationHomeDto.fromJson(rawTranslation))
+    List<HomeTranslation> translations = jsonResponse
+        .map<HomeTranslation>(
+            (rawTranslation) => HomeTranslation.fromJson(rawTranslation))
         .toList();
 
     return translations;
@@ -62,7 +60,7 @@ class TranslatorHome extends StatelessWidget {
             future: _getAllTranslations(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                final translations = snapshot.data as List<TranslationHomeDto>;
+                final translations = snapshot.data as List<HomeTranslation>;
                 return TranslationCardList(
                   translations: translations,
                   loggedUser: loggedUser,
