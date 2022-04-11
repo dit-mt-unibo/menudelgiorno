@@ -10,7 +10,7 @@ class Translation extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['language_id', 'text','menu_id','user_id','state'];
+    protected $fillable = ['language_id', 'text','menu_id','user_id','state','numero_modifiche'];
 
 
     public function language(){

@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import '../../../models/app/registry.dart';
 import '../../../models/app/user.dart';
 
-class TranslatorRegistry extends StatelessWidget {
+class TranslatorRegistryEdit extends StatelessWidget {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
 
-  TranslatorRegistry({
+  TranslatorRegistryEdit({
     Key? key,
     required this.loggedUser,
   }) : super(key: key);

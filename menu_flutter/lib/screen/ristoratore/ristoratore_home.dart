@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'ristorante_navbar.dart';
+import '../../models/app/user.dart';
 
-class RistoratoreHome extends StatefulWidget {
-  const RistoratoreHome({Key? key}) : super(key: key);
+class RistoratoreHome extends StatelessWidget {
+ const RistoratoreHome({Key? key, required this.loggedUser}) : super(key: key);
 
-  @override
-  State<RistoratoreHome> createState() => _RistoratoreHomeState();
-}
+  final User loggedUser;
 
-class _RistoratoreHomeState extends State<RistoratoreHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +26,7 @@ class _RistoratoreHomeState extends State<RistoratoreHome> {
           child: Text('Il mio Ristorante'),
         ),
       ),
-      drawer: const RistoranteNavBar(),
+      drawer:  RistoranteNavBar(loggedUser: loggedUser),
     );
   }
 }

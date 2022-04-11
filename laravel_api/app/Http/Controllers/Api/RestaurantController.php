@@ -12,7 +12,7 @@ class RestaurantController extends Controller
 {
     public function index()
     {
-        return response()->json(['Restaurant fetched', RestaurantResource::collection(Restaurant::all())]);
+        return response()->json( RestaurantResource::collection(Restaurant::all()));
     }
 
     public function store(RestaurantRequest $request)
@@ -29,7 +29,7 @@ class RestaurantController extends Controller
             'user_id' => $request->user_id
         ]);
 
-        return response()->json(['Restaurant created successful', new RestaurantResource($restaurant)]);
+        return response()->json( new RestaurantResource($restaurant));
     }
 
     public function show($userId)

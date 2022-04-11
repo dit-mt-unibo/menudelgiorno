@@ -12,6 +12,7 @@ class Language extends Model
 
     protected $fillable = ['name','code'];
 
+
     public function translation(){
         return $this->hasMany(Translation::class);
     }
@@ -19,7 +20,12 @@ class Language extends Model
     {
         return $this->belongsToMany(Menu::class);
     }
-    public function user(){
-        return $this->belongsToMany(User::class);
+    public function users(){
+        return $this->belongsToMany(User::class,'language_user');
     }
+    public function user_config(){
+        return $this->hasMany(LanguageUser::class);
+    }
+
+
 }

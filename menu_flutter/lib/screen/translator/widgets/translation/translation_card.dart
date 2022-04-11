@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/app/user.dart';
-import '../../../models/translator/translation_edit_dto.dart';
-import '../../../models/translator/translation_home_dto.dart';
-import '../pages/translation_edit.dart';
+import '../../../../models/app/user.dart';
+import '../../../../models/translator/translation_edit_dto.dart';
+import '../../../../models/translator/translation_home_dto.dart';
+import '../../pages/translation_edit.dart';
 import 'translation_card_elapsed_time.dart';
 import 'translation_card_language.dart';
 import 'translation_card_text.dart';

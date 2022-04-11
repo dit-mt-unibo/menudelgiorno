@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'inserisci_menu.dart';
+import '../../models/app/user.dart';
 
 class IlMioRistoranteScreen extends StatefulWidget {
-  const IlMioRistoranteScreen({Key? key}) : super(key: key);
+  const IlMioRistoranteScreen({Key? key, required this.loggedUser})
+      : super(key: key);
+  final User loggedUser;
 
   @override
   State<IlMioRistoranteScreen> createState() => _IlMioRistoranteScreenState();
@@ -133,7 +136,7 @@ class _IlMioRistoranteScreenState extends State<IlMioRistoranteScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const InserisciMenuScreen(),
+                    builder: (context) => InserisciMenuScreen(loggedUser: widget.loggedUser),
                   ),
                 );
               },

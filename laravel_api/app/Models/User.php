@@ -39,6 +39,10 @@ class User extends Authenticatable
         return $this->hasMany(Translation::class);//utente traduttore
     }
     public function languages(){
-        return $this->belongsToMany(Language::class)->withPivot('language_user', 'language_id', 'user_id');
+        return $this->belongsToMany(Language::class,'language_user');
     }
+    public function languages_config(){
+        return $this->hasMany(LanguageUser::class);
+    }
+
 }
