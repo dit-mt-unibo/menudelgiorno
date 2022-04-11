@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\MenuRequest;
 use App\Http\Resources\MenuResource;
 use App\Models\Menu;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\languageRequest;
@@ -22,7 +23,7 @@ class MenuController extends Controller
 
     public function index()
     {
-        $menu = Menu::with(['restaurant'])->get();
+        $menu = Menu::with(['restaurant.user'])->get();
         return MenuResource::collection($menu)->response();
     }
 
@@ -47,17 +48,12 @@ class MenuController extends Controller
 
     public function show($id)
     {
-        $menu=Menu::find($id);
+        $menu = Menu::find($id);
         if(is_null($menu))
         {
             return response()->json('menu non trovato',404);
         }
-        return response()->json([new MenuResource($menu)]);
-    }
-    public function menuo($id)
-    {
-        $menu=Menu::find($id);
-        return view('menus.francese',compact('menu'));
+        return (new MenuResource($menu->loadMissing(['restaurant.user'])));
     }
 
     public function update(MenuRequest $request, Menu $menu)
@@ -65,7 +61,7 @@ class MenuController extends Controller
         $menu->text=$request->input('text');
         $menu->restaurant_id=$request->input('restaurant_id');
         $menu->save();
-        return response()->json(['Menu updated successfully.', new MenuResource($menu)]);
+        return response()->json( new MenuResource($menu)) ->setStatusCode(Response::HTTP_OK);;
     }
 
 
