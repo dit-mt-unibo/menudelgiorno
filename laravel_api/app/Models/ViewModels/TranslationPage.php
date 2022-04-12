@@ -49,10 +49,10 @@ class TranslationPage
     public static function fromTranslation($translation)
     {
         return new TranslationPage([
-            "languageCode" => $translation->language->code,
-            "restaurantName" => $translation->menu->restaurant->name,
-            "menuName" => TranslationPage::getMenuName($translation->language->code),
-            "translationText" => $translation->text,
+            'languageCode' => $translation->language->code,
+            'restaurantName' => $translation->menu->restaurant->name,
+            'menuName' => TranslationPage::getMenuName($translation->language->code),
+            'translationText' => $translation->text,
         ]);
     }
 }

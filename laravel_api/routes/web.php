@@ -8,4 +8,7 @@ Route::get('/', function () {
 });
 
 // Translation Page
-Route::get('translations/{id}', [FrontEndController::class, 'getTranslationPage']);
+Route::get('translations/{translationId}', [FrontEndController::class, 'getTranslationPage']);
+
+// Translation QR Code
+Route::get('qrcode/{translationId}', [FrontEndController::class, 'getTranslationQrCode']);
