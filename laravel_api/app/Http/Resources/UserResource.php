@@ -19,6 +19,7 @@ class UserResource extends JsonResource
             'name'=>$this->name,
             'role'=>$this->role,
             'registry' => new RegistryResource($this->whenLoaded('registry')),
+            'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
         ];
     }
 }

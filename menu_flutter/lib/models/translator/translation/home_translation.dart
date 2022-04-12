@@ -1,5 +1,5 @@
-class TranslationHomeDto {
-  TranslationHomeDto({
+class HomeTranslation {
+  HomeTranslation({
     required this.translationId,
     required this.restaurantName,
     required this.translatedText,
@@ -13,8 +13,8 @@ class TranslationHomeDto {
   String translationLanguageCode;
   String elapsedTime;
 
-  static TranslationHomeDto fromJson(dynamic obj) {
-    return TranslationHomeDto(
+  static HomeTranslation fromJson(dynamic obj) {
+    return HomeTranslation(
       translationId: obj['id'],
       restaurantName: obj['menu']['restaurant']['name'],
       translatedText: obj['text'],

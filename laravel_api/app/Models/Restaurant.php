@@ -16,10 +16,15 @@ class Restaurant extends Model
         'postcode',
         'city',
         'province',
+        'user_id'
     ];
 
     public function menu()
     {
         return $this->hasOne(Menu::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
