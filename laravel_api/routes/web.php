@@ -11,4 +11,4 @@ Route::get('/', function () {
 Route::get('translations/{translationId}', [FrontEndController::class, 'getTranslationPage']);
 
 // Translation QR Code
-Route::get('qrcode/{translationId}', [FrontEndController::class, 'getTranslationQrCode']);
+Route::get('qrcodes/{translationId}', [FrontEndController::class, 'getTranslationQrCode']);
