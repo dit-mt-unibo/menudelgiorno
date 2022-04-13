@@ -1,18 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\Web\FrontEndController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Translation Page
+Route::get('translations/{translationId}', [FrontEndController::class, 'getTranslationPage']);
+
+// Translation QR Code
+Route::get('qrcodes/{translationId}', [FrontEndController::class, 'getTranslationQrCode']);

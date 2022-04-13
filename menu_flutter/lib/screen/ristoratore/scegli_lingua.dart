@@ -2,14 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../../models/app/menu.dart';
 import 'ristoratore_home.dart';
 import '../../models/app/language.dart';
 import '../../models/app/user.dart';
 
 class ScegliLinguaWidget extends StatefulWidget {
-  const ScegliLinguaWidget({Key? key, required this.value, required this.loggedUser}) : super(key: key);
+  const ScegliLinguaWidget({Key? key, required this.menu, required this.loggedUser}) : super(key: key);
 
-  final String value; 
+  final Menu menu;
   final User loggedUser;
 
   @override

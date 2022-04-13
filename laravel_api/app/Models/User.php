@@ -34,6 +34,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Registry::class);
     }
+    public function restaurant()
+    {
+        return $this->hasOne(Restaurant::class);
+    }
     public function translation()
     {
         return $this->hasMany(Translation::class);//utente traduttore

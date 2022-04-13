@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../models/app/user.dart';
-import '../../../../models/translator/translation_edit_dto.dart';
-import '../../../../models/translator/translation_home_dto.dart';
-import '../../pages/translation_edit.dart';
+import '../../../../models/translator/translation/edited_translation.dart';
+import '../../../../models/translator/translation/home_translation.dart';
+import '../../pages/edit_translation.dart';
 import 'translation_card_elapsed_time.dart';
 import 'translation_card_language.dart';
 import 'translation_card_text.dart';
@@ -16,7 +16,7 @@ class TranslationCard extends StatelessWidget {
     required this.loggedUser,
   }) : super(key: key);
 
-  final TranslationHomeDto currentTranslation;
+  final HomeTranslation currentTranslation;
   final User loggedUser;
 
   @override
@@ -59,8 +59,8 @@ class TranslationCard extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TranslatorTranslationEdit(
-                      currentTranslation: TranslationEditDto(
+                    builder: (context) => TranslatorEditTranslation(
+                      currentTranslation: EditedTranslation(
                         translationId: currentTranslation.translationId,
                         translatedText: currentTranslation.translatedText,
                         userId: loggedUser.id,
