@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\Translation;
 use App\Http\Controllers\Controller;
-use App\Models\ViewModels\QrCodePage;
+use Illuminate\Support\Facades\Storage;
 use App\Models\ViewModels\TranslationPage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -39,10 +39,19 @@ class FrontEndController extends Controller
             return;
         }
 
-        $code = QrCode::generate("http://127.0.0.1:8000/translations/{$translationId}");
+        $binaryData = QrCode
+            ::format('png')
+            ->encoding('UTF-8')
+            ->size(500)
+            ->margin(5)
+            ->generate("http://127.0.0.1:8000/translations/{$translationId}");
 
-        $viewModel = QrCodePage::fromLanguage($translation->language, $code);
+        $fileName = "qrcode.png";
 
-        return view('code', ['viewModel' => $viewModel]);
+        Storage::put($fileName, $binaryData);
+
+        $publicName = "Codice-QR-{$translation->language->name}.png";
+
+        return Storage::download($fileName, $publicName);
     }
 }
