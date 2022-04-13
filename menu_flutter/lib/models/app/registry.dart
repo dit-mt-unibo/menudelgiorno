@@ -11,6 +11,12 @@ class Registry {
   String lastName;
   String email;
 
+  get restaurantName => null;
+
+  get address => null;
+
+  get number => null;
+
   static Registry fromJson(dynamic obj) {
     return Registry(
       id: obj['registry']['id'],
