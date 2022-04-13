@@ -10,39 +10,39 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class FrontEndController extends Controller
 {
-  public function getTranslationPage($translationId)
-  {
-    $translation = Translation
-      ::with([
-        'language',
-        'menu',
-        'menu.restaurant'
-      ])
-      ->find($translationId);
+    public function getTranslationPage($translationId)
+    {
+        $translation = Translation
+            ::with([
+                'language',
+                'menu',
+                'menu.restaurant'
+            ])
+            ->find($translationId);
 
-    if (is_null($translation)) {
-      return;
+        if (is_null($translation)) {
+            return;
+        }
+
+        $viewModel = TranslationPage::fromTranslation($translation);
+
+        return view('translation', ['viewModel' => $viewModel]);
     }
 
-    $viewModel = TranslationPage::fromTranslation($translation);
+    public function getTranslationQrCode($translationId)
+    {
+        $translation = Translation
+            ::with('language')
+            ->find($translationId);
 
-    return view('translation', ['viewModel' => $viewModel]);
-  }
+        if (is_null($translation)) {
+            return;
+        }
 
-  public function getTranslationQrCode($translationId)
-  {
-    $translation = Translation
-      ::with('language')
-      ->find($translationId);
+        $code = QrCode::generate("http://127.0.0.1:8000/translations/{$translationId}");
 
-    if (is_null($translation)) {
-      return;
+        $viewModel = QrCodePage::fromLanguage($translation->language, $code);
+
+        return view('code', ['viewModel' => $viewModel]);
     }
-
-    $code = QrCode::generate("http://127.0.0.1:8000/translations/{$translationId}");
-
-    $viewModel = QrCodePage::fromLanguage($translation->language, $code);
-
-    return view('code', ['viewModel' => $viewModel]);
-  }
 }
