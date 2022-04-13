@@ -26,6 +26,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
     final data = jsonDecode(response.body);
     final registry = Registry.fromJson(data);
     return registry;
+    
   }
   Future<bool> _updateRegistry(Registry registry) async {
     final url = Uri.http('10.0.2.2:8000', '/api/registries/${registry.id}');
