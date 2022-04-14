@@ -75,7 +75,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
             return SingleChildScrollView(
               // padding: const EdgeInsets.all(32.0),
               child: Container(
-                height: 600,
+                height: 400,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
