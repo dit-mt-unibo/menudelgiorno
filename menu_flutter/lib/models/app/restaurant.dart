@@ -19,13 +19,13 @@ class Restaurant {
 
   static Restaurant fromJson(dynamic obj) {
     return Restaurant(
-      id: obj['id'],
-      name: obj['name'] ?? '',
-      address: obj['address'] ?? '',
-      street_number: obj['street_number'] ?? '',
-      postcode: obj['post_code'] ?? '',
-      city: obj['city'] ?? '',
-      province: obj['province'] ?? '',
+      id: obj['restaurant']['id'],
+      name: obj['restaurant']['name'] ?? '',
+      address: obj['restaurant']['address'] ?? '',
+      street_number: obj['restaurant']['street_number'] ?? '',
+      postcode: obj['restaurant']['post_code'] ?? '',
+      city: obj['restaurant']['city'] ?? '',
+      province: obj['restaurant']['province'] ?? '',
     );
   }
 }
