@@ -12,8 +12,8 @@ class Restaurant {
   int id;
   String name;
   String address;
-  int street_number;
-  int postcode;
+  String street_number;
+  String postcode;
   String city;
   String province;
 
