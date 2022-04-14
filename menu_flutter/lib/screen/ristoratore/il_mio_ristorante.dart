@@ -29,7 +29,6 @@ class IlMioRistoranteScreen extends StatelessWidget {
   Future<Restaurant> _getRestaurant(User user) async {
     final url = Uri.http('10.0.2.2:8000', '/api/restaurants/${user.id}');
     final response = await http.get(url);
-    print(response.reasonPhrase);
     final data = jsonDecode(response.body);
     final restaurant = Restaurant.fromJson(data);
     return restaurant;
@@ -74,136 +73,145 @@ class IlMioRistoranteScreen extends StatelessWidget {
             _provinceController.text = restaurant.province;
 
             return SingleChildScrollView(
-              padding: const EdgeInsets.all(32.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Il mio Ristorante',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  Flexible(
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          labelText: 'Nome',
-                        ),
+              // padding: const EdgeInsets.all(32.0),
+              child: Container(
+                height: 600,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Il mio Ristorante',
+                      style: TextStyle(
+                        fontSize: 20,
                       ),
                     ),
-                  ),
-                  Row(children: [
-                    Expanded(
-                      flex: 5,
+                    Flexible(
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         child: TextFormField(
+                          controller: _restaurantNameController,
                           decoration: const InputDecoration(
-                            labelText: 'Indirizzo',
+                            labelText: 'Nome',
                           ),
                         ),
                       ),
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        padding: const EdgeInsets.all(30),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            labelText: 'N° civico',
+                    Row(children: [
+                      Expanded(
+                        flex: 5,
+                        child: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: TextFormField(
+                            controller: _addressController,
+                            decoration: const InputDecoration(
+                              labelText: 'Indirizzo',
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        padding: const EdgeInsets.all(20),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            labelText: 'Cap',
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          padding: const EdgeInsets.all(30),
+                          child: TextFormField(
+                            controller: _streetNumberController,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              labelText: 'N° civico',
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ]),
-                  Row(children: [
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        padding: const EdgeInsets.all(20),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Città',
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: TextFormField(
+                            controller: _postCodeController,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              labelText: 'Cap',
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        padding: const EdgeInsets.all(20),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Provincia',
+                    ]),
+                    Row(children: [
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: TextFormField(
+                            controller: _cityController,
+                            decoration: const InputDecoration(
+                              labelText: 'Città',
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ]),
-                  Container(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(150, 40),
-                      ),
-                      child: const Text(
-                        'Salva',
-                        style: TextStyle(
-                          fontSize: 19,
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          padding: const EdgeInsets.all(20),
+                          child: TextFormField(
+                            controller: _provinceController,
+                            decoration: const InputDecoration(
+                              labelText: 'Provincia',
+                            ),
+                          ),
                         ),
                       ),
-                      onPressed: () async {
-                        final enteredRestaurant = Restaurant(
-                          id: restaurant.id,
-                          name: _restaurantNameController.text,
-                          address: _addressController.text,
-                          street_number: _streetNumberController.text,
-                          postcode: _postCodeController.text,
-                          city: _cityController.text,
-                          province: _provinceController.text,
-                        );
-                        final isUpdateSuccessful =
-                            await _updateRestaurant(enteredRestaurant);
-                        if (isUpdateSuccessful) {
-                          Fluttertoast.showToast(
-                            msg: 'Nuovi dati salvati con successo!',
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM_RIGHT,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.green,
-                            textColor: Colors.white,
-                            fontSize: 16,
+                    ]),
+                    Container(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(150, 40),
+                        ),
+                        child: const Text(
+                          'Salva',
+                          style: TextStyle(
+                            fontSize: 19,
+                          ),
+                        ),
+                        onPressed: () async {
+                          final enteredRestaurant = Restaurant(
+                            id: restaurant.id,
+                            name: _restaurantNameController.text,
+                            address: _addressController.text,
+                            street_number: _streetNumberController.text,
+                            postcode: _postCodeController.text,
+                            city: _cityController.text,
+                            province: _provinceController.text,
                           );
-                        } else {
-                          Fluttertoast.showToast(
-                            msg: 'Errore durante il salvataggio!',
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM_RIGHT,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16,
-                          );
-                        }
-                      },
+                          final isUpdateSuccessful =
+                              await _updateRestaurant(enteredRestaurant);
+                          if (isUpdateSuccessful) {
+                            Fluttertoast.showToast(
+                              msg: 'Nuovi dati salvati con successo!',
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM_RIGHT,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.green,
+                              textColor: Colors.white,
+                              fontSize: 16,
+                            );
+                          } else {
+                            Fluttertoast.showToast(
+                              msg: 'Errore durante il salvataggio!',
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM_RIGHT,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16,
+                            );
+                          }
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }
