@@ -14,7 +14,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
 
-  final User loggedUser; 
+  final User loggedUser;
 
   TextEditingController nome = TextEditingController();
   TextEditingController cognome = TextEditingController();
@@ -28,6 +28,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
     return registry;
     
   }
+
   Future<bool> _updateRegistry(Registry registry) async {
     final url = Uri.http('10.0.2.2:8000', '/api/registries/${registry.id}');
 
@@ -43,7 +44,6 @@ class DatiAnagraficiWidget extends StatelessWidget {
 
     return response.statusCode == 200 ? true : false;
   }
-
 
   @override
   Widget build(BuildContext context) {
