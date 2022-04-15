@@ -98,7 +98,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                     ),
                     Row(children: [
                       Expanded(
-                        flex: 5,
+                        flex: 3,
                         child: Container(
                           padding: const EdgeInsets.all(20),
                           child: TextFormField(
@@ -123,12 +123,11 @@ class IlMioRistoranteScreen extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                        flex: 2,
+                        flex: 3,
                         child: Container(
                           padding: const EdgeInsets.all(30),
                           child: TextFormField(
                             controller: _postCodeController,
-                            keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               labelText: 'Cap',
                             ),

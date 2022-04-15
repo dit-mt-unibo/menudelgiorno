@@ -23,7 +23,7 @@ class Restaurant {
       name: obj['restaurant']['name'] ?? '',
       address: obj['restaurant']['address'] ?? '',
       street_number: obj['restaurant']['street_number'] ?? '',
-      postcode: obj['restaurant']['post_code'] ?? '',
+      postcode: obj['restaurant']['postcode'] ?? '',
       city: obj['restaurant']['city'] ?? '',
       province: obj['restaurant']['province'] ?? '',
     );
