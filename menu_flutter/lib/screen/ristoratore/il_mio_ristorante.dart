@@ -40,10 +40,17 @@ class IlMioRistoranteScreen extends StatelessWidget {
     final headers = {'Content-Type': 'application/json'};
 
     final payload = jsonEncode({
+<<<<<<< HEAD
       'name':restaurant.name,
       'address': restaurant.address,
       'streetNumber': restaurant.street_number,
       'postcode':restaurant. postcode,
+=======
+      'name': restaurant.name,
+      'address': restaurant.address,
+      'streetNumber': restaurant.street_number,
+      'postcode': restaurant.postcode,
+>>>>>>> f352266c3c27a267dac4310d86c51903ddff0685
       'city': restaurant.city,
       'province': restaurant.province,
     });
