@@ -22,7 +22,7 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
     final url = Uri.http('10.0.2.2:8000', '/api/menus/${user.id}');
     final response = await http.get(url);
     final data = jsonDecode(response.body);
-    final ciao = Menu.fromJson(data[0]);
+    final ciao = Menu.fromJson(data);
     return ciao;
   }
 
