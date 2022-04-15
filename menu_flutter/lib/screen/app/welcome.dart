@@ -30,13 +30,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Column(
           children: [
             ElevatedButton(
+              
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(150, 40),
+                primary: Color.fromARGB(255, 186, 12, 12),
+                
               ),
               child: const Text(
                 'ACCEDI',
                 style: TextStyle(
                   fontSize: 19,
+              
                 ),
               ),
               onPressed: () {

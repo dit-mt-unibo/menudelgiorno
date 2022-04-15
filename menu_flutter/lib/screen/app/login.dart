@@ -76,73 +76,79 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(20.0),
-              child: TextField(
-                controller: _userController,
-                decoration: const InputDecoration(
-                  labelText: 'Username',
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(20.0),
-              child: TextField(
-                controller: _pwdController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                ),
-              ),
-            ),
-            RichText(
-              text: TextSpan(children: [
-                const TextSpan(
-                  text: 'Non hai un account? ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 22,
+        child: Container(
+         padding: const EdgeInsets.only(top: 150),
+        
+          child: Column(
+            
+            mainAxisAlignment: MainAxisAlignment.center,
+            
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20.0),
+                child: TextField(
+                  controller: _userController,
+                  decoration: const InputDecoration(
+                    labelText: 'Username',
                   ),
                 ),
-                TextSpan(
-                    text: 'Registrati',
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 67, 44, 245),
+              ),
+              Container(
+                padding: const EdgeInsets.all(20.0),
+                child: TextField(
+                  controller: _pwdController,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Password',
+                  ),
+                ),
+              ),
+              RichText(
+                text: TextSpan(children: [
+                  const TextSpan(
+                    text: 'Non hai un account? ',
+                    style: TextStyle(
+                      color: Colors.black,
                       fontSize: 22,
-                      decoration: TextDecoration.underline,
                     ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const RegistrazioneScreen(),
-                          ),
-                        );
-                      }),
-              ]),
-            ),
-            Container(
-              padding: const EdgeInsets.all(90.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(150, 40),
-                ),
-                child: const Text(
-                  'Login',
-                  style: TextStyle(
-                    fontSize: 19,
                   ),
-                ),
-                onPressed: () {
-                  _doLogin();
-                },
+                  TextSpan(
+                      text: 'Registrati',
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 67, 44, 245),
+                        fontSize: 22,
+                        decoration: TextDecoration.underline,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RegistrazioneScreen(),
+                            ),
+                          );
+                        }),
+                ]),
               ),
-            ),
-          ],
+              Container(
+                padding: const EdgeInsets.all(90.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(150, 40),
+                  ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 19,
+                    ),
+                  ),
+                  onPressed: () {
+                    _doLogin();
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

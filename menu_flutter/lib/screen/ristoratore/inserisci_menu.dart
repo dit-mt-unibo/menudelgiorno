@@ -67,7 +67,9 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                     const Text(
                       'Inserisci il testo del tuo menu',
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 50,
+                        fontFamily:'Tangerine' ,
+                        fontWeight: FontWeight.bold
                       ),
                     ),
                     Container(
@@ -76,7 +78,7 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                       width: 900,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.black,
+                          color: Color.fromARGB(255, 85, 2, 2),
                           width: 3,
                         ),
                       ),
@@ -101,6 +103,7 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(150, 40),
+                           primary: Color.fromARGB(255, 186, 12, 12),
                         ),
                         child: const Text(
                           'Procedi',

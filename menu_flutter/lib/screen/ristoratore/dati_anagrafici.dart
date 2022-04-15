@@ -49,7 +49,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profilo'),
-        backgroundColor: const Color.fromARGB(255, 26, 85, 247),
+        backgroundColor:const Color.fromARGB(255, 147, 19, 19),
       ),
       body: FutureBuilder(
         future: _getRegistry(loggedUser),
@@ -94,12 +94,18 @@ class DatiAnagraficiWidget extends StatelessWidget {
                     height: 50,
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                fixedSize: const Size(150, 40),
+                primary: Color.fromARGB(255, 186, 12, 12),
+                
+              ),
                     child: const Padding(
                       padding: EdgeInsets.only(
                         top: 10.0,
                         right: 20.0,
                         bottom: 10.0,
                         left: 20.0,
+                        
                       ),
                       child: Text(
                         'Salva',

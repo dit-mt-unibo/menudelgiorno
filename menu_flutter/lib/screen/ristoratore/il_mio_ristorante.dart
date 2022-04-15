@@ -166,6 +166,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(150, 40),
+                           primary: Color.fromARGB(255, 186, 12, 12),
                         ),
                         child: const Text(
                           'Salva',
