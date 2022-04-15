@@ -75,7 +75,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
             return SingleChildScrollView(
               // padding: const EdgeInsets.all(32.0),
               child: Container(
-                height: 400,
+                height: 600,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -125,7 +125,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: Container(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(30),
                           child: TextFormField(
                             controller: _postCodeController,
                             keyboardType: TextInputType.number,
