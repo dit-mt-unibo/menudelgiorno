@@ -5,11 +5,15 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 import '../../models/app/restaurant.dart';
-import 'inserisci_menu.dart';
 import '../../models/app/user.dart';
 
 class IlMioRistoranteScreen extends StatelessWidget {
-  IlMioRistoranteScreen({Key? key, required this.loggedUser}) : super(key: key);
+  IlMioRistoranteScreen({
+    Key? key,
+    required this.loggedUser,
+  }) : super(key: key);
+
+  final User loggedUser;
 
   final _restaurantNameController = TextEditingController();
   final _addressController = TextEditingController();
@@ -17,14 +21,6 @@ class IlMioRistoranteScreen extends StatelessWidget {
   final _postCodeController = TextEditingController();
   final _cityController = TextEditingController();
   final _provinceController = TextEditingController();
-
-  final User loggedUser;
-  TextEditingController name = TextEditingController();
-  TextEditingController address = TextEditingController();
-  TextEditingController street_number = TextEditingController();
-  TextEditingController postcode = TextEditingController();
-  TextEditingController city = TextEditingController();
-  TextEditingController province = TextEditingController();
 
   Future<Restaurant> _getRestaurant(User user) async {
     final url = Uri.http('10.0.2.2:8000', '/api/restaurants/${user.id}');
@@ -42,7 +38,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
     final payload = jsonEncode({
       'name': restaurant.name,
       'address': restaurant.address,
-      'streetNumber': restaurant.street_number,
+      'street_number': restaurant.streetNumber,
       'postcode': restaurant.postcode,
       'city': restaurant.city,
       'province': restaurant.province,
@@ -67,14 +63,13 @@ class IlMioRistoranteScreen extends StatelessWidget {
             final restaurant = snapshot.data as Restaurant;
             _restaurantNameController.text = restaurant.name;
             _addressController.text = restaurant.address;
-            _streetNumberController.text = restaurant.street_number;
+            _streetNumberController.text = restaurant.streetNumber;
             _postCodeController.text = restaurant.postcode;
             _cityController.text = restaurant.city;
             _provinceController.text = restaurant.province;
 
             return SingleChildScrollView(
-              // padding: const EdgeInsets.all(32.0),
-              child: Container(
+              child: SizedBox(
                 height: 600,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +110,6 @@ class IlMioRistoranteScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(30),
                           child: TextFormField(
                             controller: _streetNumberController,
-                      
                             decoration: const InputDecoration(
                               labelText: 'N° civico',
                             ),
@@ -166,7 +160,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(150, 40),
-                           primary: Color.fromARGB(255, 186, 12, 12),
+                          primary: const Color.fromARGB(255, 186, 12, 12),
                         ),
                         child: const Text(
                           'Salva',
@@ -179,7 +173,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                             id: restaurant.id,
                             name: _restaurantNameController.text,
                             address: _addressController.text,
-                            street_number: _streetNumberController.text,
+                            streetNumber: _streetNumberController.text,
                             postcode: _postCodeController.text,
                             city: _cityController.text,
                             province: _provinceController.text,
@@ -188,7 +182,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                               await _updateRestaurant(enteredRestaurant);
                           if (isUpdateSuccessful) {
                             Fluttertoast.showToast(
-                              msg: 'Nuovi dati salvati con successo!',
+                              msg: 'Ristorante salvato con successo!',
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM_RIGHT,
                               timeInSecForIosWeb: 1,
@@ -215,7 +209,6 @@ class IlMioRistoranteScreen extends StatelessWidget {
               ),
             );
           }
-
           return const Center(
             child: CircularProgressIndicator(),
           );

@@ -8,17 +8,16 @@ import '../../models/app/registry.dart';
 import '../../models/app/user.dart';
 
 class DatiAnagraficiWidget extends StatelessWidget {
-  DatiAnagraficiWidget({Key? key, required this.loggedUser}) : super(key: key);
+  DatiAnagraficiWidget({
+    Key? key,
+    required this.loggedUser,
+  }) : super(key: key);
+
+  final User loggedUser;
 
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
-
-  final User loggedUser;
-
-  TextEditingController nome = TextEditingController();
-  TextEditingController cognome = TextEditingController();
-  TextEditingController email = TextEditingController();
 
   Future<Registry> _getRegistry(User user) async {
     final url = Uri.http('10.0.2.2:8000', '/api/registries/${user.id}');
@@ -49,7 +48,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profilo'),
-        backgroundColor:const Color.fromARGB(255, 147, 19, 19),
+        backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: FutureBuilder(
         future: _getRegistry(loggedUser),
@@ -95,17 +94,15 @@ class DatiAnagraficiWidget extends StatelessWidget {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                fixedSize: const Size(150, 40),
-                primary: Color.fromARGB(255, 186, 12, 12),
-                
-              ),
+                      fixedSize: const Size(150, 40),
+                      primary: const Color.fromARGB(255, 186, 12, 12),
+                    ),
                     child: const Padding(
                       padding: EdgeInsets.only(
                         top: 10.0,
                         right: 20.0,
                         bottom: 10.0,
                         left: 20.0,
-                        
                       ),
                       child: Text(
                         'Salva',
@@ -150,7 +147,6 @@ class DatiAnagraficiWidget extends StatelessWidget {
               ),
             );
           }
-
           return const Center(
             child: CircularProgressIndicator(),
           );

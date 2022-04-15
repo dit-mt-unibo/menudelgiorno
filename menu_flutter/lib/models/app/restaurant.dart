@@ -3,7 +3,7 @@ class Restaurant {
     required this.id,
     required this.name,
     required this.address,
-    required this.street_number,
+    required this.streetNumber,
     required this.postcode,
     required this.city,
     required this.province,
@@ -12,7 +12,7 @@ class Restaurant {
   int id;
   String name;
   String address;
-  String street_number;
+  String streetNumber;
   String postcode;
   String city;
   String province;
@@ -22,7 +22,7 @@ class Restaurant {
       id: obj['restaurant']['id'],
       name: obj['restaurant']['name'] ?? '',
       address: obj['restaurant']['address'] ?? '',
-      street_number: obj['restaurant']['street_number'] ?? '',
+      streetNumber: obj['restaurant']['street_number'] ?? '',
       postcode: obj['restaurant']['postcode'] ?? '',
       city: obj['restaurant']['city'] ?? '',
       province: obj['restaurant']['province'] ?? '',
