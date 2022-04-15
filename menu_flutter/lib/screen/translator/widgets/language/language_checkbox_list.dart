@@ -83,6 +83,10 @@ class _TranslatorLanguageCheckboxListState
             ),
           ),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(150, 40),
+                          primary:Color.fromARGB(255, 6, 54, 188),
+                        ),
             child: const Padding(
               padding: EdgeInsets.only(
                 top: 10.0,

@@ -38,7 +38,7 @@ class TranslationCard extends StatelessWidget {
             const Divider(
               height: 30.0,
               thickness: 1,
-              color: Color.fromARGB(255, 26, 85, 247),
+              color: Color.fromARGB(255, 6, 54, 188),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
@@ -55,6 +55,10 @@ class TranslationCard extends StatelessWidget {
               ),
             ),
             ElevatedButton(
+               style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(150, 40),
+                          primary:Color.fromARGB(255, 6, 54, 188),
+                        ),
               onPressed: () {
                 Navigator.push(
                   context,

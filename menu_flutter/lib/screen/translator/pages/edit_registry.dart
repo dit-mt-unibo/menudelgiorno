@@ -44,7 +44,7 @@ class TranslatorEditRegistry extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profilo'),
-        backgroundColor: const Color.fromARGB(255, 26, 85, 247),
+        backgroundColor: Color.fromARGB(255, 6, 54, 188),
       ),
       body: FutureBuilder(
         future: _getRegistry(loggedUser),
@@ -89,6 +89,10 @@ class TranslatorEditRegistry extends StatelessWidget {
                     height: 50,
                   ),
                   ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(150, 40),
+                          primary:Color.fromARGB(255, 6, 54, 188),
+                        ),
                     child: const Padding(
                       padding: EdgeInsets.only(
                         top: 10.0,

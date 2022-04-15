@@ -13,7 +13,7 @@ class TranslationCardTitle extends StatelessWidget {
     return Text(
       title,
       style: const TextStyle(
-        color: Color.fromARGB(255, 26, 85, 247),
+        color:Color.fromARGB(255, 6, 54, 188),
         fontSize: 18.0,
         fontWeight: FontWeight.bold,
       ),

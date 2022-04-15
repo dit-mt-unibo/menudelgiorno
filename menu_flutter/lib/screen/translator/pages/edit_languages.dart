@@ -48,7 +48,7 @@ class TranslatorEditLanguages extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Le mie Lingue'),
-        backgroundColor: const Color.fromARGB(255, 26, 85, 247),
+        backgroundColor: Color.fromARGB(255, 6, 54, 188),
       ),
       body: FutureBuilder(
         future: _getMatchedLanguages(loggedUser),

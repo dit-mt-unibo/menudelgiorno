@@ -41,7 +41,7 @@ class TranslatorEditTranslation extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Traduzione'),
-        backgroundColor: const Color.fromARGB(255, 26, 85, 247),
+        backgroundColor: Color.fromARGB(255, 6, 54, 188),
       ),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -52,7 +52,9 @@ class TranslatorEditTranslation extends StatelessWidget {
                 child: Text(
                   'Correggi la traduzione',
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 50,
+                    fontFamily: 'Tangerine',
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ),
@@ -76,6 +78,10 @@ class TranslatorEditTranslation extends StatelessWidget {
                 height: 20,
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(150, 40),
+                          primary: Color.fromARGB(255, 6, 54, 188),
+                        ),
                 onPressed: () async {
                   final enteredTranslation = EditedTranslation(
                     translationId: currentTranslation.translationId,

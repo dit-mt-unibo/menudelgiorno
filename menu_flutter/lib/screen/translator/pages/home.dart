@@ -39,7 +39,7 @@ class TranslatorHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
-        backgroundColor: const Color.fromARGB(255, 26, 85, 247),
+        backgroundColor:Color.fromARGB(255, 6, 54, 188),
       ),
       body: Stack(
         children: [
