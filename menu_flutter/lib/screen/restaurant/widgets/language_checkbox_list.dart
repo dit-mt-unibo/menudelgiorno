@@ -1,15 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
-import 'package:menudelgiorno/models/app/menu.dart';
 
-import '../../../../models/app/language.dart';
-import '../../../../models/app/user.dart';
-import '../../../../models/translator/language/matched_language_list.dart';
-import '../../../../models/translator/language/updated_language_list.dart';
-import '../ristoratore_home.dart';
+import '../../../models/app/language.dart';
+import '../../../models/app/menu.dart';
+import '../../../models/app/user.dart';
+import '../../../models/translator/language/matched_language_list.dart';
+import '../pages/ristoratore_home.dart';
 import 'language_checkbox.dart';
 
 class RestaurantLanguageCheckboxList extends StatefulWidget {
@@ -42,14 +41,20 @@ class _RestaurantLanguageCheckboxListState
 
   Future<bool> sendMenu(Menu editmenu, List<int> languageIds) async {
     final url = Uri.http('10.0.2.2:8000', '/api/menus/${editmenu.id}');
-    final headers = {'Content-Type': 'application/json', 'Charset': 'utf-8'};
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Charset': 'utf-8',
+    };
 
     final payload = jsonEncode({
       "text": editmenu.text,
       "restaurant_id": editmenu.restaurantId,
       "language_idArray": languageIds,
     });
+
     final response = await http.put(url, headers: headers, body: payload);
+
     return response.statusCode == 200 ? true : false;
   }
 
@@ -98,7 +103,7 @@ class _RestaurantLanguageCheckboxListState
                     (matchedLanguage) => matchedLanguage.language.id,
                   )
                   .toList();
-              sendMenu(widget.menu, idsArray); //
+              sendMenu(widget.menu, idsArray);
               final isUpdateSuccessful = await sendMenu(
                 widget.menu,
                 idsArray,

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
-import '../../models/app/restaurant.dart';
-import '../../models/app/user.dart';
+import '../../../models/app/restaurant.dart';
+import '../../../models/app/user.dart';
 
 class IlMioRistoranteScreen extends StatelessWidget {
   IlMioRistoranteScreen({
@@ -14,13 +14,6 @@ class IlMioRistoranteScreen extends StatelessWidget {
   }) : super(key: key);
 
   final User loggedUser;
-
-  final _restaurantNameController = TextEditingController();
-  final _addressController = TextEditingController();
-  final _streetNumberController = TextEditingController();
-  final _postCodeController = TextEditingController();
-  final _cityController = TextEditingController();
-  final _provinceController = TextEditingController();
 
   Future<Restaurant> _getRestaurant(User user) async {
     final url = Uri.http('10.0.2.2:8000', '/api/restaurants/${user.id}');
@@ -48,6 +41,13 @@ class IlMioRistoranteScreen extends StatelessWidget {
 
     return response.statusCode == 200 ? true : false;
   }
+
+  final _restaurantNameController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _streetNumberController = TextEditingController();
+  final _postCodeController = TextEditingController();
+  final _cityController = TextEditingController();
+  final _provinceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

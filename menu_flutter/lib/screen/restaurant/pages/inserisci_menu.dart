@@ -2,49 +2,28 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+import '../../../models/app/menu.dart';
+import '../../../models/app/user.dart';
 import 'scegli_lingua.dart';
-import '../../models/app/user.dart';
-import '../../models/app/menu.dart';
 
-class InserisciMenuScreen extends StatefulWidget {
-  const InserisciMenuScreen({Key? key, required this.loggedUser})
-      : super(key: key);
+class InserisciMenuScreen extends StatelessWidget {
+  InserisciMenuScreen({
+    Key? key,
+    required this.loggedUser,
+  }) : super(key: key);
+
   final User loggedUser;
-
-  @override
-  State<InserisciMenuScreen> createState() => _InserisciMenuScreenState();
-}
-
-class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
-  TextEditingController menuController = TextEditingController();
 
   Future<Menu> _getMenu(User user) async {
     final url = Uri.http('10.0.2.2:8000', '/api/menus/${user.id}');
     final response = await http.get(url);
     final data = jsonDecode(response.body);
-    final ciao = Menu.fromJson(data);
-    return ciao;
-  }
-
-  Future sendMenu(Menu editmenu) async {
-    final url =
-        Uri.http('10.0.2.2:8000', '/api/restaurants/${editmenu.restaurantId}');
-    final headers = {'Content-Type': 'application/json', 'Charset': 'utf-8'};
-
-    final payload = jsonEncode({
-      "text": editmenu.text,
-      "restaurant_id": editmenu.restaurantId,
-      "language_idArray": [3, 5, 7]
-    });
-    print(widget.loggedUser.id);
-    final response = await http.post(url, headers: headers, body: payload);
-    print(response.body);
-    final data = jsonDecode(response.body);
     final menu = Menu.fromJson(data);
+    return menu;
   }
 
-  //il testo inserito diventa string
-  late String value;
+  final _menuController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +33,11 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: FutureBuilder(
-          future: _getMenu(widget.loggedUser),
+          future: _getMenu(loggedUser),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final menu = snapshot.data as Menu;
-              menuController.text = menu.text;
+              _menuController.text = menu.text;
               return SingleChildScrollView(
                 padding: const EdgeInsets.only(top: 30),
                 child: Column(
@@ -68,8 +47,8 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                       'Inserisci il testo del tuo menu',
                       style: TextStyle(
                         fontSize: 50,
-                        fontFamily:'Tangerine' ,
-                        fontWeight: FontWeight.bold
+                        fontFamily: 'Tangerine',
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     Container(
@@ -78,20 +57,16 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                       width: 900,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Color.fromARGB(255, 85, 2, 2),
+                          color: const Color.fromARGB(255, 85, 2, 2),
                           width: 3,
                         ),
                       ),
                       child: Column(children: [
                         TextField(
-                          controller: menuController,
+                          controller: _menuController,
                           keyboardType: TextInputType.multiline,
-                          onChanged: (text) {
-                            //il testo inserito diventa value
-                            value = text;
-                          },
                           maxLines: null,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Scrivi il menu',
                           ),
@@ -103,7 +78,7 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(150, 40),
-                           primary: Color.fromARGB(255, 186, 12, 12),
+                          primary: const Color.fromARGB(255, 186, 12, 12),
                         ),
                         child: const Text(
                           'Procedi',
@@ -116,7 +91,9 @@ class _InserisciMenuScreenState extends State<InserisciMenuScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ScegliLinguaWidget(
-                                  menu: menu, loggedUser: widget.loggedUser),
+                                menu: menu,
+                                loggedUser: loggedUser,
+                              ),
                             ),
                           );
                         },

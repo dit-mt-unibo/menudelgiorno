@@ -2,24 +2,16 @@ import 'dart:convert';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/gestures.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../../models/app/user.dart';
-import '../ristoratore/ristoratore_home.dart';
+import '../restaurant/pages/ristoratore_home.dart';
 import '../translator/pages/home.dart';
 import 'registrazione.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final _userController = TextEditingController();
-  final _pwdController = TextEditingController();
+class LoginScreen extends StatelessWidget {
+  LoginScreen({Key? key}) : super(key: key);
 
   Future _doLogin() async {
     final url = Uri.http('10.0.2.2:8000', '/api/auth/login');
@@ -41,47 +33,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final loggedUser = User.fromJson(data['user']);
 
-    switch (loggedUser.role) {
-      case "Ristoratore":
-        {
-          Navigator.pop(context);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => RistoratoreHome(loggedUser: loggedUser),
-            ),
-          );
-        }
-        break;
-      case "Traduttore":
-        {
-          Navigator.pop(context);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => TranslatorHome(loggedUser: loggedUser),
-            ),
-          );
-        }
-        break;
-      default:
-        {
-          print("Qualcosa è andato storto");
-        }
-        break;
-    }
+    return loggedUser;
   }
+
+  final _userController = TextEditingController();
+  final _pwdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-         padding: const EdgeInsets.only(top: 150),
+          padding: const EdgeInsets.only(top: 150),
           child: Column(
-            
             mainAxisAlignment: MainAxisAlignment.center,
-            
             children: [
               Container(
                 padding: const EdgeInsets.all(20.0),
@@ -141,8 +106,38 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 19,
                     ),
                   ),
-                  onPressed: () {
-                    _doLogin();
+                  onPressed: () async {
+                    User loggedUser = await _doLogin();
+                    switch (loggedUser.role) {
+                      case "Ristoratore":
+                        {
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  RistoratoreHome(loggedUser: loggedUser),
+                            ),
+                          );
+                        }
+                        break;
+                      case "Traduttore":
+                        {
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  TranslatorHome(loggedUser: loggedUser),
+                            ),
+                          );
+                        }
+                        break;
+                      default:
+                        {
+                          print("Qualcosa è andato storto");
+                        }
+                    }
                   },
                 ),
               ),

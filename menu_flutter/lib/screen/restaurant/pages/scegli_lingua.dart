@@ -2,19 +2,21 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:menudelgiorno/screen/ristoratore/widget/language_checkbox_list.dart';
-import 'package:menudelgiorno/screen/translator/widgets/language/language_checkbox_list.dart';
-import '../../models/app/menu.dart';
-import '../../models/translator/language/checked_language_list.dart';
-import '../../models/translator/language/matched_language_list.dart';
-import 'ristoratore_home.dart';
-import '../../models/app/language.dart';
-import '../../models/app/user.dart';
-import '../../models/translator/language/language_list.dart';
+
+import '../../../models/app/menu.dart';
+import '../../../models/app/user.dart';
+import '../../../models/translator/language/checked_language_list.dart';
+import '../../../models/translator/language/language_list.dart';
+import '../../../models/translator/language/matched_language_list.dart';
+import '../widgets/language_checkbox_list.dart';
 
 class ScegliLinguaWidget extends StatelessWidget {
-  ScegliLinguaWidget({Key? key, required this.loggedUser, required this.menu})
-      : super(key: key);
+  const ScegliLinguaWidget({
+    Key? key,
+    required this.loggedUser,
+    required this.menu,
+  }) : super(key: key);
+
   final User loggedUser;
   final Menu menu;
 
@@ -26,8 +28,6 @@ class ScegliLinguaWidget extends StatelessWidget {
     return languages;
   }
 
- 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,8 @@ class ScegliLinguaWidget extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final languages = snapshot.data as LanguageList;
-            var matchedLanguages = MatchedLanguageList.fromMatchLanguages(
+
+            final matchedLanguages = MatchedLanguageList.fromMatchLanguages(
               languages,
               CheckedLanguageList(
                 checkedLanguages: [],
@@ -46,9 +47,10 @@ class ScegliLinguaWidget extends StatelessWidget {
             return RestaurantLanguageCheckboxList(
               loggedUser: loggedUser,
               matchedLanguageList: matchedLanguages,
-              menu : menu,
+              menu: menu,
             );
           }
+
           return const Center(
             child: CircularProgressIndicator(),
           );

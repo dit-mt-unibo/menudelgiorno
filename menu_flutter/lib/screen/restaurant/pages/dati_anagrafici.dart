@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
-import '../../models/app/registry.dart';
-import '../../models/app/user.dart';
+import '../../../models/app/registry.dart';
+import '../../../models/app/user.dart';
 
 class DatiAnagraficiWidget extends StatelessWidget {
   DatiAnagraficiWidget({
@@ -14,10 +14,6 @@ class DatiAnagraficiWidget extends StatelessWidget {
   }) : super(key: key);
 
   final User loggedUser;
-
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
-  final _emailController = TextEditingController();
 
   Future<Registry> _getRegistry(User user) async {
     final url = Uri.http('10.0.2.2:8000', '/api/registries/${user.id}');
@@ -42,6 +38,10 @@ class DatiAnagraficiWidget extends StatelessWidget {
 
     return response.statusCode == 200 ? true : false;
   }
+
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

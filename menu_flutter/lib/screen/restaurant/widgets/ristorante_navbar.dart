@@ -1,41 +1,44 @@
 import 'package:flutter/material.dart';
 
-import 'dati_anagrafici.dart';
-import 'il_mio_ristorante.dart';
-import 'inserisci_menu.dart';
-import '../app/login.dart';
-import 'ristoratore_home.dart';
-import '../../models/app/user.dart';
+import '../../../models/app/user.dart';
+import '../../app/login.dart';
+import '../pages/dati_anagrafici.dart';
+import '../pages/il_mio_ristorante.dart';
+import '../pages/inserisci_menu.dart';
+import '../pages/ristoratore_home.dart';
 
 class RistoranteNavBar extends StatelessWidget {
-  const RistoranteNavBar({Key? key, required this.loggedUser})
-      : super(key: key);
+  const RistoranteNavBar({
+    Key? key,
+    required this.loggedUser,
+  }) : super(key: key);
 
   final User loggedUser;
+
   final padding = const EdgeInsets.symmetric(
     horizontal: 20,
     vertical: 45,
   );
 
-   Widget buildMenu({
-  required IconData icon,
-  required String titolo,
-  VoidCallback? onclick,
-}) {
-  return ListTile(
-    leading: Icon(
-      icon,
-      color: Colors.white,
-    ),
-    title: Text(
-      titolo,
-      style: const TextStyle(
-        color: Color.fromARGB(255, 247, 246, 244),
+  Widget buildMenu({
+    required IconData icon,
+    required String titolo,
+    VoidCallback? onclick,
+  }) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: Colors.white,
       ),
-    ),
-    onTap: onclick,
-  );
-}
+      title: Text(
+        titolo,
+        style: const TextStyle(
+          color: Color.fromARGB(255, 247, 246, 244),
+        ),
+      ),
+      onTap: onclick,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,13 +79,13 @@ class RistoranteNavBar extends StatelessWidget {
       ),
     );
   }
- 
+
   selectedItem(BuildContext context, int i) {
     switch (i) {
       case 0:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) =>  RistoratoreHome(loggedUser: loggedUser),
+            builder: (context) => RistoratoreHome(loggedUser: loggedUser),
           ),
         );
         break;
@@ -110,14 +113,14 @@ class RistoranteNavBar extends StatelessWidget {
       case 4:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) =>  LoginScreen(),
+            builder: (context) => LoginScreen(),
           ),
         );
         break;
       case 5:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) =>  LoginScreen(),
+            builder: (context) => LoginScreen(),
           ),
         );
         break;
@@ -125,5 +128,3 @@ class RistoranteNavBar extends StatelessWidget {
     }
   }
 }
-
-

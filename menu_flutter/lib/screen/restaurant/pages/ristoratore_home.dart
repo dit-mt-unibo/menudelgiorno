@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'ristorante_navbar.dart';
-import '../../models/app/user.dart';
+import '../../../models/app/user.dart';
+import '../widgets/ristorante_navbar.dart';
 
 class RistoratoreHome extends StatelessWidget {
- const RistoratoreHome({Key? key, required this.loggedUser}) : super(key: key);
+  const RistoratoreHome({
+    Key? key,
+    required this.loggedUser,
+  }) : super(key: key);
 
   final User loggedUser;
 
@@ -23,10 +26,10 @@ class RistoratoreHome extends StatelessWidget {
           ),
         ),
         child: const Center(
-          //child: Text('Il mio Ristorante'),
-        ),
+            //child: Text('Il mio Ristorante'),
+            ),
       ),
-      drawer:  RistoranteNavBar(loggedUser: loggedUser),
+      drawer: RistoranteNavBar(loggedUser: loggedUser),
     );
   }
 }

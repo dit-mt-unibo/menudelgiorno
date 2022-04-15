@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'login.dart';
 
-class WelcomeScreen extends StatefulWidget {
+class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
-  @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
-}
-
-class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,24 +25,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Column(
           children: [
             ElevatedButton(
-              
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(150, 40),
-                primary: Color.fromARGB(255, 186, 12, 12),
-                
+                primary: const Color.fromARGB(255, 186, 12, 12),
               ),
               child: const Text(
                 'ACCEDI',
                 style: TextStyle(
                   fontSize: 19,
-              
                 ),
               ),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
+                    builder: (context) => LoginScreen(),
                   ),
                 );
               },
