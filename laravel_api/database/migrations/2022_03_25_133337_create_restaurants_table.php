@@ -17,8 +17,8 @@ class CreateRestaurantsTable extends Migration
             $table->id();
             $table->string('name')->nullable(true);
             $table->string('address')->nullable(true);
-            $table->integer('street_number')->nullable(true);
-            $table->integer('postcode')->nullable(true);
+            $table->string('street_number')->nullable(true);
+            $table->string('postcode')->nullable(true);
             $table->string('city')->nullable(true);
             $table->string('province')->nullable(true);
             $table->integer('user_id')->nullable(true);

@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class TranslationController extends Controller
 {
-
+    public $facade;
+    function __construct()
+    {
+        $this->facade=new TranslationFacade();
+    }
 
     public function index()
     {
@@ -38,7 +42,8 @@ class TranslationController extends Controller
 
     public function show($id)
     {
-       //
+        $resultat=$this->facade->show($id);
+        return response()->json($resultat);
     }
 
 

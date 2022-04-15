@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Auth;
 
 class LanguageUserController extends Controller
 {
+
+    //LISTA DELLE LINGUE DI UN UTENTE LOGGATO
+    // <<SELECTED >> è un attributo che consente di capire se una lingua è selezionata o non.
+
     public function index(User $user){
        $languages= Language::get();
 
@@ -30,15 +34,20 @@ class LanguageUserController extends Controller
         return response()->json($settings);
     }
 
-     //
+
+
+    //SCELTA E MODIFICA DELLE LINGUA DI UN UTENTE TRADUTTORE LOGGATO
+
     public function store(Request $request,User $user){
         $configs=$request->input('configs');
-        //supression
+             //cancellazione delle vecchie checkbox
         foreach ($configs as $config) {
             if ($config['selected']==0) {
                 $user->languages_config()->where('language_id',$config['language_id'])
                                          ->delete();
             }
+
+             //creazione nuova lingua di un utente
             elseif($config['selected']==1){
               $countconfig=$user->languages_config()->where('language_id',$config['language_id'])
                                          ->count();
@@ -55,7 +64,7 @@ class LanguageUserController extends Controller
 
     }
     public function show(){
-
+        //
     }
 
     public function delete(User $user){
