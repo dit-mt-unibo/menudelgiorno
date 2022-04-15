@@ -23,7 +23,7 @@ class RistoratoreHome extends StatelessWidget {
           ),
         ),
         child: const Center(
-          child: Text('Il mio Ristorante'),
+          //child: Text('Il mio Ristorante'),
         ),
       ),
       drawer:  RistoranteNavBar(loggedUser: loggedUser),
