@@ -58,12 +58,50 @@ class TranslatorEditRegistry extends StatelessWidget {
               padding: const EdgeInsets.all(32.0),
               child: Column(
                 children: [
+                  Container(
+              alignment: Alignment.centerLeft,
+              margin: const EdgeInsets.only(left: 20.0),
+              child: Column(children: const [
+                Text(
+                  'Modifica profilo',
+                  style: TextStyle(
+                      fontSize: 30.0,
+                      fontFamily: 'Lancelot',
+                      color: const Color.fromARGB(255, 6, 54, 188),
+                      fontWeight: FontWeight.normal),
+                ),
+              ]),
+            ),
+             SizedBox(
+              height: 50,
+            ),
                   TextField(
                     controller: _firstNameController,
                     keyboardType: TextInputType.name,
-                    decoration: const InputDecoration(
-                      labelText: 'Nome',
+
+                     style:
+                    const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+                
+                decoration: const InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 6, 54, 188),
+                          width: 1.5),
                     ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 107, 107, 107),
+                          width: 1.5),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Color.fromARGB(255, 6, 54, 188),
+                    ),
+                    labelText: 'Nome',
+                    labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 69, 68, 68),
+                        fontSize: 20.0)),
+              
                   ),
                   const SizedBox(
                     height: 25,
@@ -71,9 +109,30 @@ class TranslatorEditRegistry extends StatelessWidget {
                   TextField(
                     controller: _lastNameController,
                     keyboardType: TextInputType.name,
-                    decoration: const InputDecoration(
-                      labelText: 'Cognome',
+
+                     style:
+                    const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+              
+                decoration: const InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 6, 54, 188),
+                          width: 1.5),
                     ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 107, 107, 107),
+                          width: 1.5),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Color.fromARGB(255, 6, 54, 188),
+                    ),
+                    labelText: 'Cognome',
+                    labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 69, 68, 68),
+                        fontSize: 20.0)),
+              
                   ),
                   const SizedBox(
                     height: 25,
@@ -81,63 +140,90 @@ class TranslatorEditRegistry extends StatelessWidget {
                   TextField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
+
+                     style:
+                    const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+  
+                decoration: const InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 6, 54, 188),
+                          width: 1.5),
                     ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 107, 107, 107),
+                          width: 1.5),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Color.fromARGB(255, 6, 54, 188),
+                    ),
+                    labelText: 'Email',
+                    labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 69, 68, 68),
+                        fontSize: 20.0)),
+              
                   ),
                   const SizedBox(
                     height: 50,
                   ),
-                  ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(150, 40),
-                          primary:Color.fromARGB(255, 6, 54, 188),
+                  Container(
+                     width: 250,
+                    child: ElevatedButton(
+                     style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(5.0),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    primary: const Color.fromARGB(255, 6, 54, 188),
+                ),
+                      child: const Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.0,
+                          right: 20.0,
+                          bottom: 10.0,
+                          left: 20.0,
                         ),
-                    child: const Padding(
-                      padding: EdgeInsets.only(
-                        top: 10.0,
-                        right: 20.0,
-                        bottom: 10.0,
-                        left: 20.0,
-                      ),
-                      child: Text(
-                        'Salva',
-                        style: TextStyle(
-                          fontSize: 18,
+                        child: Text(
+                          'Salva',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
                         ),
                       ),
+                      onPressed: () async {
+                        final enteredRegistry = Registry(
+                          id: registry.id,
+                          firstName: _firstNameController.text,
+                          lastName: _lastNameController.text,
+                          email: _emailController.text,
+                        );
+                        final isUpdateSuccessful =
+                            await _updateRegistry(enteredRegistry);
+                        if (isUpdateSuccessful) {
+                          Fluttertoast.showToast(
+                            msg: 'Nuovi dati salvati con successo!',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM_RIGHT,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            fontSize: 16,
+                          );
+                        } else {
+                          Fluttertoast.showToast(
+                            msg: 'Errore durante il salvataggio!',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM_RIGHT,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16,
+                          );
+                        }
+                      },
                     ),
-                    onPressed: () async {
-                      final enteredRegistry = Registry(
-                        id: registry.id,
-                        firstName: _firstNameController.text,
-                        lastName: _lastNameController.text,
-                        email: _emailController.text,
-                      );
-                      final isUpdateSuccessful =
-                          await _updateRegistry(enteredRegistry);
-                      if (isUpdateSuccessful) {
-                        Fluttertoast.showToast(
-                          msg: 'Nuovi dati salvati con successo!',
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM_RIGHT,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.green,
-                          textColor: Colors.white,
-                          fontSize: 16,
-                        );
-                      } else {
-                        Fluttertoast.showToast(
-                          msg: 'Errore durante il salvataggio!',
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM_RIGHT,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
-                          fontSize: 16,
-                        );
-                      }
-                    },
                   ),
                 ],
               ),
