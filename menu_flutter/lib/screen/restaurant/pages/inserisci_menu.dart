@@ -52,6 +52,7 @@ class InserisciMenuScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              
               Container(
                 margin: const EdgeInsets.all(20),
                 height: 350,
