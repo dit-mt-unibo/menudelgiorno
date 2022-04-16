@@ -22,7 +22,8 @@ class TranslationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Color.fromARGB(180, 163, 163, 163),
+      color: Colors.white.withOpacity(0.1),
+      
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -84,6 +85,7 @@ class TranslationCard extends StatelessWidget {
                   'Visualizza',
                   style: TextStyle(
                     fontSize: 16.0,
+                    letterSpacing: 2
                   ),
                 ),
               ),
