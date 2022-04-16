@@ -33,6 +33,7 @@ class WelcomeScreen extends StatelessWidget {
                 'ACCEDI',
                 style: TextStyle(
                   fontSize: 19,
+                  fontFamily: 'OpenSans'
                 ),
               ),
               onPressed: () {

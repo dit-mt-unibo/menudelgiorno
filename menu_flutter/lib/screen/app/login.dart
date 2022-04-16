@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/gestures.dart';
@@ -42,106 +43,202 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.only(top: 150),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                child: TextField(
-                  controller: _userController,
-                  decoration: const InputDecoration(
-                    labelText: 'Username',
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                child: TextField(
-                  controller: _pwdController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                  ),
-                ),
-              ),
-              RichText(
-                text: TextSpan(children: [
-                  const TextSpan(
-                    text: 'Non hai un account? ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22,
-                    ),
-                  ),
-                  TextSpan(
-                      text: 'Registrati',
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 67, 44, 245),
-                        fontSize: 22,
-                        decoration: TextDecoration.underline,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const RegistrazioneScreen(),
-                            ),
-                          );
-                        }),
-                ]),
-              ),
-              Container(
-                padding: const EdgeInsets.all(90.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(150, 40),
-                  ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 19,
-                    ),
-                  ),
-                  onPressed: () async {
-                    User loggedUser = await _doLogin();
-                    switch (loggedUser.role) {
-                      case "Ristoratore":
-                        {
-                          Navigator.pop(context);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  RistoratoreHome(loggedUser: loggedUser),
-                            ),
-                          );
-                        }
-                        break;
-                      case "Traduttore":
-                        {
-                          Navigator.pop(context);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  TranslatorHome(loggedUser: loggedUser),
-                            ),
-                          );
-                        }
-                        break;
-                      default:
-                        {
-                          print("Qualcosa è andato storto");
-                        }
-                    }
-                  },
-                ),
-              ),
+      appBar: AppBar(
+        title: const Text(
+          'Benvenuto',
+          style: TextStyle(fontSize: 25, fontFamily: 'OpenSans'),
+        ),
+        backgroundColor: const Color.fromARGB(255, 147, 19, 19),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255)
             ],
+                stops: [
+              0.1,
+              0.4,
+              0.7,
+              0.9
+            ])),
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(top: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.only(left: 20.0),
+                  child: Column(children: const [
+                    Text(
+                      'Accedi per continuare',
+                      style: TextStyle(
+                          fontSize: 30.0,
+                          fontFamily: 'Lancelot',
+                          color: Color.fromARGB(255, 68, 1, 1),
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ]
+                  ),
+                ),
+                const SizedBox(
+                  height: 25.0,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextField(
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 105, 104, 104)),
+                    controller: _userController,
+                    decoration: const InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: const Color.fromARGB(255, 147, 19, 19),
+                              width: 1.5),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 107, 107, 107),
+                              width: 1.5),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.people,
+                          color: Color.fromARGB(255, 113, 2, 2),
+                        ),
+                        labelText: 'Username',
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 69, 68, 68),
+                            fontSize: 20.0)),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextField(
+                    obscureText: true,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 105, 105, 104)),
+                    controller: _pwdController,
+                    decoration: const InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: const Color.fromARGB(255, 147, 19, 19),
+                              width: 1.5),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 107, 107, 107),
+                              width: 1.5),
+                        ),
+                        labelText: 'Password',
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 69, 68, 68),
+                            fontSize: 20.0),
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: Color.fromARGB(255, 113, 2, 2),
+                        )),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: RichText(
+                    text: TextSpan(children: [
+                      const TextSpan(
+                        text: 'Non hai un account? ',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      ),
+                      TextSpan(
+                          text: 'Registrati',
+                          style: const TextStyle(
+                            color: const Color.fromARGB(255, 147, 19, 19),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const RegistrazioneScreen(),
+                                ),
+                              );
+                            }),
+                    ]),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 50.0),
+                  width: 250,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.all(15.0),
+                      elevation: 5.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      primary: const Color.fromARGB(255, 147, 19, 19),
+                    ),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          letterSpacing: 1.5,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'OpenSans'
+                          ),
+                    ),
+                    onPressed: () async {
+                      User loggedUser = await _doLogin();
+                      switch (loggedUser.role) {
+                        case "Ristoratore":
+                          {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    RistoratoreHome(loggedUser: loggedUser),
+                              ),
+                            );
+                          }
+                          break;
+                        case "Traduttore":
+                          {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    TranslatorHome(loggedUser: loggedUser),
+                              ),
+                            );
+                          }
+                          break;
+                        default:
+                          {
+                            print("Qualcosa è andato storto");
+                          }
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -88,46 +88,133 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(50.0),
+        padding: const EdgeInsets.only(top: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
+              alignment: Alignment.centerLeft,
+              margin: const EdgeInsets.only(left: 20.0),
+              child: Column(children: const [
+                Text(
+                  'Nuovo utente',
+                  style: TextStyle(
+                      fontSize: 30.0,
+                      fontFamily: 'Lancelot',
+                      color: Color.fromARGB(255, 68, 1, 1),
+                      fontWeight: FontWeight.normal),
+                ),
+              ]),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
               padding: const EdgeInsets.all(20),
               child: TextField(
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
                 controller: user,
                 decoration: const InputDecoration(
-                  labelText: 'Username',
-                ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 147, 19, 19),
+                          width: 1.5),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 107, 107, 107),
+                          width: 1.5),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.people,
+                      color: Color.fromARGB(255, 113, 2, 2),
+                    ),
+                    labelText: 'Username',
+                    labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 69, 68, 68),
+                        fontSize: 20.0)),
               ),
             ),
             Container(
               padding: const EdgeInsets.all(20),
               child: TextField(
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
                 controller: email,
                 decoration: const InputDecoration(
-                  labelText: 'Email',
-                ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 147, 19, 19),
+                          width: 1.5),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 107, 107, 107),
+                          width: 1.5),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Color.fromARGB(255, 113, 2, 2),
+                    ),
+                    labelText: 'Email',
+                    labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 69, 68, 68),
+                        fontSize: 20.0)),
               ),
             ),
             Container(
               padding: const EdgeInsets.all(20),
               child: TextField(
+                obscureText: true,
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 105, 105, 104)),
                 controller: pwd,
-                obscureText: true,
                 decoration: const InputDecoration(
-                  labelText: 'Password',
-                ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 147, 19, 19),
+                          width: 1.5),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 107, 107, 107),
+                          width: 1.5),
+                    ),
+                    labelText: 'Password',
+                    labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 69, 68, 68), fontSize: 20.0),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Color.fromARGB(255, 113, 2, 2),
+                    )),
               ),
             ),
             Container(
               padding: const EdgeInsets.all(20),
               child: TextField(
-                controller: pwd_conf,
                 obscureText: true,
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 105, 105, 104)),
+                controller: pwd_conf,
                 decoration: const InputDecoration(
-                  labelText: 'Conferma Password',
-                ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 147, 19, 19),
+                          width: 1.5),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 107, 107, 107),
+                          width: 1.5),
+                    ),
+                    labelText: 'Conferma Password',
+                    labelStyle: TextStyle(
+                        color: Color.fromARGB(255, 69, 68, 68), fontSize: 20.0),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Color.fromARGB(255, 113, 2, 2),
+                    )),
               ),
             ),
             Row(
@@ -135,6 +222,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
               children: [
                 Radio(
                   value: "Ristoratore",
+                  activeColor: Color.fromARGB(255, 113, 2, 2),
                   groupValue: value,
                   onChanged: (val) {
                     setState(() {
@@ -144,9 +232,10 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                     setSelectedRadio(val as int);
                   },
                 ),
-                const Text('Ristoratore'),
+                const Text('Ristoratore',style: TextStyle(fontSize: 25,fontFamily: 'Lancelot'),),
                 Radio(
                   value: "Traduttore",
+                  activeColor: Color.fromARGB(255, 113, 2, 2),
                   groupValue: value,
                   onChanged: (val) {
                     setState(() {
@@ -156,19 +245,28 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                     setSelectedRadio(val as int);
                   },
                 ),
-                const Text('Traduttore'),
+                const Text('Traduttore',style: TextStyle(fontSize: 25,fontFamily: 'Lancelot')),
               ],
             ),
             Container(
-              padding: const EdgeInsets.only(top: 50),
+                width: 250,
+              padding: const EdgeInsets.only(top: 20),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(150, 40),
+                  padding: const EdgeInsets.all(15.0),
+                  elevation: 5.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  primary: const Color.fromARGB(255, 147, 19, 19),
                 ),
                 child: const Text(
-                  'Continua',
+                  'Registra',
                   style: TextStyle(
-                    fontSize: 19,
+                          fontSize: 18,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          letterSpacing: 1.5,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'OpenSans'
                   ),
                 ),
                 onPressed: () {
