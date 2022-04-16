@@ -8,22 +8,29 @@ import '../../../models/app/user.dart';
 import 'scegli_lingua.dart';
 
 class InserisciMenuScreen extends StatelessWidget {
+  
   InserisciMenuScreen({
     Key? key,
     required this.loggedUser,
   }) : super(key: key);
 
   final User loggedUser;
+  final _menuController = TextEditingController();
 
-  Future<Menu> _getMenu(User user) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/menus/${user.id}');
-    final response = await http.get(url);
+  Future<Menu> _createMenu() async {
+    final url = Uri.http('10.0.2.2:8000', '/api/menus');
+    final headers = {'Content-Type': 'application/json'};
+
+    final payload = jsonEncode({
+      "text": _menuController.text,
+      "restaurant_id": null,
+      "language_idArray": null
+    });
+    final response = await http.post(url, headers: headers, body: payload);
     final data = jsonDecode(response.body);
     final menu = Menu.fromJson(data);
     return menu;
   }
-
-  final _menuController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -104,14 +111,23 @@ class InserisciMenuScreen extends StatelessWidget {
                         },
                       ),
                     ),
-                  ],
+                  ),
+                  onPressed: () {
+                    _createMenu();
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ScegliLinguaWidget(
+                    //       menu: menu,
+                    //       loggedUser: loggedUser,
+                    //     ),
+                    //   ),
+                    // );
+                  },
                 ),
-              );
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }),
-    );
+              ),
+            ],
+          ),
+        ));
   }
 }

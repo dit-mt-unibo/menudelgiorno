@@ -35,7 +35,6 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
     });
 
     var data = json.decode(response.body);
-    print(data);
     //messaggio di registrazione
     if (data == "Error") {
       Fluttertoast.showToast(
@@ -64,7 +63,6 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
       ),
     );
 
-    print(data);
   }
 
   @override
@@ -228,7 +226,6 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                     setState(() {
                       value = "Ristoratore";
                     });
-                    print('Sono ristoratore');
                     setSelectedRadio(val as int);
                   },
                 ),
@@ -241,7 +238,6 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                     setState(() {
                       value = "Traduttore";
                     });
-                    print('Sono traduttore');
                     setSelectedRadio(val as int);
                   },
                 ),
