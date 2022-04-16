@@ -82,52 +82,58 @@ class _TranslatorLanguageCheckboxListState
               },
             ),
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(150, 40),
-                          primary:Color.fromARGB(255, 6, 54, 188),
-                        ),
-            child: const Padding(
-              padding: EdgeInsets.only(
-                top: 10.0,
-                right: 20.0,
-                bottom: 10.0,
-                left: 20.0,
-              ),
-              child: Text(
-                'Salva',
-                style: TextStyle(
-                  fontSize: 16.0,
+          Container(
+               width: 250,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.all(5.0),
+                      elevation: 5.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      primary: const Color.fromARGB(255, 6, 54, 188),
+                  ),
+              child: const Padding(
+                padding: EdgeInsets.only(
+                  top: 10.0,
+                  right: 20.0,
+                  bottom: 10.0,
+                  left: 20.0,
+                ),
+                child: Text(
+                  'Salva',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
                 ),
               ),
+              onPressed: () async {
+                final isUpdateSuccessful = await _updateLanguages(
+                  widget.loggedUser,
+                  widget.matchedLanguageList,
+                );
+                if (isUpdateSuccessful) {
+                  Fluttertoast.showToast(
+                    msg: 'Lingue salvate con successo!',
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM_RIGHT,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                    fontSize: 16,
+                  );
+                } else {
+                  Fluttertoast.showToast(
+                    msg: 'Errore durante il salvataggio!',
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM_RIGHT,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16,
+                  );
+                }
+              },
             ),
-            onPressed: () async {
-              final isUpdateSuccessful = await _updateLanguages(
-                widget.loggedUser,
-                widget.matchedLanguageList,
-              );
-              if (isUpdateSuccessful) {
-                Fluttertoast.showToast(
-                  msg: 'Lingue salvate con successo!',
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM_RIGHT,
-                  timeInSecForIosWeb: 1,
-                  backgroundColor: Colors.green,
-                  textColor: Colors.white,
-                  fontSize: 16,
-                );
-              } else {
-                Fluttertoast.showToast(
-                  msg: 'Errore durante il salvataggio!',
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM_RIGHT,
-                  timeInSecForIosWeb: 1,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 16,
-                );
-              }
-            },
           ),
         ],
       ),

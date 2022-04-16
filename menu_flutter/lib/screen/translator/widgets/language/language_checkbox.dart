@@ -28,7 +28,8 @@ class TranslatorLanguageCheckbox extends StatelessWidget {
         child: Text(
           language.name,
           style: const TextStyle(
-            fontSize: 18.0,
+            fontSize: 28.0,
+            fontFamily: 'Lancelot'
           ),
         ),
       ),
