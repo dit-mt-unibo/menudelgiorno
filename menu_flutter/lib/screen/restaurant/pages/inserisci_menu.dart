@@ -39,13 +39,9 @@ class InserisciMenuScreen extends StatelessWidget {
         title: const Text('Menu'),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
-      body: FutureBuilder(
-          future: _getMenu(loggedUser),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final menu = snapshot.data as Menu;
-              _menuController.text = menu.text;
-              return SingleChildScrollView(
+      body: SingleChildScrollView(
+          
+             
                 padding: const EdgeInsets.only(top: 40),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,33 +95,19 @@ class InserisciMenuScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ScegliLinguaWidget(
-                                menu: menu,
-                                loggedUser: loggedUser,
-                              ),
-                            ),
-                          );
+                          _createMenu();
+                         // Navigator.push(
+                         //   context,
+                           // MaterialPageRoute(
+                              //builder: (context) => ScegliLinguaWidget(
+                              //  menu: menu,
+                              //  loggedUser: loggedUser,
+                            //  ),
+                           // ),
+                         // );
                         },
                       ),
-                    ),
-                  ),
-                  onPressed: () {
-                    _createMenu();
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => ScegliLinguaWidget(
-                    //       menu: menu,
-                    //       loggedUser: loggedUser,
-                    //     ),
-                    //   ),
-                    // );
-                  },
-                ),
-              ),
+                    ),              
             ],
           ),
         ));
