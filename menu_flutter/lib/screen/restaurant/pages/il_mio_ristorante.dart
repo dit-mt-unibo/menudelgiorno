@@ -18,6 +18,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
   Future<Restaurant> _getRestaurant(User user) async {
     final url = Uri.http('10.0.2.2:8000', '/api/restaurants/${user.id}');
     final response = await http.get(url);
+    print(response.reasonPhrase);
     final data = jsonDecode(response.body);
     final restaurant = Restaurant.fromJson(data);
     return restaurant;

@@ -88,8 +88,8 @@ flutter:
 
     - family: OpenSans
       fonts:
-        - asset: OpenSans-Regular.ttf
-        - asset: OpenSans-Italic.ttf
+        - asset: assets/OpenSans-Regular.ttf
+        - asset: assets/OpenSans-Italic.ttf
       
 
         
