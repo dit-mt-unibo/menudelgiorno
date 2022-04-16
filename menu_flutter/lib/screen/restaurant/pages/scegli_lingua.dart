@@ -31,6 +31,10 @@ class ScegliLinguaWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+        title: const Text('Scegli lingua'),
+        backgroundColor: const Color.fromARGB(255, 147, 19, 19),
+      ),
       body: FutureBuilder(
         future: _getLanguage(),
         builder: (context, snapshot) {

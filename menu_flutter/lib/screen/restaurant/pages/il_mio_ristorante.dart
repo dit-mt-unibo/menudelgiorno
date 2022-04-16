@@ -70,143 +70,260 @@ class IlMioRistoranteScreen extends StatelessWidget {
             _provinceController.text = restaurant.province;
 
             return SingleChildScrollView(
-              child: SizedBox(
-                height: 600,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(
+                      top: 40.0,
+                    ),
+                    child: const Text(
                       'Il mio Ristorante',
                       style: TextStyle(
-                        fontSize: 20,
+                         fontSize: 30.0,
+                      fontFamily: 'Lancelot',
+                      color: const Color.fromARGB(255, 147, 19, 19),
+                      fontWeight: FontWeight.normal),
                       ),
                     ),
-                    Flexible(
+                
+                  const SizedBox(
+                    height: 30.0,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        top: 20.0, left: 20.0, right: 20.0),
+                    child: TextFormField(
+                      controller: _restaurantNameController,
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 105, 104, 104)),
+                      decoration: const InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: const Color.fromARGB(255, 147, 19, 19),
+                                width: 1.5),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 107, 107, 107),
+                                width: 1.5),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.restaurant,
+                            color: const Color.fromARGB(255, 147, 19, 19),
+                          ),
+                          labelText: 'Nome Ristaurante',
+                          labelStyle: TextStyle(
+                              color: Color.fromARGB(255, 69, 68, 68),
+                              fontSize: 25.0)),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        top: 20.0, left: 20.0, right: 20.0),
+                    child: TextFormField(
+                      controller: _addressController,
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 105, 104, 104)),
+                      decoration: const InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: const Color.fromARGB(255, 147, 19, 19),
+                                width: 1.5),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 107, 107, 107),
+                                width: 1.5),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.person,
+                            color: const Color.fromARGB(255, 147, 19, 19),
+                          ),
+                          labelText: 'Indirizzo',
+                          labelStyle: TextStyle(
+                              color: Color.fromARGB(255, 69, 68, 68),
+                              fontSize: 25.0)),
+                    ),
+                  ),
+                  Row(children: [
+                    Expanded(
+                      flex: 4,
                       child: Container(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.only(
+                            top: 20.0, left: 20.0, right: 20.0),
                         child: TextFormField(
-                          controller: _restaurantNameController,
+                          controller: _streetNumberController,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 105, 104, 104)),
                           decoration: const InputDecoration(
-                            labelText: 'Nome',
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(children: [
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: TextFormField(
-                            controller: _addressController,
-                            decoration: const InputDecoration(
-                              labelText: 'Indirizzo',
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          padding: const EdgeInsets.all(30),
-                          child: TextFormField(
-                            controller: _streetNumberController,
-                            decoration: const InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        const Color.fromARGB(255, 147, 19, 19),
+                                    width: 1.5),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 107, 107, 107),
+                                    width: 1.5),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.streetview,
+                                color: const Color.fromARGB(255, 147, 19, 19),
+                              ),
                               labelText: 'N° civico',
-                            ),
-                          ),
+                              labelStyle: TextStyle(
+                                  color: Color.fromARGB(255, 69, 68, 68),
+                                  fontSize: 25.0)),
                         ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          padding: const EdgeInsets.all(30),
-                          child: TextFormField(
-                            controller: _postCodeController,
-                            decoration: const InputDecoration(
-                              labelText: 'Cap',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]),
-                    Row(children: [
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: TextFormField(
-                            controller: _cityController,
-                            decoration: const InputDecoration(
-                              labelText: 'Città',
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          padding: const EdgeInsets.all(20),
-                          child: TextFormField(
-                            controller: _provinceController,
-                            decoration: const InputDecoration(
-                              labelText: 'Provincia',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]),
-                    Container(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(150, 40),
-                          primary: const Color.fromARGB(255, 186, 12, 12),
-                        ),
-                        child: const Text(
-                          'Salva',
-                          style: TextStyle(
-                            fontSize: 19,
-                          ),
-                        ),
-                        onPressed: () async {
-                          final enteredRestaurant = Restaurant(
-                            id: restaurant.id,
-                            name: _restaurantNameController.text,
-                            address: _addressController.text,
-                            streetNumber: _streetNumberController.text,
-                            postcode: _postCodeController.text,
-                            city: _cityController.text,
-                            province: _provinceController.text,
-                          );
-                          final isUpdateSuccessful =
-                              await _updateRestaurant(enteredRestaurant);
-                          if (isUpdateSuccessful) {
-                            Fluttertoast.showToast(
-                              msg: 'Ristorante salvato con successo!',
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM_RIGHT,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.green,
-                              textColor: Colors.white,
-                              fontSize: 16,
-                            );
-                          } else {
-                            Fluttertoast.showToast(
-                              msg: 'Errore durante il salvataggio!',
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM_RIGHT,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
-                              textColor: Colors.white,
-                              fontSize: 16,
-                            );
-                          }
-                        },
                       ),
                     ),
-                  ],
-                ),
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            top: 15.0, left: 20.0, right: 20.0),
+                        child: TextFormField(
+                          controller: _postCodeController,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 105, 104, 104)),
+                          decoration: const InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        const Color.fromARGB(255, 147, 19, 19),
+                                    width: 1.5),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 107, 107, 107),
+                                    width: 1.5),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.local_post_office_rounded,
+                                color: const Color.fromARGB(255, 147, 19, 19),
+                              ),
+                              labelText: 'Cap',
+                              labelStyle: TextStyle(
+                                  color: Color.fromARGB(255, 69, 68, 68),
+                                  fontSize: 25.0)),
+                        ),
+                      ),
+                    ),
+                  ]),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        top: 20.0, left: 20.0, right: 20.0),
+                    child: TextFormField(
+                      controller: _cityController,
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 105, 104, 104)),
+                      decoration: const InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: const Color.fromARGB(255, 147, 19, 19),
+                                width: 1.5),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 107, 107, 107),
+                                width: 1.5),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.location_city,
+                            color: const Color.fromARGB(255, 147, 19, 19),
+                          ),
+                          labelText: 'Città',
+                          labelStyle: TextStyle(
+                              color: Color.fromARGB(255, 69, 68, 68),
+                              fontSize: 25.0)),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        top: 20.0, left: 20.0, right: 20.0),
+                    child: TextFormField(
+                      controller: _provinceController,
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 105, 104, 104)),
+                      decoration: const InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: const Color.fromARGB(255, 147, 19, 19),
+                                width: 1.5),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Color.fromARGB(255, 107, 107, 107),
+                                width: 1.5),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.location_city,
+                            color: const Color.fromARGB(255, 147, 19, 19),
+                          ),
+                          labelText: 'Provincia',
+                          labelStyle: TextStyle(
+                              color: Color.fromARGB(255, 69, 68, 68),
+                              fontSize: 25.0)),
+                    ),
+                  ),
+                   const SizedBox(
+                    height: 40,
+                  ),
+                  Container(
+                     width: 250,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                         padding: const EdgeInsets.all(15.0),
+                  elevation: 5.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  primary: const Color.fromARGB(255, 147, 19, 19),
+                      ),
+                      child: const Text(
+                        'Salva',
+                        style: TextStyle(
+                          fontSize: 19,
+                        ),
+                      ),
+                      onPressed: () async {
+                        final enteredRestaurant = Restaurant(
+                          id: restaurant.id,
+                          name: _restaurantNameController.text,
+                          address: _addressController.text,
+                          streetNumber: _streetNumberController.text,
+                          postcode: _postCodeController.text,
+                          city: _cityController.text,
+                          province: _provinceController.text,
+                        );
+                        final isUpdateSuccessful =
+                            await _updateRestaurant(enteredRestaurant);
+                        if (isUpdateSuccessful) {
+                          Fluttertoast.showToast(
+                            msg: 'Ristorante salvato con successo!',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM_RIGHT,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            fontSize: 16,
+                          );
+                        } else {
+                          Fluttertoast.showToast(
+                            msg: 'Errore durante il salvataggio!',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM_RIGHT,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16,
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
             );
           }

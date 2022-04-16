@@ -79,63 +79,66 @@ class _RestaurantLanguageCheckboxListState
               },
             ),
           ),
-          ElevatedButton(
-            child: const Padding(
-              padding: EdgeInsets.only(
-                top: 10.0,
-                right: 20.0,
-                bottom: 10.0,
-                left: 20.0,
-              ),
-              child: Text(
+          SizedBox(height: 50,),
+          Container(
+            width: 250,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(15.0),
+                  elevation: 5.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  primary: const Color.fromARGB(255, 147, 19, 19),
+                ),
+              child: const Text(
                 'Salva',
                 style: TextStyle(
                   fontSize: 16.0,
                 ),
               ),
+              onPressed: () async {
+                final idsArray = widget.matchedLanguageList.matchedLanguages
+                    .where(
+                      (matchedLanguage) => matchedLanguage.isChecked,
+                    )
+                    .map(
+                      (matchedLanguage) => matchedLanguage.language.id,
+                    )
+                    .toList();
+                sendMenu(widget.menu, idsArray);
+                final isUpdateSuccessful = await sendMenu(
+                  widget.menu,
+                  idsArray,
+                );
+                if (isUpdateSuccessful) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          RistoratoreHome(loggedUser: widget.loggedUser),
+                    ),
+                  );
+                  Fluttertoast.showToast(
+                    msg: 'Menu salvato con successo!',
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM_RIGHT,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                    fontSize: 16,
+                  );
+                } else {
+                  Fluttertoast.showToast(
+                    msg: 'Errore durante il salvataggio!',
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM_RIGHT,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16,
+                  );
+                }
+              },
             ),
-            onPressed: () async {
-              final idsArray = widget.matchedLanguageList.matchedLanguages
-                  .where(
-                    (matchedLanguage) => matchedLanguage.isChecked,
-                  )
-                  .map(
-                    (matchedLanguage) => matchedLanguage.language.id,
-                  )
-                  .toList();
-              sendMenu(widget.menu, idsArray);
-              final isUpdateSuccessful = await sendMenu(
-                widget.menu,
-                idsArray,
-              );
-              if (isUpdateSuccessful) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        RistoratoreHome(loggedUser: widget.loggedUser),
-                  ),
-                );
-                Fluttertoast.showToast(
-                  msg: 'Menu salvato con successo!',
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM_RIGHT,
-                  timeInSecForIosWeb: 1,
-                  backgroundColor: Colors.green,
-                  textColor: Colors.white,
-                  fontSize: 16,
-                );
-              } else {
-                Fluttertoast.showToast(
-                  msg: 'Errore durante il salvataggio!',
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.BOTTOM_RIGHT,
-                  timeInSecForIosWeb: 1,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 16,
-                );
-              }
-            },
           ),
         ],
       ),

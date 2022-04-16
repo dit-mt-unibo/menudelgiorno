@@ -39,21 +39,22 @@ class InserisciMenuScreen extends StatelessWidget {
               final menu = snapshot.data as Menu;
               _menuController.text = menu.text;
               return SingleChildScrollView(
-                padding: const EdgeInsets.only(top: 30),
+                padding: const EdgeInsets.only(top: 40),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
                       'Inserisci il testo del tuo menu',
                       style: TextStyle(
-                        fontSize: 50,
-                        fontFamily: 'Tangerine',
-                        fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
+                      fontFamily: 'Lancelot',
+                      color: const Color.fromARGB(255, 147, 19, 19),
+                      fontWeight: FontWeight.normal),
                       ),
-                    ),
+                    SizedBox(height: 10.0,),
                     Container(
                       margin: const EdgeInsets.all(20),
-                      height: 350,
+                      height: 400,
                       width: 900,
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -74,11 +75,15 @@ class InserisciMenuScreen extends StatelessWidget {
                       ]),
                     ),
                     Container(
-                      padding: const EdgeInsets.only(top: 90),
+                        width: 250,
+                      padding: const EdgeInsets.only(top: 30),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(150, 40),
-                          primary: const Color.fromARGB(255, 186, 12, 12),
+                          padding: const EdgeInsets.all(15.0),
+                  elevation: 5.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                  primary: const Color.fromARGB(255, 147, 19, 19),
                         ),
                         child: const Text(
                           'Procedi',

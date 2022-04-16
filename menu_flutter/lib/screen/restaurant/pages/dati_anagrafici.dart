@@ -102,7 +102,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                     labelText: 'Nome',
                     labelStyle: TextStyle(
                         color: Color.fromARGB(255, 69, 68, 68),
-                        fontSize: 20.0)),
+                        fontSize: 25.0)),
               
                   ),
                   const SizedBox(
@@ -133,7 +133,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                     labelText: 'Cognome',
                     labelStyle: TextStyle(
                         color: Color.fromARGB(255, 69, 68, 68),
-                        fontSize: 20.0)),
+                        fontSize: 25.0)),
               
                   ),
                   const SizedBox(
@@ -164,7 +164,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                     labelText: 'Email',
                     labelStyle: TextStyle(
                         color: Color.fromARGB(255, 69, 68, 68),
-                        fontSize: 20.0)),
+                        fontSize: 25.0)),
               
                   ),
                   const SizedBox(
