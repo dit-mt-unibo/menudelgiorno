@@ -33,11 +33,14 @@ class RistoratoreHome extends StatelessWidget {
                 child: Column(
                   children: [
                     Card(
+                      
+                    
                       color: Color.fromARGB(108, 99, 99, 99),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
                           children: [
+                            
                             const Padding(
                                 padding: EdgeInsets.only(bottom: 6.0),
                                 child: Text("Menu in inglese",
@@ -92,7 +95,7 @@ class RistoratoreHome extends StatelessWidget {
                           ],
                         ),
                       ),
-                      elevation: 0,
+                      elevation: 5,
                     ),
                      Card(
                   color: const Color.fromARGB(108, 99, 99, 99),
