@@ -10,42 +10,41 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Menu del giorno'),
+        title: const Text('Menu del giorno',style: TextStyle(fontFamily: 'NotoSerifDisplay',fontSize: 22.0),),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: Container(
         padding: const EdgeInsets.all(20.0),
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/home-background.jpg'),
+            image: AssetImage('images/sfondores.jpg'),
             fit: BoxFit.cover,
           ),
         ),
-        alignment: Alignment.topLeft,
-        child: Column(
-          children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(150, 40),
-                primary: const Color.fromARGB(255, 186, 12, 12),
-              ),
-              child: const Text(
-                'ACCEDI',
-                style: TextStyle(
-                  fontSize: 19,
-                  fontFamily: 'OpenSans'
-                ),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginScreen(),
-                  ),
-                );
-              },
+        alignment: Alignment.center,
+        child: Container(
+          width: 200,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(15.0),
+              
+              primary: const Color.fromARGB(255, 186, 12, 12),
+              shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
             ),
-          ],
+            child: const Text(
+              'ACCEDI',
+              style: TextStyle(fontSize: 22,letterSpacing: 1.5, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

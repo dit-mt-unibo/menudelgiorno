@@ -104,6 +104,8 @@ flutter:
     - images/homeres.jpg
     - images/back.jpg
     - images/reg.jpg
+    - images/homes.jpg
+    - images/sfondores.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

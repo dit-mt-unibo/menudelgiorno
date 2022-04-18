@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Benvenuto',
-          style: TextStyle(fontSize: 25, fontFamily: 'OpenSans'),
+          style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold),
         ),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
         height: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("images/reg.jpg"),
+              image: AssetImage("images/homes.jpg"),
               fit: BoxFit.fill,
             ),
             gradient: LinearGradient(
@@ -170,6 +170,7 @@ class LoginScreen extends StatelessWidget {
                           style: const TextStyle(
                             color: const Color.fromARGB(255, 147, 19, 19),
                             fontSize: 18,
+                            letterSpacing: 2.0,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
                           ),

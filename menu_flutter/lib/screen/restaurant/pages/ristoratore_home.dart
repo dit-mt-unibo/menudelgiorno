@@ -40,14 +40,14 @@ class RistoratoreHome extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0),
+                            const Padding(
+                              padding: EdgeInsets.only(bottom: 6.0),
                               child: Text(
                                 "Menu in inglese",
                                 style: TextStyle(
                                     fontSize: 30.0,
                                     color:
-                                        const Color.fromARGB(255, 147, 19, 19),
+                                        Color.fromARGB(255, 147, 19, 19),
                                     fontWeight: FontWeight.w600),
                               ),
                             ),
@@ -107,14 +107,14 @@ class RistoratoreHome extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0),
+                            const Padding(
+                              padding: EdgeInsets.only(bottom: 6.0),
                               child: Text(
                                 "Menu in francese",
                                 style: TextStyle(
                                     fontSize: 30.0,
                                     color:
-                                        const Color.fromARGB(255, 147, 19, 19),
+                                        Color.fromARGB(255, 147, 19, 19),
                                     fontWeight: FontWeight.w600),
                               ),
                             ),
@@ -174,14 +174,14 @@ class RistoratoreHome extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0),
+                            const Padding(
+                              padding: EdgeInsets.only(bottom: 6.0),
                               child: Text(
                                 "Menu in tedesco",
                                 style: TextStyle(
                                     fontSize: 30.0,
                                     color:
-                                        const Color.fromARGB(255, 147, 19, 19),
+                                        Color.fromARGB(255, 147, 19, 19),
                                     fontWeight: FontWeight.w600),
                               ),
                             ),
@@ -241,14 +241,14 @@ class RistoratoreHome extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 6.0),
+                            const Padding(
+                              padding: EdgeInsets.only(bottom: 6.0),
                               child: Text(
                                 "Menu in cinese",
                                 style: TextStyle(
                                     fontSize: 30.0,
                                     color:
-                                        const Color.fromARGB(255, 147, 19, 19),
+                                        Color.fromARGB(255, 147, 19, 19),
                                     fontWeight: FontWeight.w600),
                               ),
                             ),
