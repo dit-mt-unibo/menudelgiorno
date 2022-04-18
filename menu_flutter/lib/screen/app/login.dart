@@ -54,25 +54,25 @@ class LoginScreen extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
-           image: DecorationImage(
-            image: AssetImage("images/reg.jpg"),
-            fit: BoxFit.fill,
-          ),
+            image: DecorationImage(
+              image: AssetImage("images/reg.jpg"),
+              fit: BoxFit.fill,
+            ),
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255)
-            ],
+                  Color.fromARGB(255, 255, 255, 255),
+                  Color.fromARGB(255, 255, 255, 255),
+                  Color.fromARGB(255, 255, 255, 255),
+                  Color.fromARGB(255, 255, 255, 255)
+                ],
                 stops: [
-              0.1,
-              0.4,
-              0.7,
-              0.9
-            ])),
+                  0.1,
+                  0.4,
+                  0.7,
+                  0.9
+                ])),
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.only(top: 30),
@@ -91,8 +91,7 @@ class LoginScreen extends StatelessWidget {
                           color: Color.fromARGB(255, 68, 1, 1),
                           fontWeight: FontWeight.w700),
                     ),
-                  ]
-                  ),
+                  ]),
                 ),
                 const SizedBox(
                   height: 25.0,
@@ -205,8 +204,7 @@ class LoginScreen extends StatelessWidget {
                           color: Color.fromARGB(255, 255, 255, 255),
                           letterSpacing: 1.5,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'OpenSans'
-                          ),
+                          fontFamily: 'OpenSans'),
                     ),
                     onPressed: () async {
                       User loggedUser = await _doLogin();
