@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: TextField(
                     style: const TextStyle(
-                        color: Color.fromARGB(255, 105, 104, 104)),
+                        color: Colors.black),
                     controller: _userController,
                     decoration: const InputDecoration(
                         focusedBorder: OutlineInputBorder(
@@ -119,7 +119,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         labelText: 'Username',
                         labelStyle: TextStyle(
-                            color: Color.fromARGB(255, 69, 68, 68),
+                            color: Colors.black,
                             fontSize: 20.0)),
                   ),
                 ),
@@ -131,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                   child: TextField(
                     obscureText: true,
                     style: const TextStyle(
-                        color: Color.fromARGB(255, 105, 105, 104)),
+                        color: Colors.black),
                     controller: _pwdController,
                     decoration: const InputDecoration(
                         focusedBorder: OutlineInputBorder(
@@ -146,7 +146,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         labelText: 'Password',
                         labelStyle: TextStyle(
-                            color: Color.fromARGB(255, 69, 68, 68),
+                            color: Colors.black,
                             fontSize: 20.0),
                         prefixIcon: Icon(
                           Icons.lock,
