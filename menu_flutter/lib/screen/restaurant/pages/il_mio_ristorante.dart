@@ -89,10 +89,11 @@ class IlMioRistoranteScreen extends StatelessWidget {
                       child: const Text(
                         'Il mio Ristorante',
                         style: TextStyle(
+                          
                             fontSize: 30.0,
                             fontFamily: 'Lancelot',
                             color: const Color.fromARGB(255, 147, 19, 19),
-                            fontWeight: FontWeight.normal),
+                            fontWeight: FontWeight.w800),
                       ),
                     ),
                     const SizedBox(
@@ -120,7 +121,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                               Icons.restaurant,
                               color: const Color.fromARGB(255, 147, 19, 19),
                             ),
-                            labelText: 'Nome Ristaurante',
+                            labelText: 'Nome Ristorante',
                             labelStyle: TextStyle(
                                 color: Colors.black,
                                 fontSize: 25.0)),

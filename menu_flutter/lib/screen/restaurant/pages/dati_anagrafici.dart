@@ -82,7 +82,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                         fontSize: 30.0,
                         fontFamily: 'Lancelot',
                         color: const Color.fromARGB(255, 147, 19, 19),
-                        fontWeight: FontWeight.normal),
+                        fontWeight: FontWeight.w700),
                   ),
                 ]),
               ),
