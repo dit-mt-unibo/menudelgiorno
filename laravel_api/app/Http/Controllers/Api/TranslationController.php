@@ -56,10 +56,18 @@ class TranslationController extends Controller
 
     public function update(TranslationRequest $request,Translation $translation)
     {
+        $textinitial=$translation->text;
+        $texttraduit=$request->input('text');
+
+        $cr=implode(' ',array_diff(preg_split('/\h/',$texttraduit),preg_split('/\h/',$textinitial)));
+
+        $countvaleur=count(explode(" ",$cr));
+
         $translation->update([
-            'text' => $request->input('text'),
+            'text' => $texttraduit,
             'user_id'=>$request->input('user_id'),
             'state'=>1,
+            'numero_modifiche'=>$countvaleur,
         ]);
         return response()->json(new TranslationResource($translation));
     }
