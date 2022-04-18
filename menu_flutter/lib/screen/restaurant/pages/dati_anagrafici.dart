@@ -92,7 +92,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                       keyboardType: TextInputType.name,
 
                        style:
-                      const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+                      const TextStyle(color: Colors.black),
                   
                   decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -102,7 +102,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromARGB(255, 107, 107, 107),
+                            color: Colors.black,
                             width: 1.5),
                       ),
                       prefixIcon: Icon(
@@ -111,7 +111,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                       ),
                       labelText: 'Nome',
                       labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 69, 68, 68),
+                          color: Colors.black,
                           fontSize: 25.0)),
                 
                     ),
@@ -123,7 +123,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                       keyboardType: TextInputType.name,
 
                        style:
-                      const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+                      const TextStyle(color: Colors.black),
                 
                   decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -133,7 +133,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromARGB(255, 107, 107, 107),
+                            color: Colors.black,
                             width: 1.5),
                       ),
                       prefixIcon: Icon(
@@ -142,7 +142,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                       ),
                       labelText: 'Cognome',
                       labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 69, 68, 68),
+                          color: Colors.black,
                           fontSize: 25.0)),
                 
                     ),
@@ -154,7 +154,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                       keyboardType: TextInputType.emailAddress,
 
                        style:
-                      const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+                      const TextStyle(color: Colors.black),
   
                   decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -164,7 +164,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromARGB(255, 107, 107, 107),
+                            color: Colors.black,
                             width: 1.5),
                       ),
                       prefixIcon: Icon(
@@ -173,7 +173,7 @@ class DatiAnagraficiWidget extends StatelessWidget {
                       ),
                       labelText: 'Email',
                       labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 69, 68, 68),
+                          color: Colors.black,
                           fontSize: 25.0)),
                 
                     ),
