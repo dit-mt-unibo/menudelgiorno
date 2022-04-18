@@ -28,33 +28,33 @@ class RistoratoreHome extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 12, right:12, top: 10),
+              margin: const EdgeInsets.only(left: 12, right:12, top: 10),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Card(
-                      color: Color.fromARGB(113, 179, 169, 169),
+                      color: const Color.fromARGB(113, 179, 169, 169),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
                           children: [
-                            Padding(
-                                padding: const EdgeInsets.only(bottom: 6.0),
+                            const Padding(
+                                padding: EdgeInsets.only(bottom: 2.0),
                                 child: Text("Menu in inglese",
                                  style: TextStyle(
                               fontSize: 30.0,
-                              color: const Color.fromARGB(255, 147, 19, 19),
+                              color: Color.fromARGB(255, 147, 19, 19),
                               fontWeight: FontWeight.w600),),
                                 ),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 9.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [],
+                                children: const [],
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(bottom:10),
+                              margin: const EdgeInsets.only(bottom:10),
                               child: ElevatedButton(
                                  style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(15.0),
@@ -95,28 +95,28 @@ class RistoratoreHome extends StatelessWidget {
                       elevation: 0,
                     ),
                      Card(
-                  color: Color.fromARGB(113, 179, 169, 169),
+                  color: const Color.fromARGB(113, 179, 169, 169),
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
-                        Padding(
-                            padding: const EdgeInsets.only(bottom: 6.0),
+                        const Padding(
+                            padding: EdgeInsets.only(bottom: 6.0),
                             child: Text("Menu in francese",
                              style: TextStyle(
                           fontSize: 30.0,
-                          color: const Color.fromARGB(255, 147, 19, 19),
+                          color: Color.fromARGB(255, 147, 19, 19),
                           fontWeight: FontWeight.w600),),
                             ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 9.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [],
+                            children: const [],
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom:10),
+                          margin: const EdgeInsets.only(bottom:10),
                           child: ElevatedButton(
                              style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(15.0),
@@ -157,28 +157,28 @@ class RistoratoreHome extends StatelessWidget {
                   elevation: 0,
                 ),
                  Card(
-                  color: Color.fromARGB(113, 179, 169, 169),
+                  color: const Color.fromARGB(113, 179, 169, 169),
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
-                        Padding(
-                            padding: const EdgeInsets.only(bottom: 6.0),
+                        const Padding(
+                            padding: EdgeInsets.only(bottom: 6.0),
                             child: Text("Menu in tedesco",
                              style: TextStyle(
                           fontSize: 30.0,
-                          color: const Color.fromARGB(255, 147, 19, 19),
+                          color: Color.fromARGB(255, 147, 19, 19),
                           fontWeight: FontWeight.w600),),
                             ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 9.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [],
+                            children: const [],
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom:10),
+                          margin: const EdgeInsets.only(bottom:10),
                           child: ElevatedButton(
                              style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(15.0),
