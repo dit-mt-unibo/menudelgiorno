@@ -50,20 +50,31 @@ class TranslatorEditLanguages extends StatelessWidget {
         title: const Text('Le mie Lingue'),
         backgroundColor: Color.fromARGB(255, 6, 54, 188),
       ),
-      body: FutureBuilder(
-        future: _getMatchedLanguages(loggedUser),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final matchedLanguageList = snapshot.data as MatchedLanguageList;
-            return TranslatorLanguageCheckboxList(
-              loggedUser: loggedUser,
-              matchedLanguageList: matchedLanguageList,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/back.jpg"),
+            fit: BoxFit.fill,
+            
+          ),
+        ),
+        child: FutureBuilder(
+          future: _getMatchedLanguages(loggedUser),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final matchedLanguageList = snapshot.data as MatchedLanguageList;
+              return TranslatorLanguageCheckboxList(
+                loggedUser: loggedUser,
+                matchedLanguageList: matchedLanguageList,
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+          },
+        ),
       ),
     );
   }

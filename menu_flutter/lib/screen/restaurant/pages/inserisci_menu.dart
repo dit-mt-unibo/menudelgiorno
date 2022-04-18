@@ -39,77 +39,86 @@ class InserisciMenuScreen extends StatelessWidget {
         title: const Text('Menu'),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
-      body: SingleChildScrollView(
-          
-             
-                padding: const EdgeInsets.only(top: 40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Inserisci il testo del tuo menu',
-                      style: TextStyle(
-                      fontSize: 30.0,
-                      fontFamily: 'Lancelot',
-                      color: const Color.fromARGB(255, 147, 19, 19),
-                      fontWeight: FontWeight.normal),
-                      ),
-                    SizedBox(height: 10.0,),
-                    Container(
-                      margin: const EdgeInsets.all(20),
-                      height: 400,
-                      width: 900,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color.fromARGB(255, 85, 2, 2),
-                          width: 3,
-                        ),
-                      ),
-                      child: Column(children: [
-                        TextField(
-                          controller: _menuController,
-                          keyboardType: TextInputType.multiline,
-                          maxLines: null,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Scrivi il menu',
-                          ),
-                        ),
-                      ]),
-                    ),
-                    Container(
-                        width: 250,
-                      padding: const EdgeInsets.only(top: 30),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.all(15.0),
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  primary: const Color.fromARGB(255, 147, 19, 19),
-                        ),
-                        child: const Text(
-                          'Procedi',
-                          style: TextStyle(
-                            fontSize: 19,
-                          ),
-                        ),
-                        onPressed: () {
-                          _createMenu();
-                         // Navigator.push(
-                         //   context,
-                           // MaterialPageRoute(
-                              //builder: (context) => ScegliLinguaWidget(
-                              //  menu: menu,
-                              //  loggedUser: loggedUser,
-                            //  ),
-                           // ),
-                         // );
-                        },
-                      ),
-                    ),              
-            ],
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/back.jpg"),
+            fit: BoxFit.fill,
+            
           ),
-        ));
+        ),
+        child: SingleChildScrollView(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Inserisci il testo del tuo menu',
+                        style: TextStyle(
+                        fontSize: 30.0,
+                        fontFamily: 'Lancelot',
+                        color: const Color.fromARGB(255, 147, 19, 19),
+                        fontWeight: FontWeight.normal),
+                        ),
+                      SizedBox(height: 10.0,),
+                      Container(
+                        margin: const EdgeInsets.all(20),
+                        height: 400,
+                        width: 900,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 85, 2, 2),
+                            width: 3,
+                          ),
+                        ),
+                        child: Column(children: [
+                          TextField(
+                            controller: _menuController,
+                            keyboardType: TextInputType.multiline,
+                            maxLines: null,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Scrivi il menu',
+                            ),
+                          ),
+                        ]),
+                      ),
+                      Container(
+                          width: 250,
+                        padding: const EdgeInsets.only(top: 30),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(15.0),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    primary: const Color.fromARGB(255, 147, 19, 19),
+                          ),
+                          child: const Text(
+                            'Procedi',
+                            style: TextStyle(
+                              fontSize: 19,
+                            ),
+                          ),
+                          onPressed: () {
+                            _createMenu();
+                           // Navigator.push(
+                           //   context,
+                             // MaterialPageRoute(
+                                //builder: (context) => ScegliLinguaWidget(
+                                //  menu: menu,
+                                //  loggedUser: loggedUser,
+                              //  ),
+                             // ),
+                           // );
+                          },
+                        ),
+                      ),              
+              ],
+            ),
+          ),
+      ));
   }
 }

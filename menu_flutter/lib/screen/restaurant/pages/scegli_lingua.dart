@@ -35,30 +35,41 @@ class ScegliLinguaWidget extends StatelessWidget {
         title: const Text('Scegli lingua'),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
-      body: FutureBuilder(
-        future: _getLanguage(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final languages = snapshot.data as LanguageList;
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/back.jpg"),
+            fit: BoxFit.fill,
+            
+          ),
+        ),
+        child: FutureBuilder(
+          future: _getLanguage(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final languages = snapshot.data as LanguageList;
 
-            final matchedLanguages = MatchedLanguageList.fromMatchLanguages(
-              languages,
-              CheckedLanguageList(
-                checkedLanguages: [],
-              ),
+              final matchedLanguages = MatchedLanguageList.fromMatchLanguages(
+                languages,
+                CheckedLanguageList(
+                  checkedLanguages: [],
+                ),
+              );
+
+              return RestaurantLanguageCheckboxList(
+                loggedUser: loggedUser,
+                matchedLanguageList: matchedLanguages,
+                menu: menu,
+              );
+            }
+
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-
-            return RestaurantLanguageCheckboxList(
-              loggedUser: loggedUser,
-              matchedLanguageList: matchedLanguages,
-              menu: menu,
-            );
-          }
-
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+          },
+        ),
       ),
     );
   }
