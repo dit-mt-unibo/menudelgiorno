@@ -30,18 +30,6 @@ class MenuSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        DB::table('menus')->insert([
-            'text' => 'Nullam dapibus neque nec orci rhoncus tristique.Cras scelerisque elit ac ex viverra, ut eleifend diam dapibus.Aenean eget nisl vitae dolor finibus tincidunt eget in lacus.Curabitur nec leo dapibus, mattis arcu vel, sollicitudin erat.Duis elementum metus a diam consequat vulputate.Donec hendrerit diam sodales aliquet mattis.',
-            'restaurant_id' => '4',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
 
-        DB::table('menus')->insert([
-            'text' => 'Cras quis ex vel purus consequat placerat.Nulla pulvinar velit porta, vulputate lacus quis, hendrerit risus.Nulla vel lacus in urna egestas sagittis ac vel erat.',
-            'restaurant_id' => '5',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
     }
 }
