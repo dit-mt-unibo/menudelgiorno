@@ -35,8 +35,6 @@ class RistoratoreHome extends StatelessWidget {
                 child: Column(
                   children: [
                     Card(
-                      
-                    
                       color: Color.fromARGB(108, 99, 99, 99),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
