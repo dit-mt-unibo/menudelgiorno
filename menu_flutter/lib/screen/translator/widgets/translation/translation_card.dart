@@ -22,7 +22,8 @@ class TranslationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Color.fromARGB(180, 163, 163, 163),
+      color: Colors.white.withOpacity(0.1),
+      
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -55,30 +56,37 @@ class TranslationCard extends StatelessWidget {
                 ],
               ),
             ),
-            ElevatedButton(
-               style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(150, 40),
-                          primary:Color.fromARGB(255, 6, 54, 188),
+            Container(
+              width: 200,
+              child: ElevatedButton(
+                 style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.all(5.0),
+                      elevation: 5.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      primary: const Color.fromARGB(255, 6, 54, 188), 
+                          ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TranslatorEditTranslation(
+                        currentTranslation: EditedTranslation(
+                          translationId: currentTranslation.translationId,
+                          translatedText: currentTranslation.translatedText,
+                          userId: loggedUser.id,
                         ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => TranslatorEditTranslation(
-                      currentTranslation: EditedTranslation(
-                        translationId: currentTranslation.translationId,
-                        translatedText: currentTranslation.translatedText,
-                        userId: loggedUser.id,
+                        loggedUser: loggedUser,
                       ),
-                      loggedUser: loggedUser,
                     ),
+                  );
+                },
+                child: const Text(
+                  'Visualizza',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    letterSpacing: 2
                   ),
-                );
-              },
-              child: const Text(
-                'Visualizza',
-                style: TextStyle(
-                  fontSize: 16.0,
                 ),
               ),
             ),

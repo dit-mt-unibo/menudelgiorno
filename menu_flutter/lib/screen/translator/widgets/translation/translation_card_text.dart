@@ -15,7 +15,7 @@ class TranslationCardText extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       maxLines: 2,
       style: const TextStyle(
-        color: Color.fromARGB(255, 43, 46, 47),
+        color: Color.fromARGB(255, 24, 25, 25),
         fontSize: 16.0,
       ),
     );

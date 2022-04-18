@@ -35,7 +35,9 @@ class RistoratoreHome extends StatelessWidget {
                 child: Column(
                   children: [
                     Card(
-                      color: Color.fromARGB(113, 179, 169, 169),
+                      
+                    
+                      color: Color.fromARGB(108, 99, 99, 99),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
@@ -99,7 +101,7 @@ class RistoratoreHome extends StatelessWidget {
                           ],
                         ),
                       ),
-                      elevation: 0,
+                      elevation: 5,
                     ),
                     Card(
                       color: Color.fromARGB(113, 179, 169, 169),

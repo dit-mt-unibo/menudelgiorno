@@ -137,7 +137,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                                 width: 1.5),
                           ),
                           prefixIcon: Icon(
-                            Icons.person,
+                            Icons.streetview_rounded,
                             color: const Color.fromARGB(255, 147, 19, 19),
                           ),
                           labelText: 'Indirizzo',

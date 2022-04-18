@@ -52,19 +52,19 @@ class TranslatorEditTranslation extends StatelessWidget {
                 child: Text(
                   'Correggi la traduzione',
                   style: TextStyle(
-                    fontSize: 50,
-                    fontFamily: 'Tangerine',
+                    fontSize: 40,
+                    fontFamily: 'Lancelot',
                     fontWeight: FontWeight.bold
                   ),
                 ),
               ),
               const SizedBox(
-                height: 25,
+                height: 15,
               ),
               TextField(
                 controller: _translationController,
                 keyboardType: TextInputType.multiline,
-                maxLines: 22,
+                maxLines: 20,
                 decoration: const InputDecoration(
                   hintText: 'Correggi questa traduzione...',
                   border: OutlineInputBorder(
@@ -77,58 +77,64 @@ class TranslatorEditTranslation extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(150, 40),
-                          primary: Color.fromARGB(255, 6, 54, 188),
+              Container(
+                width: 250,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(5.0),
+                      elevation: 5.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      primary: const Color.fromARGB(255, 6, 54, 188),
+                          ),
+                  onPressed: () async {
+                    final enteredTranslation = EditedTranslation(
+                      translationId: currentTranslation.translationId,
+                      translatedText: _translationController.text,
+                      userId: loggedUser.id,
+                    );
+                    final isUpdateSuccessful =
+                        await _updateTranslation(enteredTranslation);
+                    if (isUpdateSuccessful) {
+                      Fluttertoast.showToast(
+                        msg: 'Correzione salvata con successo!',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 16,
+                      );
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              TranslatorHome(loggedUser: loggedUser),
                         ),
-                onPressed: () async {
-                  final enteredTranslation = EditedTranslation(
-                    translationId: currentTranslation.translationId,
-                    translatedText: _translationController.text,
-                    userId: loggedUser.id,
-                  );
-                  final isUpdateSuccessful =
-                      await _updateTranslation(enteredTranslation);
-                  if (isUpdateSuccessful) {
-                    Fluttertoast.showToast(
-                      msg: 'Correzione salvata con successo!',
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.CENTER,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.green,
-                      textColor: Colors.white,
-                      fontSize: 16,
-                    );
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            TranslatorHome(loggedUser: loggedUser),
+                      );
+                    } else {
+                      Fluttertoast.showToast(
+                        msg: 'Errore durante il salvataggio!',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16,
+                      );
+                    }
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(
+                      top: 10.0,
+                      right: 20.0,
+                      bottom: 10.0,
+                      left: 20.0,
+                    ),
+                    child: Text(
+                      'Salva',
+                      style: TextStyle(
+                        fontSize: 18.0,
                       ),
-                    );
-                  } else {
-                    Fluttertoast.showToast(
-                      msg: 'Errore durante il salvataggio!',
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.CENTER,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.red,
-                      textColor: Colors.white,
-                      fontSize: 16,
-                    );
-                  }
-                },
-                child: const Padding(
-                  padding: EdgeInsets.only(
-                    top: 10.0,
-                    right: 20.0,
-                    bottom: 10.0,
-                    left: 20.0,
-                  ),
-                  child: Text(
-                    'Salva',
-                    style: TextStyle(
-                      fontSize: 18.0,
                     ),
                   ),
                 ),
