@@ -50,191 +50,202 @@ class DatiAnagraficiWidget extends StatelessWidget {
         title: const Text('Profilo'),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
-      body: FutureBuilder(
-        future: _getRegistry(loggedUser),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final registry = snapshot.data as Registry;
-            _firstNameController.text = registry.firstName;
-            _lastNameController.text = registry.lastName;
-            _emailController.text = registry.email;
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(32.0),
-              child: Column(
-                children: [
-                   Container(
-              alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.only(left: 20.0),
-              child: Column(children: const [
-                Text(
-                  'Modifica profilo',
-                  style: TextStyle(
-                      fontSize: 30.0,
-                      fontFamily: 'Lancelot',
-                      color: const Color.fromARGB(255, 147, 19, 19),
-                      fontWeight: FontWeight.normal),
-                ),
-              ]),
-            ),
-            SizedBox(height: 40,),
-                  TextField(
-                    controller: _firstNameController,
-                    keyboardType: TextInputType.name,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/back.jpg"),
+            fit: BoxFit.fill,
+            
+          ),
+        ),
+        child: FutureBuilder(
+          future: _getRegistry(loggedUser),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final registry = snapshot.data as Registry;
+              _firstNameController.text = registry.firstName;
+              _lastNameController.text = registry.lastName;
+              _emailController.text = registry.email;
+              return SingleChildScrollView(
+                padding: const EdgeInsets.all(32.0),
+                child: Column(
+                  children: [
+                     Container(
+                alignment: Alignment.centerLeft,
+                margin: const EdgeInsets.only(left: 20.0),
+                child: Column(children: const [
+                  Text(
+                    'Modifica profilo',
+                    style: TextStyle(
+                        fontSize: 30.0,
+                        fontFamily: 'Lancelot',
+                        color: const Color.fromARGB(255, 147, 19, 19),
+                        fontWeight: FontWeight.normal),
+                  ),
+                ]),
+              ),
+              SizedBox(height: 40,),
+                    TextField(
+                      controller: _firstNameController,
+                      keyboardType: TextInputType.name,
 
-                     style:
-                    const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
-                
-                decoration: const InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: const Color.fromARGB(255, 147, 19, 19),
-                          width: 1.5),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 107, 107, 107),
-                          width: 1.5),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color:const Color.fromARGB(255, 147, 19, 19),
-                    ),
-                    labelText: 'Nome',
-                    labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 69, 68, 68),
-                        fontSize: 25.0)),
-              
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextField(
-                    controller: _lastNameController,
-                    keyboardType: TextInputType.name,
-
-                     style:
-                    const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
-              
-                decoration: const InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: const Color.fromARGB(255, 147, 19, 19),
-                          width: 1.5),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 107, 107, 107),
-                          width: 1.5),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color: const Color.fromARGB(255, 147, 19, 19),
-                    ),
-                    labelText: 'Cognome',
-                    labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 69, 68, 68),
-                        fontSize: 25.0)),
-              
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-
-                     style:
-                    const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
-  
-                decoration: const InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: const Color.fromARGB(255, 147, 19, 19),
-                          width: 1.5),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 107, 107, 107),
-                          width: 1.5),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.email,
-                      color: const Color.fromARGB(255, 147, 19, 19),
-                    ),
-                    labelText: 'Email',
-                    labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 69, 68, 68),
-                        fontSize: 25.0)),
-              
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Container(
-                    width: 250,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                         padding: const EdgeInsets.all(5.0),
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  primary: const Color.fromARGB(255, 147, 19, 19),
+                       style:
+                      const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+                  
+                  decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: const Color.fromARGB(255, 147, 19, 19),
+                            width: 1.5),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.only(
-                          top: 10.0,
-                          right: 20.0,
-                          bottom: 10.0,
-                          left: 20.0,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 107, 107, 107),
+                            width: 1.5),
+                      ),
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color:const Color.fromARGB(255, 147, 19, 19),
+                      ),
+                      labelText: 'Nome',
+                      labelStyle: TextStyle(
+                          color: Color.fromARGB(255, 69, 68, 68),
+                          fontSize: 25.0)),
+                
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    TextField(
+                      controller: _lastNameController,
+                      keyboardType: TextInputType.name,
+
+                       style:
+                      const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+                
+                  decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: const Color.fromARGB(255, 147, 19, 19),
+                            width: 1.5),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 107, 107, 107),
+                            width: 1.5),
+                      ),
+                      prefixIcon: Icon(
+                        Icons.person,
+                        color: const Color.fromARGB(255, 147, 19, 19),
+                      ),
+                      labelText: 'Cognome',
+                      labelStyle: TextStyle(
+                          color: Color.fromARGB(255, 69, 68, 68),
+                          fontSize: 25.0)),
+                
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    TextField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+
+                       style:
+                      const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+  
+                  decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: const Color.fromARGB(255, 147, 19, 19),
+                            width: 1.5),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 107, 107, 107),
+                            width: 1.5),
+                      ),
+                      prefixIcon: Icon(
+                        Icons.email,
+                        color: const Color.fromARGB(255, 147, 19, 19),
+                      ),
+                      labelText: 'Email',
+                      labelStyle: TextStyle(
+                          color: Color.fromARGB(255, 69, 68, 68),
+                          fontSize: 25.0)),
+                
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Container(
+                      width: 250,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                           padding: const EdgeInsets.all(5.0),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    primary: const Color.fromARGB(255, 147, 19, 19),
                         ),
-                        child: Text(
-                          'Salva',
-                          style: TextStyle(
-                            fontSize: 18,
+                        child: const Padding(
+                          padding: EdgeInsets.only(
+                            top: 10.0,
+                            right: 20.0,
+                            bottom: 10.0,
+                            left: 20.0,
+                          ),
+                          child: Text(
+                            'Salva',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
                           ),
                         ),
+                        onPressed: () async {
+                          final enteredRegistry = Registry(
+                            id: registry.id,
+                            firstName: _firstNameController.text,
+                            lastName: _lastNameController.text,
+                            email: _emailController.text,
+                          );
+                          final isUpdateSuccessful =
+                              await _updateRegistry(enteredRegistry);
+                          if (isUpdateSuccessful) {
+                            Fluttertoast.showToast(
+                              msg: 'Nuovi dati salvati con successo!',
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM_RIGHT,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.green,
+                              textColor: Colors.white,
+                              fontSize: 16,
+                            );
+                          } else {
+                            Fluttertoast.showToast(
+                              msg: 'Errore durante il salvataggio!',
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM_RIGHT,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16,
+                            );
+                          }
+                        },
                       ),
-                      onPressed: () async {
-                        final enteredRegistry = Registry(
-                          id: registry.id,
-                          firstName: _firstNameController.text,
-                          lastName: _lastNameController.text,
-                          email: _emailController.text,
-                        );
-                        final isUpdateSuccessful =
-                            await _updateRegistry(enteredRegistry);
-                        if (isUpdateSuccessful) {
-                          Fluttertoast.showToast(
-                            msg: 'Nuovi dati salvati con successo!',
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM_RIGHT,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.green,
-                            textColor: Colors.white,
-                            fontSize: 16,
-                          );
-                        } else {
-                          Fluttertoast.showToast(
-                            msg: 'Errore durante il salvataggio!',
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM_RIGHT,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16,
-                          );
-                        }
-                      },
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+          },
+        ),
       ),
     );
   }
