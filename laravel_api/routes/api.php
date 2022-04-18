@@ -18,6 +18,7 @@ Route::post('auth/logout', [AuthController::class, 'logout']);
 // Development
 Route::apiresource('users', UserController::class);
 Route::apiResource('users.languages', LanguageUserController::class);
+Route::get('users/{userId}/translations', [TranslationController::class,'userTranslation']);
 Route::apiResource('registries', RegistryController::class);
 Route::apiResource('languages', LanguageController::class);
 Route::apiResource('restaurants', RestaurantController::class);

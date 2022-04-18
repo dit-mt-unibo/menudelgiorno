@@ -30,6 +30,12 @@ class DatabaseSeeder extends Seeder
         DB::table('restaurants')->truncate();
         DB::table('menus')->truncate();
         DB::table('translations')->truncate();
+        DB::table('french_glossaries')->truncate();
+        DB::table('russian_glossaries')->truncate();
+        DB::table('portuguese_glossaries')->truncate();
+        DB::table('deutsch_glossaries')->truncate();
+        DB::table('english_glossaries')->truncate();
+        DB::table('spanish_glossaries')->truncate();
 
         $this->call([
             UserSeeder::class,
@@ -39,6 +45,12 @@ class DatabaseSeeder extends Seeder
             RestaurantSeeder::class,
             MenuSeeder::class,
             TranslationSeeder::class,
+            French_glossarieSeeder::class,
+            Russian_glossarieSeeder::class,
+            Deutsch_glossarieSeeder::class,
+            Portuguese_glossarieSeeder::class,
+            English_glossarieSeeder::class,
+            Spanish_glossarieSeeder::class
         ]);
 
         // Ripristina i controlli di chiave esterna

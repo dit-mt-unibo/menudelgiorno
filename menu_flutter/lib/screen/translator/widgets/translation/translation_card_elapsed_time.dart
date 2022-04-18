@@ -13,9 +13,10 @@ class TranslationCardElapsedTime extends StatelessWidget {
     return Text(
       elapsedTime.toUpperCase(),
       style: const TextStyle(
-        color: Colors.blue,
-        fontSize: 14.0,
-        fontStyle: FontStyle.italic,
+        color: Color.fromARGB(255, 6, 54, 188),
+        fontSize: 15.0,
+       fontFamily: 'Lancelot'
+
       ),
     );
   }

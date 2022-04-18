@@ -13,9 +13,10 @@ class TranslationCardLanguage extends StatelessWidget {
     return Text(
       language.toUpperCase(),
       style: const TextStyle(
-        color: Colors.blue,
-        fontSize: 14.0,
+        color: Color.fromARGB(255, 6, 54, 188),
+        fontSize: 18.0,
         fontStyle: FontStyle.italic,
+        fontFamily: 'Lancelot'
       ),
     );
   }

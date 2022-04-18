@@ -34,30 +34,6 @@ class RestaurantSeeder extends Seeder
         ]);
 
         DB::table('restaurants')->insert([
-            'name' => 'Trattoria Acquarola',
-            'address' => 'Via Garampa',
-            'street_number' => '4106',
-            'postcode' => '47521',
-            'city' => 'Cesena',
-            'province' => 'Forlì-Cesena',
-            'user_id' => '3',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('restaurants')->insert([
-            'name' => 'Ristorante Al Binario 27',
-            'address' => 'Piazzale Franco Modigliani',
-            'street_number' => '100',
-            'postcode' => '47522',
-            'city' => 'Cesena',
-            'province' => 'Forlì-Cesena',
-            'user_id' => '4',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('restaurants')->insert([
             'name' => 'Ristorante Al Molino',
             'address' => 'Via Garampa',
             'street_number' => '364',
