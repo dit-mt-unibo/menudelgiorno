@@ -15,6 +15,7 @@ class TranslationResource extends JsonResource
      */
     public function toArray($request)
     {
+        $user=$this->whenLoaded('user');
         return [
             'id' => $this->id,
             'text' => $this->text,
@@ -22,6 +23,7 @@ class TranslationResource extends JsonResource
             'menu' => new MenuResource($this->whenLoaded('menu')),
             'elapsed_time' => $this->created_at->diffForHumans(),
             'user_id'=>$this->user_id,
+
             'numero_modifiche'=>$this->numero_modifiche
 
             //'menu_id'=>$this->menu_id,

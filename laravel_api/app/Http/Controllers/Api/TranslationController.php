@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TranslationRequest;
 use App\Http\Resources\TranslationResource;
 use App\Models\Translation;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class TranslationController extends Controller
@@ -25,7 +26,13 @@ class TranslationController extends Controller
         return TranslationResource::collection($translation)->response();
     }
 
+    public function userTranslation($userId){
 
+       $user=User::find($userId);
+       $items= $user->restaurant()->with(['menu.translation'])->get();//les translation del menu di un utente.
+        return response()->json($items);
+
+    }
 
     public function store(TranslationRequest $request)
     {
