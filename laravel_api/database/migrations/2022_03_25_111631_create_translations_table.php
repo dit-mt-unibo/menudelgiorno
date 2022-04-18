@@ -19,7 +19,7 @@ class CreateTranslationsTable extends Migration
             $table->id();
             $table->integer('language_id');
             $table->integer('menu_id');
-            $table->integer('user_id')->nullable(); // Id utente traduttore
+            $table->integer('user_id')->comment('id del traduttore')->nullable(); // Id utente traduttore
             $table->integer('state')->default(0);
             $table->integer('numero_modifiche')->nullable(true);
             $table->text('text');
