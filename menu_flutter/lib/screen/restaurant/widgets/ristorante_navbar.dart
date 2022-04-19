@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../models/app/user.dart';
 import '../../app/login.dart';
+import '../../app/welcome.dart';
 import '../pages/dati_anagrafici.dart';
 import '../pages/il_mio_ristorante.dart';
 import '../pages/inserisci_menu.dart';
@@ -113,7 +114,7 @@ class RistoranteNavBar extends StatelessWidget {
       case 4:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => LoginScreen(),
+            builder: (context) => const WelcomeScreen(),
           ),
         );
         break;
