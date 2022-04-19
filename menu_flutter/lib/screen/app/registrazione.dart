@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 
 import 'welcome.dart';
 
@@ -16,44 +16,43 @@ class RegistrazioneScreen extends StatefulWidget {
 class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
   var value;
 
-  //controlli dei campi
-  TextEditingController user = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController pwd = TextEditingController();
-  TextEditingController pwd_conf = TextEditingController();
-  TextEditingController role = TextEditingController();
+  final _userController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _pwdController = TextEditingController();
+  final _pwdConfController = TextEditingController();
 
-  //chiamata api di registratione utente
   Future register() async {
-    var url = "http://10.0.2.2:8000/api/auth/register";
-    var response = await http.post(Uri.parse(url), body: {
-      "user": user.text,
-      "email": email.text,
-      "password": pwd.text,
-      "password_confirmation": pwd_conf.text,
+    const url = "http://10.0.2.2:8000/api/auth/register";
+    final response = await http.post(Uri.parse(url), body: {
+      "user": _userController.text,
+      "email": _emailController.text,
+      "password": _pwdController.text,
+      "password_confirmation": _pwdConfController.text,
       "role": value
     });
 
-    var data = json.decode(response.body);
-    //messaggio di registrazione
+    final data = json.decode(response.body);
+
     if (data == "Error") {
       Fluttertoast.showToast(
-          msg: 'Utente già registrato!',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16);
+        msg: 'Utente già registrato!',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16,
+      );
     } else {
       Fluttertoast.showToast(
-          msg: 'Registrazione avvenuta con successo!',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-          fontSize: 16);
+        msg: 'Registrazione avvenuta con successo!',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16,
+      );
     }
 
     Navigator.push(
@@ -70,7 +69,6 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
     value = 1;
   }
 
-  //per cambiare la radio
   setSelectedRadio(val) {
     setState(() {
       value = val;
@@ -81,8 +79,14 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registrazione',
-        style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Registrazione',
+          style: TextStyle(
+            fontSize: 22,
+            fontFamily: 'NotoSerifDisplay',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: Container(
@@ -90,7 +94,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/reg.jpg"),
+            image: AssetImage('images/reg.jpg'),
             fit: BoxFit.fill,
           ),
         ),
@@ -102,100 +106,85 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
               Container(
                 alignment: Alignment.centerLeft,
                 margin: const EdgeInsets.only(left: 20.0),
-                child: Column(children: const [
-                  Text(
-                    'Nuovo utente',
-                    style: TextStyle(
+                child: Column(
+                  children: const [
+                    Text(
+                      'Nuovo utente',
+                      style: TextStyle(
                         fontSize: 30.0,
                         fontFamily: 'Lancelot',
                         color: Color.fromARGB(255, 68, 1, 1),
-                        fontWeight: FontWeight.w700),
-                  ),
-                ]),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
                 padding: const EdgeInsets.all(20),
                 child: TextField(
                   style: const TextStyle(
-                      color: Colors.black),
-                  controller: user,
+                    color: Colors.black,
+                  ),
+                  controller: _userController,
                   decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 147, 19, 19),
-                            width: 1.5),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 147, 19, 19),
+                        width: 1.5,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 107, 107, 107),
-                            width: 1.5),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 107, 107, 107),
+                        width: 1.5,
                       ),
-                      prefixIcon: Icon(
-                        Icons.people,
-                        color: Color.fromARGB(255, 113, 2, 2),
-                      ),
-                      labelText: 'Username',
-                      labelStyle: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0)),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.people,
+                      color: Color.fromARGB(255, 113, 2, 2),
+                    ),
+                    labelText: 'Username',
+                    labelStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
+                  ),
                 ),
               ),
               Container(
                 padding: const EdgeInsets.all(20),
                 child: TextField(
                   style: const TextStyle(
-                      color: Colors.black),
-                  controller: email,
+                    color: Colors.black,
+                  ),
+                  controller: _emailController,
                   decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 147, 19, 19),
-                            width: 1.5),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 147, 19, 19),
+                        width: 1.5,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 107, 107, 107),
-                            width: 1.5),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 107, 107, 107),
+                        width: 1.5,
                       ),
-                      prefixIcon: Icon(
-                        Icons.email,
-                        color: Color.fromARGB(255, 113, 2, 2),
-                      ),
-                      labelText: 'Email',
-                      labelStyle: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0)),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: TextField(
-                  obscureText: true,
-                  style: const TextStyle(
-                      color: Colors.black),
-                  controller: pwd,
-                  decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 147, 19, 19),
-                            width: 1.5),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 107, 107, 107),
-                            width: 1.5),
-                      ),
-                      labelText: 'Password',
-                      labelStyle: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0),
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        color: Color.fromARGB(255, 113, 2, 2),
-                      )),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Color.fromARGB(255, 113, 2, 2),
+                    ),
+                    labelText: 'Email',
+                    labelStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
+                  ),
                 ),
               ),
               Container(
@@ -203,60 +192,106 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                 child: TextField(
                   obscureText: true,
                   style: const TextStyle(
-                      color: Colors.black),
-                  controller: pwd_conf,
+                    color: Colors.black,
+                  ),
+                  controller: _pwdController,
                   decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 147, 19, 19),
-                            width: 1.5),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 147, 19, 19),
+                        width: 1.5,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 107, 107, 107),
-                            width: 1.5),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 107, 107, 107),
+                        width: 1.5,
                       ),
-                      labelText: 'Conferma Password',
-                      labelStyle: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0),
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        color: Color.fromARGB(255, 113, 2, 2),
-                      )),
+                    ),
+                    labelText: 'Password',
+                    labelStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Color.fromARGB(255, 113, 2, 2),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                child: TextField(
+                  obscureText: true,
+                  style: const TextStyle(
+                    color: Colors.black,
+                  ),
+                  controller: _pwdConfController,
+                  decoration: const InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 147, 19, 19),
+                        width: 1.5,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 107, 107, 107),
+                        width: 1.5,
+                      ),
+                    ),
+                    labelText: 'Conferma Password',
+                    labelStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Color.fromARGB(255, 113, 2, 2),
+                    ),
+                  ),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Radio(
-                    value: "Ristoratore",
-                    activeColor: Color.fromARGB(255, 113, 2, 2),
+                    value: 'Ristoratore',
+                    activeColor: const Color.fromARGB(255, 113, 2, 2),
                     groupValue: value,
                     onChanged: (val) {
                       setState(() {
-                        value = "Ristoratore";
+                        value = 'Ristoratore';
                       });
                       setSelectedRadio(val as int);
                     },
                   ),
                   const Text(
                     'Ristoratore',
-                    style: TextStyle(fontSize: 25, fontFamily: 'Lancelot'),
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontFamily: 'Lancelot',
+                    ),
                   ),
                   Radio(
-                    value: "Traduttore",
-                    activeColor: Color.fromARGB(255, 113, 2, 2),
+                    value: 'Traduttore',
+                    activeColor: const Color.fromARGB(255, 113, 2, 2),
                     groupValue: value,
                     onChanged: (val) {
                       setState(() {
-                        value = "Traduttore";
+                        value = 'Traduttore';
                       });
                       setSelectedRadio(val as int);
                     },
                   ),
-                  const Text('Traduttore',
-                      style: TextStyle(fontSize: 25, fontFamily: 'Lancelot')),
+                  const Text(
+                    'Traduttore',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontFamily: 'Lancelot',
+                    ),
+                  ),
                 ],
               ),
               Container(
@@ -267,15 +302,18 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                     padding: const EdgeInsets.all(15.0),
                     elevation: 5.0,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
                     primary: const Color.fromARGB(255, 147, 19, 19),
                   ),
                   child: const Text(
                     'Registra',
                     style: TextStyle(
-                        fontSize: 18.0,
-                    letterSpacing: 2.0,
-                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold),
+                      fontSize: 18.0,
+                      letterSpacing: 2.0,
+                      fontFamily: 'NotoSerifDisplay',
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   onPressed: () {
                     register();

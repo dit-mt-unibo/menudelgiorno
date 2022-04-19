@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../models/app/user.dart';
-import '../../../models/translator/language/checked_language_list.dart';
-import '../../../models/translator/language/language_list.dart';
-import '../../../models/translator/language/matched_language_list.dart';
-import '../widgets/language_checkbox_list.dart';
+import '../../models/app/user.dart';
+import '../../models/translator/language/checked_language_list.dart';
+import '../../models/translator/language/language_list.dart';
+import '../../models/translator/language/matched_language_list.dart';
+import '../../widgets/restaurant/language/checkbox_list.dart';
 
 class ScegliLinguaWidget extends StatelessWidget {
   const ScegliLinguaWidget({

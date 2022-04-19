@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../models/app/registry.dart';
-import '../../../models/app/user.dart';
+import '../../models/app/registry.dart';
+import '../../models/app/user.dart';
 
 class DatiAnagraficiWidget extends StatelessWidget {
   DatiAnagraficiWidget({
@@ -47,7 +47,15 @@ class DatiAnagraficiWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profilo',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
+        title: const Text(
+          'Profilo',
+          style: TextStyle(
+            fontSize: 22,
+            fontFamily: 'NotoSerifDisplay',
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+        ),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: Container(
@@ -55,9 +63,8 @@ class DatiAnagraficiWidget extends StatelessWidget {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/back.jpg"),
+            image: AssetImage('images/back.jpg'),
             fit: BoxFit.fill,
-            
           ),
         ),
         child: FutureBuilder(
@@ -72,48 +79,56 @@ class DatiAnagraficiWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(32.0),
                 child: Column(
                   children: [
-                     Container(
-                alignment: Alignment.centerLeft,
-                margin: const EdgeInsets.only(left: 20.0),
-                child: Column(children: const [
-                  Text(
-                    'Modifica profilo',
-                    style: TextStyle(
-                        fontSize: 30.0,
-                        fontFamily: 'Lancelot',
-                        color: const Color.fromARGB(255, 147, 19, 19),
-                        fontWeight: FontWeight.w700),
-                  ),
-                ]),
-              ),
-              SizedBox(height: 40,),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      margin: const EdgeInsets.only(left: 20.0),
+                      child: Column(
+                        children: const [
+                          Text(
+                            'Modifica profilo',
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              fontFamily: 'Lancelot',
+                              color: Color.fromARGB(255, 147, 19, 19),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
                     TextField(
                       controller: _firstNameController,
                       keyboardType: TextInputType.name,
-
-                       style:
-                      const TextStyle(color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
-                  
-                  decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 147, 19, 19),
-                            width: 1.5),
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 9, 9, 9),
+                        fontSize: 20,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color:Color.fromARGB(255, 107, 107, 107),
-                            width: 1.5),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.person,
-                        color:const Color.fromARGB(255, 147, 19, 19),
-                      ),
-                      labelText: 'Nome',
-                      labelStyle: TextStyle(
+                      decoration: const InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 147, 19, 19),
+                            width: 1.5,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 107, 107, 107),
+                            width: 1.5,
+                          ),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: Color.fromARGB(255, 147, 19, 19),
+                        ),
+                        labelText: 'Nome',
+                        labelStyle: TextStyle(
                           color: Color.fromARGB(255, 43, 42, 42),
-                          fontSize: 25.0)),
-                
+                          fontSize: 25.0,
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 25,
@@ -121,30 +136,33 @@ class DatiAnagraficiWidget extends StatelessWidget {
                     TextField(
                       controller: _lastNameController,
                       keyboardType: TextInputType.name,
-
-                       style:
-                      const TextStyle(color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
-                
-                  decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 147, 19, 19),
-                            width: 1.5),
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 9, 9, 9),
+                        fontSize: 20,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color:Color.fromARGB(255, 107, 107, 107),
-                            width: 1.5),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.person,
-                        color: const Color.fromARGB(255, 147, 19, 19),
-                      ),
-                      labelText: 'Cognome',
-                      labelStyle: TextStyle(
+                      decoration: const InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 147, 19, 19),
+                            width: 1.5,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 107, 107, 107),
+                            width: 1.5,
+                          ),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: Color.fromARGB(255, 147, 19, 19),
+                        ),
+                        labelText: 'Cognome',
+                        labelStyle: TextStyle(
                           color: Color.fromARGB(255, 43, 42, 42),
-                          fontSize: 25.0)),
-                
+                          fontSize: 25.0,
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 25,
@@ -152,43 +170,47 @@ class DatiAnagraficiWidget extends StatelessWidget {
                     TextField(
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
-
-                       style:
-                      const TextStyle(color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
-  
-                  decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 147, 19, 19),
-                            width: 1.5),
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 9, 9, 9),
+                        fontSize: 20,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
+                      decoration: const InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(255, 147, 19, 19),
+                            width: 1.5,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
                             color: Color.fromARGB(255, 107, 107, 107),
-                            width: 1.5),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.email,
-                        color: const Color.fromARGB(255, 147, 19, 19),
-                      ),
-                      labelText: 'Email',
-                      labelStyle: TextStyle(
+                            width: 1.5,
+                          ),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: Color.fromARGB(255, 147, 19, 19),
+                        ),
+                        labelText: 'Email',
+                        labelStyle: TextStyle(
                           color: Color.fromARGB(255, 43, 42, 42),
-                          fontSize: 25.0)),
-                
+                          fontSize: 25.0,
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 50,
                     ),
-                    Container(
+                    SizedBox(
                       width: 250,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                           padding: const EdgeInsets.all(5.0),
-                    elevation: 5.0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    primary: const Color.fromARGB(255, 147, 19, 19),
+                          padding: const EdgeInsets.all(5.0),
+                          elevation: 5.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          primary: const Color.fromARGB(255, 147, 19, 19),
                         ),
                         child: const Padding(
                           padding: EdgeInsets.only(
@@ -201,8 +223,9 @@ class DatiAnagraficiWidget extends StatelessWidget {
                             'Salva',
                             style: TextStyle(
                               fontSize: 18.0,
-                    letterSpacing: 2.0,
-                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold
+                              letterSpacing: 2.0,
+                              fontFamily: 'NotoSerifDisplay',
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),

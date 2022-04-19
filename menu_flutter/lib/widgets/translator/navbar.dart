@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/app/user.dart';
-import '../../app/welcome.dart';
-import '../pages/edit_languages.dart';
-import '../pages/edit_registry.dart';
-import '../pages/home.dart';
+import '../../models/app/user.dart';
+import '../../screen/app/welcome.dart';
+import '../../screen/translator/edit_languages.dart';
+import '../../screen/translator/edit_registry.dart';
+import '../../screen/translator/home.dart';
 
 class TranslatorNavbar extends StatelessWidget {
   const TranslatorNavbar({
@@ -41,23 +41,27 @@ class TranslatorNavbar extends StatelessWidget {
       case 0:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => TranslatorHome(loggedUser: loggedUser),
+            builder: (context) => TranslatorHome(
+              loggedUser: loggedUser,
+            ),
           ),
         );
         break;
       case 1:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) =>
-                TranslatorEditRegistry(loggedUser: loggedUser),
+            builder: (context) => TranslatorEditRegistry(
+              loggedUser: loggedUser,
+            ),
           ),
         );
         break;
       case 2:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) =>
-                TranslatorEditLanguages(loggedUser: loggedUser),
+            builder: (context) => TranslatorEditLanguages(
+              loggedUser: loggedUser,
+            ),
           ),
         );
         break;

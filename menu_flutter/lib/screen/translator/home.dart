@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-import '../../../models/app/user.dart';
-import '../../../models/translator/translation/home_translation.dart';
-import '../widgets/navbar.dart';
-import '../widgets/translation/translation_card_list.dart';
+import '../../models/app/user.dart';
+import '../../models/translator/translation/home_translation.dart';
+import '../../widgets/translator/navbar.dart';
+import '../../widgets/translator/translation/card_list.dart';
 
 class TranslatorHome extends StatelessWidget {
   const TranslatorHome({
@@ -38,8 +38,16 @@ class TranslatorHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
-        backgroundColor:Color.fromARGB(255, 6, 54, 188),
+        title: const Text(
+          'Home',
+          style: TextStyle(
+            fontSize: 22,
+            fontFamily: 'NotoSerifDisplay',
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 6, 54, 188),
       ),
       body: Stack(
         children: [

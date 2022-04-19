@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/app/user.dart';
-import '../../app/login.dart';
-import '../../app/welcome.dart';
-import '../pages/dati_anagrafici.dart';
-import '../pages/il_mio_ristorante.dart';
-import '../pages/inserisci_menu.dart';
-import '../pages/ristoratore_home.dart';
+import '../../models/app/user.dart';
+import '../../screen/app/login.dart';
+import '../../screen/app/welcome.dart';
+import '../../screen/restaurant/dati_anagrafici.dart';
+import '../../screen/restaurant/home.dart';
+import '../../screen/restaurant/il_mio_ristorante.dart';
+import '../../screen/restaurant/inserisci_menu.dart';
 
-class RistoranteNavBar extends StatelessWidget {
-  const RistoranteNavBar({
+class RestaurantNavbar extends StatelessWidget {
+  const RestaurantNavbar({
     Key? key,
     required this.loggedUser,
   }) : super(key: key);
@@ -86,7 +86,7 @@ class RistoranteNavBar extends StatelessWidget {
       case 0:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => RistoratoreHome(loggedUser: loggedUser),
+            builder: (context) => RestaurantHome(loggedUser: loggedUser),
           ),
         );
         break;
@@ -125,7 +125,6 @@ class RistoranteNavBar extends StatelessWidget {
           ),
         );
         break;
-      default:
     }
   }
 }

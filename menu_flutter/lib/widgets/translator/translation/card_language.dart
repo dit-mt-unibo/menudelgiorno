@@ -16,7 +16,7 @@ class TranslationCardLanguage extends StatelessWidget {
         color: Color.fromARGB(255, 6, 54, 188),
         fontSize: 14.0,
         fontStyle: FontStyle.italic,
-        fontFamily: 'NotoSerifDisplay'
+        fontFamily: 'NotoSerifDisplay',
       ),
     );
   }
