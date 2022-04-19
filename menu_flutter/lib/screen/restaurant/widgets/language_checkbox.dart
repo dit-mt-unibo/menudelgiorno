@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/app/language.dart';
+import '../../../models/app/language.dart';
 
 class RestaurantLanguageCheckbox extends StatelessWidget {
   const RestaurantLanguageCheckbox({
