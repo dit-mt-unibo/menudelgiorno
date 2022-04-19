@@ -16,7 +16,7 @@ class TranslationCardText extends StatelessWidget {
       maxLines: 2,
       style: const TextStyle(
         color: Color.fromARGB(255, 24, 25, 25),
-        fontSize: 16.0,
+        fontSize: 17.0,
       ),
     );
   }

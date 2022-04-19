@@ -85,7 +85,8 @@ class TranslationCard extends StatelessWidget {
                   'Visualizza',
                   style: TextStyle(
                     fontSize: 16.0,
-                    letterSpacing: 2
+                    letterSpacing: 1.5,
+                    fontFamily: 'NotoSerifDisplay'
                   ),
                 ),
               ),

@@ -36,7 +36,7 @@ class InserisciMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Menu'),
+        title: const Text('Menu',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: Container(
@@ -99,7 +99,9 @@ class InserisciMenuScreen extends StatelessWidget {
                           child: const Text(
                             'Procedi',
                             style: TextStyle(
-                              fontSize: 19,
+                             fontSize: 18.0,
+                    letterSpacing: 2.0,
+                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold
                             ),
                           ),
                           onPressed: () {

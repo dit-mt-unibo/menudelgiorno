@@ -40,7 +40,7 @@ class TranslatorEditTranslation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Traduzione'),
+        title: const Text('Traduzione',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
         backgroundColor: Color.fromARGB(255, 6, 54, 188),
       ),
       body: Padding(
@@ -50,16 +50,17 @@ class TranslatorEditTranslation extends StatelessWidget {
             children: [
               const Center(
                 child: Text(
-                  'Correggi la traduzione',
+                  'Correggi traduzione',
                   style: TextStyle(
-                    fontSize: 40,
-                    fontFamily: 'Lancelot',
-                    fontWeight: FontWeight.bold
+                   fontSize: 30.0,
+                        fontFamily: 'Lancelot',
+                        color: Color.fromARGB(255, 6, 54, 188),
+                        fontWeight: FontWeight.w700
                   ),
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 20,
               ),
               TextField(
                 controller: _translationController,
@@ -134,6 +135,8 @@ class TranslatorEditTranslation extends StatelessWidget {
                       'Salva',
                       style: TextStyle(
                         fontSize: 18.0,
+                    letterSpacing: 2.0,
+                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold
                       ),
                     ),
                   ),

@@ -54,7 +54,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ristorante'),
+        title: const Text('Ristorante',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5),),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: Container(
@@ -105,7 +105,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                       child: TextFormField(
                         controller: _restaurantNameController,
                         style: const TextStyle(
-                            color: Colors.black),
+                            color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
                         decoration: const InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -114,7 +114,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.black,
+                                  color: Color.fromARGB(255, 107, 107, 107),
                                   width: 1.5),
                             ),
                             prefixIcon: Icon(
@@ -123,8 +123,8 @@ class IlMioRistoranteScreen extends StatelessWidget {
                             ),
                             labelText: 'Nome Ristorante',
                             labelStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 25.0)),
+                                color: Color.fromARGB(255, 43, 42, 42),
+                          fontSize: 25.0)),
                       ),
                     ),
                     Container(
@@ -133,7 +133,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                       child: TextFormField(
                         controller: _addressController,
                         style: const TextStyle(
-                            color: Colors.black),
+                            color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
                         decoration: const InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -142,7 +142,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.black,
+                                  color: Color.fromARGB(255, 107, 107, 107),
                                   width: 1.5),
                             ),
                             prefixIcon: Icon(
@@ -151,8 +151,8 @@ class IlMioRistoranteScreen extends StatelessWidget {
                             ),
                             labelText: 'Indirizzo',
                             labelStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 25.0)),
+                               color: Color.fromARGB(255, 43, 42, 42),
+                          fontSize: 25.0)),
                       ),
                     ),
                     Row(children: [
@@ -164,7 +164,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                           child: TextFormField(
                             controller: _streetNumberController,
                             style: const TextStyle(
-                                color: Colors.black),
+                               color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
                             decoration: const InputDecoration(
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -174,7 +174,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Colors.black,
+                                      color:Color.fromARGB(255, 107, 107, 107),
                                       width: 1.5),
                                 ),
                                 prefixIcon: Icon(
@@ -183,8 +183,8 @@ class IlMioRistoranteScreen extends StatelessWidget {
                                 ),
                                 labelText: 'N° civico',
                                 labelStyle: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 25.0)),
+                                   color: Color.fromARGB(255, 43, 42, 42),
+                          fontSize: 25.0)),
                           ),
                         ),
                       ),
@@ -196,7 +196,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                           child: TextFormField(
                             controller: _postCodeController,
                             style: const TextStyle(
-                                color: Colors.black),
+                                color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
                             decoration: const InputDecoration(
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -206,7 +206,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Colors.black,
+                                      color: Color.fromARGB(255, 107, 107, 107),
                                       width: 1.5),
                                 ),
                                 prefixIcon: Icon(
@@ -215,8 +215,8 @@ class IlMioRistoranteScreen extends StatelessWidget {
                                 ),
                                 labelText: 'Cap',
                                 labelStyle: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 25.0)),
+                                   color: Color.fromARGB(255, 43, 42, 42),
+                          fontSize: 25.0)),
                           ),
                         ),
                       ),
@@ -227,7 +227,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                       child: TextFormField(
                         controller: _cityController,
                         style: const TextStyle(
-                            color: Colors.black),
+                            color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
                         decoration: const InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -236,7 +236,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.black,
+                                  color: Color.fromARGB(255, 107, 107, 107),
                                   width: 1.5),
                             ),
                             prefixIcon: Icon(
@@ -245,8 +245,8 @@ class IlMioRistoranteScreen extends StatelessWidget {
                             ),
                             labelText: 'Città',
                             labelStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 25.0)),
+                                color: Color.fromARGB(255, 43, 42, 42),
+                          fontSize: 25.0)),
                       ),
                     ),
                     Container(
@@ -255,7 +255,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                       child: TextFormField(
                         controller: _provinceController,
                         style: const TextStyle(
-                            color: Colors.black),
+                           color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
                         decoration: const InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -264,7 +264,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.black,
+                                  color: Color.fromARGB(255, 107, 107, 107),
                                   width: 1.5),
                             ),
                             prefixIcon: Icon(
@@ -273,8 +273,8 @@ class IlMioRistoranteScreen extends StatelessWidget {
                             ),
                             labelText: 'Provincia',
                             labelStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 25.0)),
+                                color: Color.fromARGB(255, 43, 42, 42),
+                          fontSize: 25.0)),
                       ),
                     ),
                     const SizedBox(
@@ -293,7 +293,9 @@ class IlMioRistoranteScreen extends StatelessWidget {
                         child: const Text(
                           'Salva',
                           style: TextStyle(
-                            fontSize: 19,
+                            fontSize: 18.0,
+                    letterSpacing: 2.0,
+                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold
                           ),
                         ),
                         onPressed: () async {

@@ -16,6 +16,7 @@ class TranslationCardTitle extends StatelessWidget {
         color:Color.fromARGB(255, 6, 54, 188),
         fontSize: 18.0,
         fontWeight: FontWeight.bold,
+        fontFamily: 'NotoSerifDisplay'
       ),
     );
   }

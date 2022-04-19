@@ -15,7 +15,7 @@ class RistoratoreHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Home',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: Container(

@@ -47,7 +47,7 @@ class TranslatorEditLanguages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Le mie Lingue'),
+        title: const Text('Le mie Lingue',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
         backgroundColor: Color.fromARGB(255, 6, 54, 188),
       ),
       body: Container(

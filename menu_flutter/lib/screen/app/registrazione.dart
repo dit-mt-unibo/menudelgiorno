@@ -81,7 +81,8 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registrazione'),
+        title: const Text('Registrazione',
+        style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold)),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: Container(
@@ -272,11 +273,9 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                   child: const Text(
                     'Registra',
                     style: TextStyle(
-                        fontSize: 18,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        letterSpacing: 1.5,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'OpenSans'),
+                        fontSize: 18.0,
+                    letterSpacing: 2.0,
+                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
                     register();

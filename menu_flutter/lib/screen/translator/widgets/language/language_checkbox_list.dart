@@ -102,7 +102,9 @@ class _TranslatorLanguageCheckboxListState
                 child: Text(
                   'Salva',
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 18.0,
+                    letterSpacing: 2.0,
+                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold
                   ),
                 ),
               ),

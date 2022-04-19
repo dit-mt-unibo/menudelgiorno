@@ -201,11 +201,9 @@ class LoginScreen extends StatelessWidget {
                     child: const Text(
                       'Login',
                       style: TextStyle(
-                          fontSize: 18,
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          letterSpacing: 1.5,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'OpenSans'),
+                         fontSize: 18.0,
+                    letterSpacing: 2.0,
+                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold),
                     ),
                     onPressed: () async {
                       User loggedUser = await _doLogin();

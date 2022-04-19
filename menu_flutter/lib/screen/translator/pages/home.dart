@@ -38,7 +38,7 @@ class TranslatorHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Home',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
         backgroundColor:Color.fromARGB(255, 6, 54, 188),
       ),
       body: Stack(

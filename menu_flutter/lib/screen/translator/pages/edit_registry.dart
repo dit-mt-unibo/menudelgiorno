@@ -43,7 +43,7 @@ class TranslatorEditRegistry extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profilo'),
+        title: const Text('Profilo',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
         backgroundColor: Color.fromARGB(255, 6, 54, 188),
       ),
       body: Container(
@@ -75,22 +75,22 @@ class TranslatorEditRegistry extends StatelessWidget {
                   Text(
                     'Modifica profilo',
                     style: TextStyle(
-                        fontSize: 30.0,
+                        fontSize: 35.0,
                         fontFamily: 'Lancelot',
                         color: const Color.fromARGB(255, 6, 54, 188),
-                        fontWeight: FontWeight.normal),
+                        fontWeight: FontWeight.w700),
                   ),
                 ]),
               ),
-               SizedBox(
-                height: 50,
+               const SizedBox(
+                height: 40,
               ),
                     TextField(
                       controller: _firstNameController,
                       keyboardType: TextInputType.name,
 
                        style:
-                      const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+                      const TextStyle(color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
                   
                   decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -109,7 +109,7 @@ class TranslatorEditRegistry extends StatelessWidget {
                       ),
                       labelText: 'Nome',
                       labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 69, 68, 68),
+                          color: Color.fromARGB(255, 43, 42, 42),
                           fontSize: 25.0)),
                 
                     ),
@@ -121,7 +121,7 @@ class TranslatorEditRegistry extends StatelessWidget {
                       keyboardType: TextInputType.name,
 
                        style:
-                      const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+                      const TextStyle(color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
                 
                   decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -140,7 +140,7 @@ class TranslatorEditRegistry extends StatelessWidget {
                       ),
                       labelText: 'Cognome',
                       labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 69, 68, 68),
+                          color: Color.fromARGB(255, 43, 42, 42),
                           fontSize: 25.0)),
                 
                     ),
@@ -152,7 +152,7 @@ class TranslatorEditRegistry extends StatelessWidget {
                       keyboardType: TextInputType.emailAddress,
 
                        style:
-                      const TextStyle(color: Color.fromARGB(255, 105, 104, 104)),
+                      const TextStyle(color: Color.fromARGB(255, 9, 9, 9),fontSize: 20),
   
                   decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -171,7 +171,7 @@ class TranslatorEditRegistry extends StatelessWidget {
                       ),
                       labelText: 'Email',
                       labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 69, 68, 68),
+                          color: Color.fromARGB(255, 43, 42, 42),
                           fontSize: 25.0)),
                 
                     ),
@@ -198,7 +198,9 @@ class TranslatorEditRegistry extends StatelessWidget {
                           child: Text(
                             'Salva',
                             style: TextStyle(
-                              fontSize: 18,
+                               fontSize: 18.0,
+                    letterSpacing: 2.0,
+                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold
                             ),
                           ),
                         ),
