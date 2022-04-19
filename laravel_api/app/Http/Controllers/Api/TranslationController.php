@@ -29,8 +29,9 @@ class TranslationController extends Controller
     public function userTranslation($userId){
 
        $user=User::find($userId);
-       $items= $user->restaurant()->with(['menu.translation'])->get();//les translation del menu di un utente.
-        return response()->json($items);
+       $items= $user->restaurant()->with(['menu.translation'])->first();//les translation del menu di un utente.
+       $translationMenu=$items->menu->translation;
+       return $translationMenu;
 
     }
 
