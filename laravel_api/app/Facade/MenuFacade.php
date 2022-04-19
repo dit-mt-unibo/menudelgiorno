@@ -24,6 +24,10 @@ class MenuFacade{
 
         $restaurant=Restaurant::where('user_id',$user_id)->first();
 
+        $men=Menu::where('restaurant_id',$restaurant->id)->first();
+        $men->delete();
+        Translation::where('menu_id',$men->id)->delete();
+
          // $menu=new menu();
         // creazione di un nuovo menu e salvataggio in db
         $menu=Menu::create([

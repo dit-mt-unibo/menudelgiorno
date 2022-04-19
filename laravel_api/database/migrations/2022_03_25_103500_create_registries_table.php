@@ -19,6 +19,7 @@ class CreateRegistriesTable extends Migration
             $table->string('last_name')->nullable(true);
             $table->string('email')->unique();
             $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
