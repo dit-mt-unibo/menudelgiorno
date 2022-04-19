@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../models/app/language.dart';
-import '../../../models/app/menu.dart';
 import '../../../models/app/user.dart';
 import '../../../models/translator/language/matched_language_list.dart';
 import '../pages/ristoratore_home.dart';
@@ -15,13 +14,13 @@ class RestaurantLanguageCheckboxList extends StatefulWidget {
   const RestaurantLanguageCheckboxList({
     Key? key,
     required this.loggedUser,
+    required this.menuText,
     required this.matchedLanguageList,
-    required this.menu,
   }) : super(key: key);
 
   final User loggedUser;
+  final String menuText;
   final MatchedLanguageList matchedLanguageList;
-  final Menu menu;
 
   @override
   State<RestaurantLanguageCheckboxList> createState() =>
@@ -30,6 +29,26 @@ class RestaurantLanguageCheckboxList extends StatefulWidget {
 
 class _RestaurantLanguageCheckboxListState
     extends State<RestaurantLanguageCheckboxList> {
+  Future<bool> _createMenu(
+    User user,
+    String menuText,
+    List<int> languageIds,
+  ) async {
+    final url = Uri.http('10.0.2.2:8000', '/api/menus');
+
+    final headers = {'Content-Type': 'application/json'};
+
+    final payload = jsonEncode({
+      "text": menuText,
+      "user_id": user.id,
+      "language_idArray": languageIds,
+    });
+
+    final response = await http.post(url, headers: headers, body: payload);
+
+    return response.statusCode == 200 ? true : false;
+  }
+
   void updateCheckboxState(Language checkedLanguage, bool checked) {
     setState(() {
       widget.matchedLanguageList.matchedLanguages
@@ -37,25 +56,6 @@ class _RestaurantLanguageCheckboxListState
               (matchedLanguage) => matchedLanguage.language == checkedLanguage)
           .isChecked = checked;
     });
-  }
-
-  Future<bool> sendMenu(Menu editmenu, List<int> languageIds) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/menus/${editmenu.id}');
-
-    final headers = {
-      'Content-Type': 'application/json',
-      'Charset': 'utf-8',
-    };
-
-    final payload = jsonEncode({
-      "text": editmenu.text,
-      "restaurant_id": editmenu.restaurantId,
-      "language_idArray": languageIds,
-    });
-
-    final response = await http.put(url, headers: headers, body: payload);
-
-    return response.statusCode == 200 ? true : false;
   }
 
   @override
@@ -79,17 +79,20 @@ class _RestaurantLanguageCheckboxListState
               },
             ),
           ),
-          SizedBox(height: 50,),
-          Container(
+          const SizedBox(
+            height: 50,
+          ),
+          SizedBox(
             width: 250,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(15.0),
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  primary: const Color.fromARGB(255, 147, 19, 19),
+                padding: const EdgeInsets.all(15.0),
+                elevation: 5.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
+                primary: const Color.fromARGB(255, 147, 19, 19),
+              ),
               child: const Text(
                 'Salva',
                 style: TextStyle(
@@ -97,7 +100,7 @@ class _RestaurantLanguageCheckboxListState
                 ),
               ),
               onPressed: () async {
-                final idsArray = widget.matchedLanguageList.matchedLanguages
+                final languageIds = widget.matchedLanguageList.matchedLanguages
                     .where(
                       (matchedLanguage) => matchedLanguage.isChecked,
                     )
@@ -105,16 +108,18 @@ class _RestaurantLanguageCheckboxListState
                       (matchedLanguage) => matchedLanguage.language.id,
                     )
                     .toList();
-                sendMenu(widget.menu, idsArray);
-                final isUpdateSuccessful = await sendMenu(
-                  widget.menu,
-                  idsArray,
+
+                final isCreateSuccessful = await _createMenu(
+                  widget.loggedUser,
+                  widget.menuText,
+                  languageIds,
                 );
-                if (isUpdateSuccessful) {
+                if (isCreateSuccessful) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) =>
-                          RistoratoreHome(loggedUser: widget.loggedUser),
+                      builder: (context) => RistoratoreHome(
+                        loggedUser: widget.loggedUser,
+                      ),
                     ),
                   );
                   Fluttertoast.showToast(
