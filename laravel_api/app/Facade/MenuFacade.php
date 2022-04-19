@@ -4,7 +4,8 @@ use App\Models\Menu;
 use App\Models\Translation;
 use App\Client\ModernMtClient;
 use App\Models\Language;
-
+use App\Models\Restaurant;
+use App\Models\User;
 
 // creazione,salvataggio e traduzione  di un nuovo menu e salvataggio delle traduzione
 class MenuFacade{
@@ -18,12 +19,16 @@ class MenuFacade{
 
     // la funzione create prende i parameti imposti per la creazione di un menu (dati che sarnno inseriti dall'utente in input)
 
-    public function create($language_idArray,$text,$restaurant_id){
+    public function create($language_idArray,$text,$user_id){
+
+
+        $restaurant=Restaurant::where('user_id',$user_id)->first();
+
          // $menu=new menu();
         // creazione di un nuovo menu e salvataggio in db
         $menu=Menu::create([
             'text'=>$text,
-            'restaurant_id'=>$restaurant_id,
+            'restaurant_id'=>$restaurant->id,
         ]);
 
         //traduction del menu

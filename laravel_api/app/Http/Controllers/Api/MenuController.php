@@ -35,12 +35,12 @@ class MenuController extends Controller
 
          $language_idArray=$request->input('language_idArray');//input la lingue
          $text=$request->input('text');//input testo da tradurre
-         $restaurant_id=$request->input('restaurant_id');//input restaurant
+
+         $user_id=$request->input('user_id');
+        // print_r($user_id);
 
          // $text="l&apos;acqua del mare <a  href='' id='tigella'>dnt01</a>";
-
-
-        $menu=$this->facade->create($language_idArray,$text,$restaurant_id);
+        $menu=$this->facade->create($language_idArray,$text,$user_id);
         return response()->json($menu);
     }
 
