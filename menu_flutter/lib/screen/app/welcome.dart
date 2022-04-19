@@ -10,7 +10,13 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Menu del giorno',style: TextStyle(fontFamily: 'NotoSerifDisplay',fontSize: 22.0),),
+        title: const Text(
+          'Menu del giorno',
+          style: TextStyle(
+            fontFamily: 'NotoSerifDisplay',
+            fontSize: 22.0,
+          ),
+        ),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
       body: Container(
@@ -22,19 +28,24 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
         alignment: Alignment.center,
-        child: Container(
+        child: SizedBox(
           width: 200,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(15.0),
-              
               primary: const Color.fromARGB(255, 186, 12, 12),
               shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
             ),
             child: const Text(
               'ACCEDI',
-              style: TextStyle(fontSize: 22,letterSpacing: 1.5, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 22,
+                letterSpacing: 1.5,
+                fontFamily: 'NotoSerifDisplay',
+                fontWeight: FontWeight.bold,
+              ),
             ),
             onPressed: () {
               Navigator.push(

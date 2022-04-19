@@ -1,14 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 
-import '../../../../models/app/language.dart';
-import '../../../../models/app/user.dart';
-import '../../../../models/translator/language/matched_language_list.dart';
-import '../../../../models/translator/language/updated_language_list.dart';
-import 'language_checkbox.dart';
+import '../../../models/app/language.dart';
+import '../../../models/app/user.dart';
+import '../../../models/translator/language/matched_language_list.dart';
+import '../../../models/translator/language/updated_language_list.dart';
+import 'checkbox.dart';
 
 class TranslatorLanguageCheckboxList extends StatefulWidget {
   const TranslatorLanguageCheckboxList({
@@ -82,16 +82,17 @@ class _TranslatorLanguageCheckboxListState
               },
             ),
           ),
-          Container(
-               width: 250,
+          SizedBox(
+            width: 250,
             child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(5.0),
-                      elevation: 5.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      primary: const Color.fromARGB(255, 6, 54, 188),
-                  ),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(5.0),
+                elevation: 5.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                primary: const Color.fromARGB(255, 6, 54, 188),
+              ),
               child: const Padding(
                 padding: EdgeInsets.only(
                   top: 10.0,
@@ -104,7 +105,8 @@ class _TranslatorLanguageCheckboxListState
                   style: TextStyle(
                     fontSize: 18.0,
                     letterSpacing: 2.0,
-                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold
+                    fontFamily: 'NotoSerifDisplay',
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-import '../../../models/app/user.dart';
-import '../../../models/translator/language/checked_language_list.dart';
-import '../../../models/translator/language/language_list.dart';
-import '../../../models/translator/language/matched_language_list.dart';
-import '../widgets/language/language_checkbox_list.dart';
+import '../../models/app/user.dart';
+import '../../models/translator/language/checked_language_list.dart';
+import '../../models/translator/language/language_list.dart';
+import '../../models/translator/language/matched_language_list.dart';
+import '../../widgets/translator/language/checkbox_list.dart';
 
 class TranslatorEditLanguages extends StatelessWidget {
   const TranslatorEditLanguages({
@@ -47,17 +47,24 @@ class TranslatorEditLanguages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Le mie Lingue',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
-        backgroundColor: Color.fromARGB(255, 6, 54, 188),
+        title: const Text(
+          'Le mie Lingue',
+          style: TextStyle(
+            fontSize: 22,
+            fontFamily: 'NotoSerifDisplay',
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 6, 54, 188),
       ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/back.jpg"),
+            image: AssetImage('images/back.jpg'),
             fit: BoxFit.fill,
-            
           ),
         ),
         child: FutureBuilder(

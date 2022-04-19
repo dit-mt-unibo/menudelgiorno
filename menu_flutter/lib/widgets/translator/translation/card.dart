@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/app/user.dart';
-import '../../../../models/translator/translation/edited_translation.dart';
-import '../../../../models/translator/translation/home_translation.dart';
-import '../../pages/edit_translation.dart';
-import 'translation_card_elapsed_time.dart';
-import 'translation_card_language.dart';
-import 'translation_card_text.dart';
-import 'translation_card_title.dart';
+import '../../../models/app/user.dart';
+import '../../../models/translator/translation/edited_translation.dart';
+import '../../../models/translator/translation/home_translation.dart';
+import '../../../screen/translator/edit_translation.dart';
+import 'card_elapsed_time.dart';
+import 'card_language.dart';
+import 'card_text.dart';
+import 'card_title.dart';
 
 class TranslationCard extends StatelessWidget {
   const TranslationCard({
@@ -23,7 +23,6 @@ class TranslationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white.withOpacity(0.1),
-      
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -56,16 +55,17 @@ class TranslationCard extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               width: 200,
               child: ElevatedButton(
-                 style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.all(5.0),
-                      elevation: 5.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      primary: const Color.fromARGB(255, 6, 54, 188), 
-                          ),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(5.0),
+                  elevation: 5.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  primary: const Color.fromARGB(255, 6, 54, 188),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -86,7 +86,7 @@ class TranslationCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16.0,
                     letterSpacing: 1.5,
-                    fontFamily: 'NotoSerifDisplay'
+                    fontFamily: 'NotoSerifDisplay',
                   ),
                 ),
               ),

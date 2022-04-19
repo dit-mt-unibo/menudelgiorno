@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TranslationCardTitle extends StatelessWidget {
-  const TranslationCardTitle({
+class RestaurantTranslationCardTitle extends StatelessWidget {
+  const RestaurantTranslationCardTitle({
     Key? key,
     required this.title,
   }) : super(key: key);
@@ -13,10 +13,9 @@ class TranslationCardTitle extends StatelessWidget {
     return Text(
       title,
       style: const TextStyle(
-        color:Color.fromARGB(255, 6, 54, 188),
-        fontSize: 18.0,
-        fontWeight: FontWeight.bold,
-        fontFamily: 'NotoSerifDisplay'
+        fontSize: 30.0,
+        color: Color.fromARGB(255, 147, 19, 19),
+        fontWeight: FontWeight.w600,
       ),
     );
   }

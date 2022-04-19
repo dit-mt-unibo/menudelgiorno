@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/gestures.dart';
@@ -7,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../models/app/user.dart';
-import '../restaurant/pages/ristoratore_home.dart';
-import '../translator/pages/home.dart';
+import '../restaurant/home.dart';
+import '../translator/home.dart';
 import 'registrazione.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -46,7 +45,11 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Benvenuto',
-          style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 22,
+            fontFamily: 'NotoSerifDisplay',
+            fontWeight: FontWeight.bold,
+          ),
         ),
         backgroundColor: const Color.fromARGB(255, 147, 19, 19),
       ),
@@ -54,25 +57,27 @@ class LoginScreen extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("images/homes.jpg"),
-              fit: BoxFit.fill,
-            ),
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromARGB(255, 255, 255, 255),
-                  Color.fromARGB(255, 255, 255, 255),
-                  Color.fromARGB(255, 255, 255, 255),
-                  Color.fromARGB(255, 255, 255, 255)
-                ],
-                stops: [
-                  0.1,
-                  0.4,
-                  0.7,
-                  0.9
-                ])),
+          image: DecorationImage(
+            image: AssetImage('images/homes.jpg'),
+            fit: BoxFit.fill,
+          ),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255)
+            ],
+            stops: [
+              0.1,
+              0.4,
+              0.7,
+              0.9,
+            ],
+          ),
+        ),
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.only(top: 30),
@@ -82,16 +87,19 @@ class LoginScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: const EdgeInsets.only(left: 20.0),
-                  child: Column(children: const [
-                    Text(
-                      'Accedi per continuare',
-                      style: TextStyle(
+                  child: Column(
+                    children: const [
+                      Text(
+                        'Accedi per continuare',
+                        style: TextStyle(
                           fontSize: 30.0,
                           fontFamily: 'Lancelot',
                           color: Color.fromARGB(255, 68, 1, 1),
-                          fontWeight: FontWeight.w700),
-                    ),
-                  ]),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 25.0,
@@ -100,27 +108,32 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: TextField(
                     style: const TextStyle(
-                        color: Colors.black),
+                      color: Colors.black,
+                    ),
                     controller: _userController,
                     decoration: const InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: const Color.fromARGB(255, 147, 19, 19),
-                              width: 1.5),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 147, 19, 19),
+                          width: 1.5,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 107, 107, 107),
-                              width: 1.5),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 107, 107, 107),
+                          width: 1.5,
                         ),
-                        prefixIcon: Icon(
-                          Icons.people,
-                          color: Color.fromARGB(255, 113, 2, 2),
-                        ),
-                        labelText: 'Username',
-                        labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0)),
+                      ),
+                      prefixIcon: Icon(
+                        Icons.people,
+                        color: Color.fromARGB(255, 113, 2, 2),
+                      ),
+                      labelText: 'Username',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -131,44 +144,50 @@ class LoginScreen extends StatelessWidget {
                   child: TextField(
                     obscureText: true,
                     style: const TextStyle(
-                        color: Colors.black),
+                      color: Colors.black,
+                    ),
                     controller: _pwdController,
                     decoration: const InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: const Color.fromARGB(255, 147, 19, 19),
-                              width: 1.5),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 147, 19, 19),
+                          width: 1.5,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 107, 107, 107),
-                              width: 1.5),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 107, 107, 107),
+                          width: 1.5,
                         ),
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: Color.fromARGB(255, 113, 2, 2),
-                        )),
+                      ),
+                      labelText: 'Password',
+                      labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Color.fromARGB(255, 113, 2, 2),
+                      ),
+                    ),
                   ),
                 ),
                 Container(
                   alignment: Alignment.center,
                   child: RichText(
-                    text: TextSpan(children: [
-                      const TextSpan(
-                        text: 'Non hai un account? ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Non hai un account? ',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                      TextSpan(
+                        TextSpan(
                           text: 'Registrati',
                           style: const TextStyle(
-                            color: const Color.fromARGB(255, 147, 19, 19),
+                            color: Color.fromARGB(255, 147, 19, 19),
                             fontSize: 18,
                             letterSpacing: 2.0,
                             fontWeight: FontWeight.bold,
@@ -183,8 +202,10 @@ class LoginScreen extends StatelessWidget {
                                       const RegistrazioneScreen(),
                                 ),
                               );
-                            }),
-                    ]),
+                            },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
@@ -195,15 +216,18 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       elevation: 5.0,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                       primary: const Color.fromARGB(255, 147, 19, 19),
                     ),
                     child: const Text(
                       'Login',
                       style: TextStyle(
-                         fontSize: 18.0,
-                    letterSpacing: 2.0,
-                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold),
+                        fontSize: 18.0,
+                        letterSpacing: 2.0,
+                        fontFamily: 'NotoSerifDisplay',
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     onPressed: () async {
                       User loggedUser = await _doLogin();
@@ -214,8 +238,9 @@ class LoginScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    RistoratoreHome(loggedUser: loggedUser),
+                                builder: (context) => RestaurantHome(
+                                  loggedUser: loggedUser,
+                                ),
                               ),
                             );
                           }
@@ -226,8 +251,9 @@ class LoginScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    TranslatorHome(loggedUser: loggedUser),
+                                builder: (context) => TranslatorHome(
+                                  loggedUser: loggedUser,
+                                ),
                               ),
                             );
                           }

@@ -38,6 +38,7 @@ dependencies:
   fluttertoast: ^8.0.9
   http: ^0.13.4
   device_info_plus: ^3.2.2
+  url_launcher: ^6.0.20
 
 dev_dependencies:
   flutter_test:

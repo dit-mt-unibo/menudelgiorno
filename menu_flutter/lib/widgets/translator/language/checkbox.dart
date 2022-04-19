@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/app/language.dart';
+import '../../../models/app/language.dart';
 
 class TranslatorLanguageCheckbox extends StatelessWidget {
   const TranslatorLanguageCheckbox({
@@ -27,10 +27,7 @@ class TranslatorLanguageCheckbox extends StatelessWidget {
         ),
         child: Text(
           language.name,
-          style: const TextStyle(
-            fontSize: 28.0,
-            fontFamily: 'Lancelot'
-          ),
+          style: const TextStyle(fontSize: 28.0, fontFamily: 'Lancelot'),
         ),
       ),
       value: isChecked,

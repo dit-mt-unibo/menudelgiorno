@@ -1,16 +1,14 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 
-import '../../../models/app/user.dart';
-import '../../../models/translator/translation/edited_translation.dart';
+import '../../models/app/user.dart';
+import '../../models/translator/translation/edited_translation.dart';
 import 'home.dart';
 
 class TranslatorEditTranslation extends StatelessWidget {
-  final _translationController = TextEditingController();
-
   TranslatorEditTranslation({
     Key? key,
     required this.currentTranslation,
@@ -36,12 +34,22 @@ class TranslatorEditTranslation extends StatelessWidget {
     return response.statusCode == 200 ? true : false;
   }
 
+  final _translationController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Traduzione',style: TextStyle(fontSize: 22, fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold,letterSpacing: 1.5)),
-        backgroundColor: Color.fromARGB(255, 6, 54, 188),
+        title: const Text(
+          'Traduzione',
+          style: TextStyle(
+            fontSize: 22,
+            fontFamily: 'NotoSerifDisplay',
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 6, 54, 188),
       ),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -52,10 +60,10 @@ class TranslatorEditTranslation extends StatelessWidget {
                 child: Text(
                   'Correggi traduzione',
                   style: TextStyle(
-                   fontSize: 30.0,
-                        fontFamily: 'Lancelot',
-                        color: Color.fromARGB(255, 6, 54, 188),
-                        fontWeight: FontWeight.w700
+                    fontSize: 30.0,
+                    fontFamily: 'Lancelot',
+                    color: Color.fromARGB(255, 6, 54, 188),
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
@@ -78,16 +86,17 @@ class TranslatorEditTranslation extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Container(
+              SizedBox(
                 width: 250,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.all(5.0),
-                      elevation: 5.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      primary: const Color.fromARGB(255, 6, 54, 188),
-                          ),
+                    padding: const EdgeInsets.all(5.0),
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    primary: const Color.fromARGB(255, 6, 54, 188),
+                  ),
                   onPressed: () async {
                     final enteredTranslation = EditedTranslation(
                       translationId: currentTranslation.translationId,
@@ -108,8 +117,9 @@ class TranslatorEditTranslation extends StatelessWidget {
                       );
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) =>
-                              TranslatorHome(loggedUser: loggedUser),
+                          builder: (context) => TranslatorHome(
+                            loggedUser: loggedUser,
+                          ),
                         ),
                       );
                     } else {
@@ -135,8 +145,9 @@ class TranslatorEditTranslation extends StatelessWidget {
                       'Salva',
                       style: TextStyle(
                         fontSize: 18.0,
-                    letterSpacing: 2.0,
-                    fontFamily: 'NotoSerifDisplay',fontWeight: FontWeight.bold
+                        letterSpacing: 2.0,
+                        fontFamily: 'NotoSerifDisplay',
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),

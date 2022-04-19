@@ -7,8 +7,8 @@ import 'package:http/http.dart' as http;
 import '../../../models/app/language.dart';
 import '../../../models/app/user.dart';
 import '../../../models/translator/language/matched_language_list.dart';
-import '../pages/ristoratore_home.dart';
-import 'language_checkbox.dart';
+import '../../../screen/restaurant/home.dart';
+import 'checkbox.dart';
 
 class RestaurantLanguageCheckboxList extends StatefulWidget {
   const RestaurantLanguageCheckboxList({
@@ -117,7 +117,7 @@ class _RestaurantLanguageCheckboxListState
                 if (isCreateSuccessful) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => RistoratoreHome(
+                      builder: (context) => RestaurantHome(
                         loggedUser: widget.loggedUser,
                       ),
                     ),
