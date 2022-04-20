@@ -27,7 +27,7 @@
         }
 
         body {
-            background-image: url("../images/translation-background.jpg");
+            background-image: url("../images/menud.jpg");
             background-position: center;
             background-size: cover;
         }
@@ -42,17 +42,18 @@
         .menu-title {
             font-family: "Merriweather", serif;
             font-weight: 700;
-            font-size: 68px;
+            font-size: 50px;
             text-transform: uppercase;
-            color: rgb(4, 13, 8);
+            color: rgb(236, 78, 4);
             margin-bottom: 50px;
         }
 
         .translation-text {
             font-family: "Poppins", sans-serif;
-            font-size: 34px;
+            font-size: 45px;
             line-height: 58px;
-            color: rgb(38, 10, 3);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.92);
         }
 
         @media only screen and (max-width: 1280px) {
@@ -75,18 +76,18 @@
             }
 
             .translation-text {
-                font-size: 26px;
+                font-size: 40px;
             }
         }
 
         @media only screen and (max-width: 512px) {
             .menu-title {
-                font-size: 26px;
+                font-size: 30px;
                 text-align: center;
             }
 
             .translation-text {
-                font-size: 20px;
+                font-size: 28px;
                 text-align: center;
             }
         }
