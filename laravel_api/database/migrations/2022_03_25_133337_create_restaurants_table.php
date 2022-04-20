@@ -22,7 +22,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('city')->nullable(true);
             $table->string('province')->nullable(true);
             $table->integer('user_id')->nullable(true);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
