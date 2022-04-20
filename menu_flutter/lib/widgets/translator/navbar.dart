@@ -66,10 +66,11 @@ class TranslatorNavbar extends StatelessWidget {
         );
         break;
       case 3:
-        Navigator.of(context).push(
+        Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => const WelcomeScreen(),
           ),
+          (route) => false,
         );
         break;
     }
