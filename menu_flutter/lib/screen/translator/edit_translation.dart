@@ -41,7 +41,7 @@ class TranslatorEditTranslation extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Traduzione',
+          'Lista menus tradotti',
           style: TextStyle(
             fontSize: 22,
             fontFamily: 'NotoSerifDisplay',

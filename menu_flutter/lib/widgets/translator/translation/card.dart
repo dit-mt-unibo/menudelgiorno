@@ -22,7 +22,7 @@ class TranslationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white.withOpacity(0.1),
+      color: Colors.white.withOpacity(0.7),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
