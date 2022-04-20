@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import '../../../models/app/user.dart';
@@ -66,6 +68,7 @@ class InserisciMenuScreen extends StatelessWidget {
                 ),
                 child: Column(children: [
                   TextField(
+                    style: const TextStyle(fontSize: 25),
                     controller: _menuController,
                     keyboardType: TextInputType.multiline,
                     maxLines: null,

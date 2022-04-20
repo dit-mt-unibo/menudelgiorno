@@ -71,6 +71,7 @@ class TranslatorEditTranslation extends StatelessWidget {
                 height: 20,
               ),
               TextField(
+                 style: const TextStyle(fontSize: 20),
                 controller: _translationController,
                 keyboardType: TextInputType.multiline,
                 maxLines: 20,
