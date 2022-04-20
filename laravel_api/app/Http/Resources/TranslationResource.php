@@ -15,7 +15,7 @@ class TranslationResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user=$this->whenLoaded('user');
+
         return [
             'id' => $this->id,
             'text' => $this->text,

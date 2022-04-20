@@ -30,7 +30,7 @@ class TranslationController extends Controller
 
        $user=User::find($userId);
        $items= $user->restaurant()->with(['menu.translation'])->first();//les translation del menu di un utente.
-       $translationMenu=$items->menu->translation->loadMissing(['language']);
+       $translationMenu=$items->menu->translation->loadMissing(['language'])->makeHidden(['language_id','menu_id','state','user_id','deleted_at','numero_modifiche']);
        return $translationMenu;
 
 
