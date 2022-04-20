@@ -13,67 +13,48 @@ class RegistrazioneScreen extends StatefulWidget {
   State<RegistrazioneScreen> createState() => _RegistrazioneScreenState();
 }
 
+enum Role {
+  ristoratore,
+  traduttore,
+}
+
+extension ParseToString on Role {
+  String toCapitalizedString() {
+    return name[0].toUpperCase() + name.substring(1);
+  }
+}
+
 class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
-  var value;
+  Role? _role = Role.ristoratore;
+
+  Future<bool> _register({
+    required String user,
+    required String email,
+    required String password,
+    required String passwordConfirmation,
+    required Role role,
+  }) async {
+    final url = Uri.http('10.0.2.2:8000', '/api/auth/register');
+
+    final headers = {'Content-Type': 'application/json'};
+
+    final payload = json.encode({
+      "user": user,
+      "email": email,
+      "password": password,
+      "password_confirmation": passwordConfirmation,
+      "role": role.toCapitalizedString(),
+    });
+
+    final response = await http.post(url, headers: headers, body: payload);
+
+    return response.statusCode == 201 ? true : false;
+  }
 
   final _userController = TextEditingController();
   final _emailController = TextEditingController();
   final _pwdController = TextEditingController();
   final _pwdConfController = TextEditingController();
-
-  Future register() async {
-    const url = "http://10.0.2.2:8000/api/auth/register";
-    final response = await http.post(Uri.parse(url), body: {
-      "user": _userController.text,
-      "email": _emailController.text,
-      "password": _pwdController.text,
-      "password_confirmation": _pwdConfController.text,
-      "role": value
-    });
-
-    final data = json.decode(response.body);
-
-    if (data == "Error") {
-      Fluttertoast.showToast(
-        msg: 'Utente già registrato!',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16,
-      );
-    } else {
-      Fluttertoast.showToast(
-        msg: 'Registrazione avvenuta con successo!',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 16,
-      );
-    }
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const WelcomeScreen(),
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    value = 1;
-  }
-
-  setSelectedRadio(val) {
-    setState(() {
-      value = val;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +111,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                     color: Colors.black,
                   ),
                   controller: _userController,
+                  keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -162,6 +144,7 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                     color: Colors.black,
                   ),
                   controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -256,40 +239,46 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Radio(
-                    value: 'Ristoratore',
-                    activeColor: const Color.fromARGB(255, 113, 2, 2),
-                    groupValue: value,
-                    onChanged: (val) {
-                      setState(() {
-                        value = 'Ristoratore';
-                      });
-                      setSelectedRadio(val as int);
-                    },
-                  ),
-                  const Text(
-                    'Ristoratore',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontFamily: 'Lancelot',
+                  Expanded(
+                    child: ListTile(
+                      title: const Text(
+                        'Ristoratore',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: 'Lancelot',
+                        ),
+                      ),
+                      leading: Radio<Role>(
+                        value: Role.ristoratore,
+                        activeColor: const Color.fromARGB(255, 113, 2, 2),
+                        groupValue: _role,
+                        onChanged: (Role? value) {
+                          setState(() {
+                            _role = value;
+                          });
+                        },
+                      ),
                     ),
                   ),
-                  Radio(
-                    value: 'Traduttore',
-                    activeColor: const Color.fromARGB(255, 113, 2, 2),
-                    groupValue: value,
-                    onChanged: (val) {
-                      setState(() {
-                        value = 'Traduttore';
-                      });
-                      setSelectedRadio(val as int);
-                    },
-                  ),
-                  const Text(
-                    'Traduttore',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontFamily: 'Lancelot',
+                  Expanded(
+                    child: ListTile(
+                      title: const Text(
+                        'Traduttore',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: 'Lancelot',
+                        ),
+                      ),
+                      leading: Radio<Role>(
+                        value: Role.traduttore,
+                        activeColor: const Color.fromARGB(255, 113, 2, 2),
+                        groupValue: _role,
+                        onChanged: (Role? newValue) {
+                          setState(() {
+                            _role = newValue;
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -315,8 +304,42 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  onPressed: () {
-                    register();
+                  onPressed: () async {
+                    final isRegisterSuccessful = await _register(
+                      user: _userController.text,
+                      email: _emailController.text,
+                      password: _pwdController.text,
+                      passwordConfirmation: _pwdConfController.text,
+                      role: _role!,
+                    );
+                    if (isRegisterSuccessful) {
+                      Fluttertoast.showToast(
+                        msg: 'Registrazione avvenuta con successo!',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        fontSize: 16,
+                      );
+                    } else {
+                      Fluttertoast.showToast(
+                        msg: 'Utente già registrato!',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16,
+                      );
+                    }
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const WelcomeScreen(),
+                      ),
+                    );
                   },
                 ),
               ),
