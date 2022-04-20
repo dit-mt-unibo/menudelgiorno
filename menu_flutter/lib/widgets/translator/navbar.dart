@@ -28,8 +28,10 @@ class TranslatorNavbar extends StatelessWidget {
         titolo,
         style: const TextStyle(
           color: Color.fromARGB(255, 247, 246, 244),
-          fontFamily: 'Sanchez',
+          fontFamily: 'NotoSerifDisplay',
           fontSize: 15,
+          letterSpacing: 1.5,
+          fontWeight: FontWeight.bold
         ),
       ),
       onTap: onclick,
@@ -66,10 +68,11 @@ class TranslatorNavbar extends StatelessWidget {
         );
         break;
       case 3:
-        Navigator.of(context).push(
+        Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => const WelcomeScreen(),
           ),
+          (route) => false,
         );
         break;
     }

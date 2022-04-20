@@ -16,6 +16,7 @@ class TranslationCardElapsedTime extends StatelessWidget {
         color: Color.fromARGB(255, 6, 54, 188),
         fontSize: 12.0,
         fontFamily: 'NotoSerifDisplay',
+        fontWeight: FontWeight.bold
       ),
     );
   }

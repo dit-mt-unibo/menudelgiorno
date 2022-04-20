@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../models/app/user.dart';
-import '../../screen/app/login.dart';
 import '../../screen/app/welcome.dart';
 import '../../screen/restaurant/dati_anagrafici.dart';
 import '../../screen/restaurant/home.dart';
@@ -15,11 +14,6 @@ class RestaurantNavbar extends StatelessWidget {
   }) : super(key: key);
 
   final User loggedUser;
-
-  final padding = const EdgeInsets.symmetric(
-    horizontal: 20,
-    vertical: 45,
-  );
 
   Widget buildMenu({
     required IconData icon,
@@ -35,10 +29,64 @@ class RestaurantNavbar extends StatelessWidget {
         titolo,
         style: const TextStyle(
           color: Color.fromARGB(255, 247, 246, 244),
+          fontSize: 15,
+          fontFamily: 'NotoSerifDisplay',
+                      letterSpacing: 1.5,
+                      fontWeight: FontWeight.bold
+                      
         ),
       ),
       onTap: onclick,
     );
+  }
+
+  selectedItem(BuildContext context, int i) {
+    switch (i) {
+      case 0:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => RestaurantHome(
+              loggedUser: loggedUser,
+            ),
+          ),
+        );
+        break;
+      case 1:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => DatiAnagraficiWidget(
+              loggedUser: loggedUser,
+            ),
+          ),
+        );
+        break;
+      case 2:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => IlMioRistoranteScreen(
+              loggedUser: loggedUser,
+            ),
+          ),
+        );
+        break;
+      case 3:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => InserisciMenuScreen(
+              loggedUser: loggedUser,
+            ),
+          ),
+        );
+        break;
+      case 4:
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const WelcomeScreen(),
+          ),
+          (route) => false,
+        );
+        break;
+    }
   }
 
   @override
@@ -47,7 +95,10 @@ class RestaurantNavbar extends StatelessWidget {
       child: Material(
         color: const Color.fromARGB(255, 147, 19, 19),
         child: ListView(
-          padding: padding,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 45,
+          ),
           children: [
             const SizedBox(height: 45),
             buildMenu(
@@ -79,52 +130,5 @@ class RestaurantNavbar extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  selectedItem(BuildContext context, int i) {
-    switch (i) {
-      case 0:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => RestaurantHome(loggedUser: loggedUser),
-          ),
-        );
-        break;
-      case 1:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => DatiAnagraficiWidget(loggedUser: loggedUser),
-          ),
-        );
-        break;
-      case 2:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => IlMioRistoranteScreen(loggedUser: loggedUser),
-          ),
-        );
-        break;
-      case 3:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => InserisciMenuScreen(loggedUser: loggedUser),
-          ),
-        );
-        break;
-      case 4:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const WelcomeScreen(),
-          ),
-        );
-        break;
-      case 5:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ),
-        );
-        break;
-    }
   }
 }

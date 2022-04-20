@@ -39,7 +39,7 @@ class RestaurantHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Home',
+          'Traduzioni Menu',
           style: TextStyle(
             fontSize: 22,
             fontFamily: 'NotoSerifDisplay',

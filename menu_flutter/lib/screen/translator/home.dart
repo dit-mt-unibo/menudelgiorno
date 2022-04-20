@@ -39,7 +39,7 @@ class TranslatorHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Home',
+          'Menus Tradotti',
           style: TextStyle(
             fontSize: 22,
             fontFamily: 'NotoSerifDisplay',
