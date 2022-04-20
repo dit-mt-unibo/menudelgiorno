@@ -19,10 +19,7 @@ class CreateTranslationsTable extends Migration
             $table->id();
             $table->integer('language_id');
             $table->integer('menu_id')->unsigned();
-            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
-
             $table->integer('user_id')->comment('id del traduttore')->nullable(); // Id utente traduttore
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('state')->default(0);
             $table->integer('numero_modifiche')->nullable(true);
             $table->text('text');

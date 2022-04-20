@@ -17,7 +17,7 @@ class CreateMenusTable extends Migration
             $table->id();
             $table->text('text')->nullable(true);
             $table->integer('restaurant_id')->nullable(true);
-            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
         });

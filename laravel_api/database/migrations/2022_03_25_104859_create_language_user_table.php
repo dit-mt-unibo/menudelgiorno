@@ -18,7 +18,7 @@ class CreateLanguageUserTable extends Migration
             $table->id();
             $table->integer('user_id'); // Traduttore
             $table->integer('language_id');
-            $table->foreign('user_id')->references('id')->on('users')->onSoftDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
         });
