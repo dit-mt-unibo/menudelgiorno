@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../../models/app/user.dart';
 import '../../models/restaurant/translation.dart';
@@ -14,32 +17,21 @@ class RestaurantHome extends StatelessWidget {
   final User loggedUser;
 
   Future<List<RestaurantTranslation>> _getAllTranslations(User user) async {
-    return [
-      RestaurantTranslation(
-        translationId: 1,
-        translatedText: 'Menu in inglese',
-      ),
-      RestaurantTranslation(
-        translationId: 2,
-        translatedText: 'Menu in francese',
-      ),
-      RestaurantTranslation(
-        translationId: 3,
-        translatedText: 'Menu in tedesco',
-      ),
-      RestaurantTranslation(
-        translationId: 4,
-        translatedText: 'Menu in spagnolo',
-      ),
-      RestaurantTranslation(
-        translationId: 5,
-        translatedText: 'Menu in portoghese',
-      ),
-      RestaurantTranslation(
-        translationId: 6,
-        translatedText: 'Menu in cinese',
-      ),
-    ];
+    final url = Uri.http('10.0.2.2:8000', '/api/users/${user.id}/translations');
+    final response = await http.get(url);
+
+    if (response.statusCode != 200) {
+      return [];
+    }
+
+    final jsonResponse = jsonDecode(response.body);
+
+    List<RestaurantTranslation> translations = jsonResponse
+        .map<RestaurantTranslation>(
+            (rawTranslation) => RestaurantTranslation.fromJson(rawTranslation))
+        .toList();
+
+    return translations;
   }
 
   @override

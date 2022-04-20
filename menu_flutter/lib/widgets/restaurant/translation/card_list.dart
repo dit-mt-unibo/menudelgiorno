@@ -13,25 +13,30 @@ class RestaurantTranslationCardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 620,
-          margin: const EdgeInsets.only(
-            left: 12,
-            right: 12,
-            top: 10,
-          ),
-          child: ListView.builder(
-            itemCount: translations.length,
-            itemBuilder: (context, index) {
-              return RestaurantTranslationCard(
-                translation: translations[index],
-              );
-            },
-          ),
-        ),
-      ],
+    return SizedBox(
+      height: 620,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: translations.isEmpty
+            ? const SizedBox(
+                width: double.infinity,
+                child: Text(
+                  'Nessuna traduzione disponibile!',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              )
+            : ListView.builder(
+                itemCount: translations.length,
+                itemBuilder: (context, index) {
+                  return RestaurantTranslationCard(
+                    translation: translations[index],
+                  );
+                },
+              ),
+      ),
     );
   }
 }
