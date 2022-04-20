@@ -29,6 +29,11 @@ class RestaurantNavbar extends StatelessWidget {
         titolo,
         style: const TextStyle(
           color: Color.fromARGB(255, 247, 246, 244),
+          fontSize: 15,
+          fontFamily: 'NotoSerifDisplay',
+                      letterSpacing: 1.5,
+                      fontWeight: FontWeight.bold
+                      
         ),
       ),
       onTap: onclick,
