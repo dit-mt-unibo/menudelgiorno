@@ -109,6 +109,7 @@ class LoginScreen extends StatelessWidget {
                   child: TextField(
                     style: const TextStyle(
                       color: Colors.black,
+                      fontSize: 22
                     ),
                     controller: _userController,
                     decoration: const InputDecoration(
@@ -145,6 +146,7 @@ class LoginScreen extends StatelessWidget {
                     obscureText: true,
                     style: const TextStyle(
                       color: Colors.black,
+                      fontSize: 22
                     ),
                     controller: _pwdController,
                     decoration: const InputDecoration(

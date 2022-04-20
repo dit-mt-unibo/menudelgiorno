@@ -24,6 +24,7 @@ class RestaurantTranslationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white.withOpacity(0.8),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -38,9 +39,10 @@ class RestaurantTranslationCard extends StatelessWidget {
                       Text(
                         translation.languageCode,
                         style: const TextStyle(
-                          fontSize: 26.0,
+                          fontSize: 25.0,
                           color: Color.fromARGB(255, 147, 19, 19),
                           fontWeight: FontWeight.bold,
+                          fontFamily: 'NotoSerifDisplay'
                         ),
                       ),
                     ],
@@ -122,6 +124,7 @@ class RestaurantTranslationCard extends StatelessWidget {
                             fontSize: 20.0,
                             color: Color.fromARGB(255, 147, 19, 19),
                             fontWeight: FontWeight.w600,
+                            fontFamily:'NotoSerifDisplay'
                           ),
                         ),
                       ],
@@ -149,7 +152,10 @@ class RestaurantTranslationCard extends StatelessWidget {
                   child: const Text(
                     'Visualizza',
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: 15.0,
+                      fontFamily: 'NotoSerifDisplay',
+                      letterSpacing: 2.0,
+                      fontWeight: FontWeight.bold
                     ),
                   ),
                   onPressed: () {
@@ -170,7 +176,10 @@ class RestaurantTranslationCard extends StatelessWidget {
                   child: const Text(
                     'Codice QR',
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: 15.0,
+                      fontFamily: 'NotoSerifDisplay',
+                      letterSpacing: 2.0,
+                      fontWeight: FontWeight.bold
                     ),
                   ),
                   onPressed: () {
