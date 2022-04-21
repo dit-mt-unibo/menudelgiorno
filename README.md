@@ -72,9 +72,9 @@ Aprire Android Studio e navigare al pannello *Virtual Device Manager* e creare u
 
 Per lo sviluppo del progetto è stato utilizzato il seguente device virtuale:
 
-*Pixel 3 API 30*
-*5.46 1080x2160 xxhdpi*
-*Android 11.0 x86*
+*Pixel 3 API 30*  
+*5.46 1080x2160 xxhdpi*  
+*Android 11.0 x86*  
 
 Una volta creato e salvato il device nella lista degli emulatori, avviarlo premendo il tasto *Play* (freccia verde) ed attendere il boot del dispositivo fino alla sua schermata di home.
 
