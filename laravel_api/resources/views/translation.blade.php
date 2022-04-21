@@ -22,18 +22,21 @@
             box-sizing: border-box;
         }
 
-        html {
-            min-height: 100%;
+        html,
+        body {
+            height: 100%;
         }
 
         body {
+            height: 100%;
             background-image: url("../images/menud.jpg");
             background-position: center;
+            background-repeat: no-repeat;
             background-size: cover;
         }
 
         .container {
-            width: 1280px;
+            width: 100%;
             height: auto;
             margin: auto;
             padding: 75px;
@@ -57,10 +60,6 @@
         }
 
         @media only screen and (max-width: 1280px) {
-            .container {
-                width: 100%;
-            }
-
             .menu-title {
                 font-size: 58px;
             }
