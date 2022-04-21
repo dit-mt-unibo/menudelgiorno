@@ -160,7 +160,7 @@ Cercare le voci *DB_USERNAME=* e *DB_PASSWORD=* e valorizzarle con i nomi fornit
 
 Di default, le credenziali d'accesso fornite da XAMPP sono:
 
-*DB_USERNAME=root* (root)
+*DB_USERNAME=root* (root)  
 *DB_PASSWORD=* (stringa vuota)
 
 In generale, le credenziali sono salvate nei file di testo di configurazione di MySQL.
