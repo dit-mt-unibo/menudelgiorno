@@ -130,7 +130,7 @@ Aprire la command palette di Visual Studio Code con **CTRL + Shift + P** e selez
 
 ## Server
 
-### 1. Configurazione Visual Studio Code
+#### 1. Configurazione Visual Studio Code
 
 Installare l'estensione **Laravel Extension Pack**.
 
@@ -138,7 +138,7 @@ https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel-extension
 
 Riavviare Visual Studio Code.
 
-### 2. Dipendenze di progetto
+#### 2. Dipendenze di progetto
 
 Aprire il progetto in Visual Studio Code e aprire la directory **laravel_api**.
 
@@ -148,7 +148,7 @@ Aprire un nuovo Terminale e digitare i seguenti comandi uno dopo l'altro per sca
 **npm install**, per installare tutte le dipendenze di JavaScript.  
 **npm run dev**, per effettuare il processo di build dei bundles di webpack per HTML, CSS e JavaScript.
 
-### 3. Configurazione ambiente
+#### 3. Configurazione ambiente
 
 Localizzare il file **.env.example** e farne una copia.
 
@@ -168,7 +168,7 @@ Solitamente sono salvati nella directory *mysql* della directory della piattafor
 
 Da Terminale, e dalla root della directory del progetto, lanciare il comando *php artisan key:generate* per valorizzare la voce *APP_KEY=* del file .env.
 
-### 4. Creazione Database
+#### 4. Creazione Database
 
 Aprire il pannello di controllo dei databases MySQL fornito dalla piattaforma LAMP installata in precedenza.
 
@@ -176,11 +176,11 @@ In genere è un'applicazione web denominata **phpmyadmin**.
 
 Creare un nuovo database **menudelgiorno** con codifica dei caratteri **utf8mb4_unicode_ci**.
 
-### 5. Costruzione Database
+#### 5. Costruzione Database
 
 Da Terminale, e dalla root della directory del progetto, lanciare il comando *php artisan migrate* per generare tutte le tabelle e relazioni all'interno del database del progetto.
 
-### 6. Seeding Database
+#### 6. Seeding Database
 
 Da Terminale, e dalla root della directory del progetto, lanciare il comando *php artisan db:seed* per popolare tutte le tabelle con dati di mockup all'interno del database del progetto.
 
