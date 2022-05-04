@@ -36,6 +36,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   fluttertoast: ^8.0.9
+  http: ^0.13.4
+  device_info_plus: ^3.2.2
+  url_launcher: ^6.0.20
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -84,12 +88,26 @@ flutter:
         - asset: assets/Sanchez-Regular.ttf
         - asset: assets/Sanchez-Italic.ttf
 
+    - family: OpenSans
+      fonts:
+        - asset: assets/OpenSans-Regular.ttf
+        - asset: assets/OpenSans-Italic.ttf
+      
+
+        
+
+
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/home-background.jpg
     - images/immagine2.jpg
     - images/download.jpg
     - images/foto.png
+    - images/homeres.jpg
+    - images/back.jpg
+    - images/reg.jpg
+    - images/homes.jpg
+    - images/sfondores.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

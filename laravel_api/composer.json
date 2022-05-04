@@ -11,9 +11,12 @@
         "php": "^7.3",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.4",
         "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0"
+        "laravel/sanctum": "^2.14",
+        "laravel/tinker": "^2.0",
+        "modernmt/modernmt-php": "^1.0",
+        "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
