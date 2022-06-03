@@ -18,7 +18,7 @@ class Portuguese_glossarieSeeder extends Seeder
 
 
         $firstline = true;
-        while (($data = fgetcsv($csvFile, 1000, ";")) !== FALSE) {
+        while (($data = fgetcsv($csvFile, 1000, ",")) !== FALSE) {
             if (!$firstline) {
                 Portuguese_glossary::create([
                     "it-IT" => $data['0'],

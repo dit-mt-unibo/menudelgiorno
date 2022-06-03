@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../../models/app/registry.dart';
 import '../../models/app/user.dart';
+import '../../environment.dart';
 
 class TranslatorEditRegistry extends StatelessWidget {
   TranslatorEditRegistry({
@@ -16,7 +17,7 @@ class TranslatorEditRegistry extends StatelessWidget {
   final User loggedUser;
 
   Future<Registry> _getRegistry(User user) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/registries/${user.id}');
+    final url = Uri.http(Environment().config.apiHost, '/api/registries/${user.id}');
     final response = await http.get(url);
     final data = jsonDecode(response.body);
     final registry = Registry.fromJson(data);
@@ -24,7 +25,7 @@ class TranslatorEditRegistry extends StatelessWidget {
   }
 
   Future<bool> _updateRegistry(Registry registry) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/registries/${registry.id}');
+    final url = Uri.http(Environment().config.apiHost, '/api/registries/${registry.id}');
     final headers = {'Content-Type': 'application/json'};
     final payload = jsonEncode({
       'first_name': registry.firstName,

@@ -7,6 +7,7 @@ import '../../models/app/user.dart';
 import '../../models/restaurant/translation.dart';
 import '../../widgets/restaurant/navbar.dart';
 import '../../widgets/restaurant/translation/card_list.dart';
+import '../../environment.dart';
 
 class RestaurantHome extends StatelessWidget {
   const RestaurantHome({
@@ -17,7 +18,7 @@ class RestaurantHome extends StatelessWidget {
   final User loggedUser;
 
   Future<List<RestaurantTranslation>> _getAllTranslations(User user) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/users/${user.id}/translations');
+    final url = Uri.http(Environment().config.apiHost, '/api/users/${user.id}/translations');
     final response = await http.get(url);
 
     if (response.statusCode != 200) {

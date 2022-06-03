@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:menudelgiorno/environment.dart';
 
 import '../../../models/app/language.dart';
 import '../../../models/app/user.dart';
 import '../../../models/translator/language/matched_language_list.dart';
 import '../../../models/translator/language/updated_language_list.dart';
 import 'checkbox.dart';
+import '../../../../environment.dart';
 
 class TranslatorLanguageCheckboxList extends StatefulWidget {
   const TranslatorLanguageCheckboxList({
@@ -40,7 +42,7 @@ class _TranslatorLanguageCheckboxListState
     User user,
     MatchedLanguageList matchedLanguageList,
   ) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/users/${user.id}/languages');
+    final url = Uri.http(Environment().config.apiHost, '/api/users/${user.id}/languages');
 
     final headers = {'Content-Type': 'application/json'};
 

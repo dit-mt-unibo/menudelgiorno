@@ -8,6 +8,7 @@ import '../../models/translator/language/checked_language_list.dart';
 import '../../models/translator/language/language_list.dart';
 import '../../models/translator/language/matched_language_list.dart';
 import '../../widgets/restaurant/language/checkbox_list.dart';
+import '../../environment.dart';
 
 class ScegliLinguaWidget extends StatelessWidget {
   const ScegliLinguaWidget({
@@ -20,7 +21,7 @@ class ScegliLinguaWidget extends StatelessWidget {
   final String menuText;
 
   Future<LanguageList> _getLanguage() async {
-    final url = Uri.http('10.0.2.2:8000', '/api/languages');
+    final url = Uri.http(Environment().config.apiHost, '/api/languages');
     final response = await http.get(url);
     final data = jsonDecode(response.body);
     final languages = LanguageList.fromJson(data);

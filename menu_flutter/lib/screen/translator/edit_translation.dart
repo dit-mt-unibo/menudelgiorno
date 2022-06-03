@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import '../../models/app/user.dart';
 import '../../models/translator/translation/edited_translation.dart';
 import 'home.dart';
+import '../../environment.dart';
 
 class TranslatorEditTranslation extends StatelessWidget {
   TranslatorEditTranslation({
@@ -22,7 +23,7 @@ class TranslatorEditTranslation extends StatelessWidget {
 
   Future<bool> _updateTranslation(EditedTranslation enteredTranslation) async {
     final url = Uri.http(
-      '10.0.2.2:8000',
+      Environment().config.apiHost,
       '/api/translations/${enteredTranslation.translationId}',
     );
     final headers = {'Content-Type': 'application/json'};

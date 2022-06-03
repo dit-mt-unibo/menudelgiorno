@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:menudelgiorno/environment.dart';
 
 import '../../../models/app/language.dart';
 import '../../../models/app/user.dart';
 import '../../../models/translator/language/matched_language_list.dart';
 import '../../../screen/restaurant/home.dart';
 import 'checkbox.dart';
+import '../../../../environment.dart';
 
 class RestaurantLanguageCheckboxList extends StatefulWidget {
   const RestaurantLanguageCheckboxList({
@@ -34,7 +36,7 @@ class _RestaurantLanguageCheckboxListState
     String menuText,
     List<int> languageIds,
   ) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/menus');
+    final url = Uri.http(Environment().config.apiHost, '/api/menus');
 
     final headers = {'Content-Type': 'application/json'};
 

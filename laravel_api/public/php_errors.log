@@ -1,0 +1,7 @@
+[31-May-2022 07:01:57 UTC] PHP Warning:  PHP Startup: Can't load module 'c:\php\ext\php_gd.dll' as it's linked with 14.28, but the core is linked with 14.16 in Unknown on line 0
+[31-May-2022 07:10:32 UTC] PHP Warning:  PHP Startup: Can't load module 'c:\php\ext\php_gd.dll' as it's linked with 14.28, but the core is linked with 14.16 in Unknown on line 0
+[01-Jun-2022 16:18:44 UTC] PHP Warning:  PHP Startup: Can't load module 'c:\php\ext\php_gd.dll' as it's linked with 14.28, but the core is linked with 14.16 in Unknown on line 0
+[02-Jun-2022 07:31:56 UTC] PHP Warning:  PHP Startup: Can't load module 'c:\php\ext\php_gd.dll' as it's linked with 14.28, but the core is linked with 14.16 in Unknown on line 0
+[03-Jun-2022 14:04:52 UTC] PHP Warning:  PHP Startup: Can't load module 'c:\php\ext\php_gd.dll' as it's linked with 14.28, but the core is linked with 14.16 in Unknown on line 0
+[03-Jun-2022 14:33:03 UTC] PHP Warning:  PHP Startup: Can't load module 'c:\php\ext\php_gd.dll' as it's linked with 14.28, but the core is linked with 14.16 in Unknown on line 0
+[03-Jun-2022 14:36:57 UTC] PHP Warning:  PHP Startup: Can't load module 'c:\php\ext\php_gd.dll' as it's linked with 14.28, but the core is linked with 14.16 in Unknown on line 0

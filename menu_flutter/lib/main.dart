@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-
 import '/screen/app/welcome.dart';
+import 'environment.dart';
 
 void main() {
+
+  const String environment = String.fromEnvironment(
+    'ENVIRONMENT',
+    defaultValue: Environment.DEV,
+  );
+
+  Environment().initConfig(environment);
   runApp(const MyApp());
 }
 

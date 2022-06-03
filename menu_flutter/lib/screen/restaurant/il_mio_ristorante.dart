@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../../../models/app/restaurant.dart';
 import '../../../models/app/user.dart';
+import '../../environment.dart';
 
 class IlMioRistoranteScreen extends StatelessWidget {
   IlMioRistoranteScreen({
@@ -16,7 +17,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
   final User loggedUser;
 
   Future<Restaurant> _getRestaurant(User user) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/restaurants/${user.id}');
+    final url = Uri.http(Environment().config.apiHost, '/api/restaurants/${user.id}');
     final response = await http.get(url);
     print(response.reasonPhrase);
     final data = jsonDecode(response.body);
@@ -25,7 +26,7 @@ class IlMioRistoranteScreen extends StatelessWidget {
   }
 
   Future<bool> _updateRestaurant(Restaurant restaurant) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/restaurants/${restaurant.id}');
+    final url = Uri.http(Environment().config.apiHost, '/api/restaurants/${restaurant.id}');
 
     final headers = {'Content-Type': 'application/json'};
 

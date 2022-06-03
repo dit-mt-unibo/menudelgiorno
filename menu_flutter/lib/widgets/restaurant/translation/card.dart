@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menudelgiorno/environment.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../models/restaurant/translation.dart';
@@ -39,11 +40,10 @@ class RestaurantTranslationCard extends StatelessWidget {
                       Text(
                         translation.languageCode,
                         style: const TextStyle(
-                          fontSize: 25.0,
-                          color: Color.fromARGB(255, 147, 19, 19),
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'NotoSerifDisplay'
-                        ),
+                            fontSize: 25.0,
+                            color: Color.fromARGB(255, 147, 19, 19),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NotoSerifDisplay'),
                       ),
                     ],
                   ),
@@ -121,11 +121,10 @@ class RestaurantTranslationCard extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            fontSize: 20.0,
-                            color: Color.fromARGB(255, 147, 19, 19),
-                            fontWeight: FontWeight.w600,
-                            fontFamily:'NotoSerifDisplay'
-                          ),
+                              fontSize: 20.0,
+                              color: Color.fromARGB(255, 147, 19, 19),
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'NotoSerifDisplay'),
                         ),
                       ],
                     ),
@@ -152,16 +151,15 @@ class RestaurantTranslationCard extends StatelessWidget {
                   child: const Text(
                     'Visualizza',
                     style: TextStyle(
-                      fontSize: 15.0,
-                      fontFamily: 'NotoSerifDisplay',
-                      letterSpacing: 2.0,
-                      fontWeight: FontWeight.bold
-                    ),
+                        fontSize: 15.0,
+                        fontFamily: 'NotoSerifDisplay',
+                        letterSpacing: 2.0,
+                        fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    final url =
-                        "http://10.0.2.2:8000/translations/${translation.id}";
-                    _launchInBrowser(url);
+                    final url = Uri.http(Environment().config.apiHost,
+                        "/translations/${translation.id}");
+                    _launchInBrowser(url.toString());
                   },
                 ),
                 ElevatedButton(
@@ -176,16 +174,15 @@ class RestaurantTranslationCard extends StatelessWidget {
                   child: const Text(
                     'Codice QR',
                     style: TextStyle(
-                      fontSize: 15.0,
-                      fontFamily: 'NotoSerifDisplay',
-                      letterSpacing: 2.0,
-                      fontWeight: FontWeight.bold
-                    ),
+                        fontSize: 15.0,
+                        fontFamily: 'NotoSerifDisplay',
+                        letterSpacing: 2.0,
+                        fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    final url =
-                        "http://10.0.2.2:8000/qrcodes/${translation.id}";
-                    _launchInBrowser(url);
+                    final url = Uri.http(Environment().config.apiHost,
+                        "/qrcodes/${translation.id}");
+                    _launchInBrowser(url.toString());
                   },
                 ),
               ],

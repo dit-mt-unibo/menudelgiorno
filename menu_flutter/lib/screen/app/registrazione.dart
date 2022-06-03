@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 import 'welcome.dart';
+import '../../environment.dart';
 
 class RegistrazioneScreen extends StatefulWidget {
   const RegistrazioneScreen({Key? key}) : super(key: key);
@@ -34,7 +35,9 @@ class _RegistrazioneScreenState extends State<RegistrazioneScreen> {
     required String passwordConfirmation,
     required Role role,
   }) async {
-    final url = Uri.http('10.0.2.2:8000', '/api/auth/register');
+    String baseUri = Environment().config.apiHost;
+    print(baseUri);
+    final url = Uri.http(baseUri, '/api/auth/register');
 
     final headers = {'Content-Type': 'application/json'};
 

@@ -18,7 +18,7 @@ class French_glossarieSeeder extends Seeder
 
 
         $firstline = true;
-        while (($data = fgetcsv($csvFile, 1000, ";")) !== FALSE) {
+        while (($data = fgetcsv($csvFile, 1000, ",")) !== FALSE) {
             if (!$firstline) {
                 French_glossary::create([
                     "it-IT" => $data['0'],

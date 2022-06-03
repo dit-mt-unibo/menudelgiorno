@@ -7,6 +7,7 @@ import '../../models/app/user.dart';
 import '../../models/translator/translation/home_translation.dart';
 import '../../widgets/translator/navbar.dart';
 import '../../widgets/translator/translation/card_list.dart';
+import '../../environment.dart';
 
 class TranslatorHome extends StatelessWidget {
   const TranslatorHome({
@@ -17,7 +18,7 @@ class TranslatorHome extends StatelessWidget {
   final User loggedUser;
 
   Future<List<HomeTranslation>> _getAllTranslations() async {
-    final url = Uri.http('10.0.2.2:8000', '/api/translations');
+    final url = Uri.http(Environment().config.apiHost, '/api/translations');
     final response = await http.get(url);
 
     if (response.statusCode != 200) {

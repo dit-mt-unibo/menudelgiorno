@@ -4,27 +4,52 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:io' show Platform;
 
 import '../../models/app/user.dart';
 import '../restaurant/home.dart';
 import '../translator/home.dart';
 import 'registrazione.dart';
+import '../../environment.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   Future _doLogin() async {
-    final url = Uri.http('10.0.2.2:8000', '/api/auth/login');
+    final baseUri =  Environment().config.apiHost;
+    final url = Uri.http(baseUri, '/api/auth/login');
 
     final deviceInfo = DeviceInfoPlugin();
-    final androidInfo = await deviceInfo.androidInfo;
+
+    String model = 'unknown';
+
+    if (kIsWeb) {
+      // running on the web!
+      print("I am running on Chrome or web!");
+      WebBrowserInfo webBrowserInfo = await deviceInfo.webBrowserInfo;
+      model = webBrowserInfo.userAgent as String;
+    } else {
+      // NOT running on the web! You can check for additional platforms here.
+      if (Platform.isAndroid) {
+              print("I am running on Android!");
+              AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+              model = androidInfo.model as String;
+            } else if (Platform.isIOS) {
+              IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+              model = iosInfo.utsname.machine as String;
+            }
+    }
+    
+
+    //final androidInfo = await deviceInfo.androidInfo;
 
     final headers = {'Content-Type': 'application/json'};
 
     final payload = jsonEncode({
       'user': _userController.text,
       'password': _pwdController.text,
-      'device': " ${androidInfo.model}",
+      'device': model,
     });
 
     final response = await http.post(url, headers: headers, body: payload);
